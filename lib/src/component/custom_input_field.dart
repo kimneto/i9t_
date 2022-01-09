@@ -4,12 +4,14 @@ class CustomInputField extends StatelessWidget {
   final String label, hint;
   final bool hasIcon;
   final Icon icon;
+  final bool isPassword;
 
   CustomInputField({
     required this.label,
     required this.hint,
     required this.hasIcon,
     required this.icon,
+    required this.isPassword,
   });
 
   @override
@@ -19,27 +21,21 @@ class CustomInputField extends StatelessWidget {
       children: <Widget>[
         Text(
           label,
-          style: Theme.of(context).textTheme.subtitle1,
         ),
         const SizedBox(
           height: 5.0,
         ),
         Container(
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.white),
-          ),
+          decoration: BoxDecoration(),
           padding: const EdgeInsets.symmetric(horizontal: 15.0),
           child: Row(
             children: <Widget>[
               Expanded(
                 child: TextField(
                   decoration: InputDecoration(
-                    border: InputBorder.none,
                     hintText: hint,
-                    hintStyle: const TextStyle(color: Colors.white),
                   ),
-                  style: const TextStyle(color: Colors.white),
-                  obscureText: true,
+                  obscureText: isPassword,
                 ),
               ),
               hasIcon
