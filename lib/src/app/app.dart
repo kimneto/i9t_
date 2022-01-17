@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:i9trafego/src/feature/fct/fct.dart';
+import 'package:i9trafego/src/feature/fct/form_fct.dart';
+import 'package:i9trafego/src/feature/fct/form_fct_hodometro.dart';
 import 'package:i9trafego/src/feature/home/home.controller.dart';
 import 'package:i9trafego/src/feature/home/home.dart';
 import 'package:i9trafego/src/feature/login/login.controller.dart';
@@ -27,7 +28,8 @@ class App extends StatelessWidget {
           routes: {
             '/login': (context) => LoginPage(),
             '/home': (context) => Home(),
-            '/fct': (context) => FCT(),
+            '/fct': (context) => FormFct(),
+            '/hodometro': (context) => FormFctHodometro(),
           },
           debugShowCheckedModeBanner: false,
           title: 'I9 Controle de Tráfego',

@@ -95,7 +95,7 @@ class _HomeState extends State<Home> {
                                   color: Colors.green,
                                   textColor: Colors.white,
                                   onPressed: () {},
-                                  child: Text('ENCERRAR')),
+                                  child: Text('CHEGADA')),
                             ],
                           ),
                         ),
@@ -114,7 +114,9 @@ class _HomeState extends State<Home> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, '/fct');
+        },
         tooltip: 'Adicionar Viagem',
         child: const Icon(Icons.add),
       ),

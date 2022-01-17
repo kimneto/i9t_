@@ -1,14 +1,14 @@
 class UserModel {
-  int id;
-  String name;
-  String email;
-  String cpf;
-  String re;
+  int? id;
+  String? nome;
+  String? email;
+  String? cpf;
+  String? re;
+  int? nivel;
+  int? codUnidade;
 
-  UserModel(
-      {required this.id,
-      required this.name,
-      required this.email,
-      required this.cpf,
-      required this.re});
+  //NIVEL 1 - ADMINISTRADOR (EXCLUI USUÁRIO, ADICIONA USUÁRIO, ALTERA USUÁRIO)
+  //NIVEL 2 - USUARIO
+  //NIVEL 3 - CLIENTE
+
 }
