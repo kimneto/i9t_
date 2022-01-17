@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 class CustomInputField extends StatelessWidget {
   final String label, hint;
   final bool hasIcon;
-  final Icon icon;
+  final Widget icon;
   final bool isPassword;
+  final TextInputType keyboardType;
+  final int maxLength;
+  final TextEditingController controller;
 
   CustomInputField({
     required this.label,
@@ -12,6 +15,9 @@ class CustomInputField extends StatelessWidget {
     required this.hasIcon,
     required this.icon,
     required this.isPassword,
+    required this.keyboardType,
+    required this.maxLength,
+    required this.controller,
   });
 
   @override
@@ -32,6 +38,9 @@ class CustomInputField extends StatelessWidget {
             children: <Widget>[
               Expanded(
                 child: TextField(
+                  controller: controller,
+                  maxLength: maxLength,
+                  keyboardType: keyboardType,
                   decoration: InputDecoration(
                     hintText: hint,
                   ),
