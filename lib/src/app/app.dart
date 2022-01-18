@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:i9trafego/src/feature/fct/form_fct.dart';
-import 'package:i9trafego/src/feature/fct/form_fct_hodometro.dart';
+import 'package:i9trafego/src/feature/fct/form_fct_ponto_parada.dart';
+import 'package:i9trafego/src/feature/fct/form_fct_seleciona_vtr.dart';
+import 'package:i9trafego/src/feature/fct/form_fct_hodometro_inicial.dart';
 import 'package:i9trafego/src/feature/home/home.controller.dart';
 import 'package:i9trafego/src/feature/home/home.dart';
 import 'package:i9trafego/src/feature/login/login.controller.dart';
@@ -28,8 +29,9 @@ class App extends StatelessWidget {
           routes: {
             '/login': (context) => LoginPage(),
             '/home': (context) => Home(),
-            '/fct': (context) => FormFct(),
-            '/hodometro': (context) => FormFctHodometro(),
+            '/fct': (context) => FormFctSelecionaVtr(),
+            '/hodometro': (context) => FormFctHodometroIncial(),
+            '/parada': (context) => FormFctPontoParada(),
           },
           debugShowCheckedModeBanner: false,
           title: 'I9 Controle de Tráfego',

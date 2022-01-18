@@ -94,7 +94,9 @@ class _HomeState extends State<Home> {
                               MaterialButton(
                                   color: Colors.green,
                                   textColor: Colors.white,
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, '/parada');
+                                  },
                                   child: Text('CHEGADA')),
                             ],
                           ),

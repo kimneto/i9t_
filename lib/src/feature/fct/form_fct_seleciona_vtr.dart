@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class FormFct extends StatefulWidget {
-  FormFct({Key? key}) : super(key: key);
+class FormFctSelecionaVtr extends StatefulWidget {
+  FormFctSelecionaVtr({Key? key}) : super(key: key);
 
   @override
-  _FormFctState createState() => _FormFctState();
+  _FormFctSelecionaVtrState createState() => _FormFctSelecionaVtrState();
 }
 
-class _FormFctState extends State<FormFct> {
+class _FormFctSelecionaVtrState extends State<FormFctSelecionaVtr> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

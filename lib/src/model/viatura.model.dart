@@ -4,4 +4,5 @@ class ViaturaModel {
   String? placa;
   String? tipo;
   String? grupo;
+  int? statusVtr;
 }

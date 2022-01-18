@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class FormFctHodometro extends StatefulWidget {
-  const FormFctHodometro({Key? key}) : super(key: key);
+class FormFctHodometroIncial extends StatefulWidget {
+  const FormFctHodometroIncial({Key? key}) : super(key: key);
 
   @override
-  _FormFctHodometroState createState() => _FormFctHodometroState();
+  _FormFctHodometroIncialState createState() => _FormFctHodometroIncialState();
 }
 
-class _FormFctHodometroState extends State<FormFctHodometro> {
+class _FormFctHodometroIncialState extends State<FormFctHodometroIncial> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
