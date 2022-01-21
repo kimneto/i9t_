@@ -20,6 +20,14 @@ class _FormFctPontoParadaState extends State<FormFctPontoParada> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Formulário de FCT'),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: Icon(Icons.arrow_back)),
+      ),
       body: ListView(
         children: [
           Container(

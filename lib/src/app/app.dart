@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:i9trafego/src/feature/fct/form_fct_ponto_parada.dart';
-import 'package:i9trafego/src/feature/fct/form_fct_seleciona_vtr.dart';
-import 'package:i9trafego/src/feature/fct/form_fct_hodometro_inicial.dart';
+import 'package:i9trafego/src/feature/fct/form_fct_seleciona_vtr/form_fct_seleciona_vtr.dart';
+import 'package:i9trafego/src/feature/fct/form_fct_hodometro/form_fct_hodometro_inicial.dart';
+import 'package:i9trafego/src/feature/fct/form_fct_seleciona_vtr/form_fct_seleciona_vtr_controller.dart';
 import 'package:i9trafego/src/feature/home/home.controller.dart';
 import 'package:i9trafego/src/feature/home/home.dart';
 import 'package:i9trafego/src/feature/login/login.controller.dart';
@@ -21,11 +22,14 @@ class App extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AppController()),
         ChangeNotifierProvider(create: (_) => HomeController()),
         ChangeNotifierProvider(create: (_) => LoginController(LoginInitial())),
+        ChangeNotifierProvider(
+          create: (context) => FormFctSelecionaVtrController(),
+        )
       ],
       builder: (context, child) {
         context.watch<AppController>().lerTema();
         return MaterialApp(
-          initialRoute: '/home',
+          initialRoute: '/login',
           routes: {
             '/login': (context) => LoginPage(),
             '/home': (context) => Home(),
@@ -35,9 +39,7 @@ class App extends StatelessWidget {
           },
           debugShowCheckedModeBanner: false,
           title: 'I9 Controle de Tráfego',
-          theme: context.watch<AppController>().isThemeDark
-              ? ThemeData.dark()
-              : ThemeData.light(),
+          theme: ThemeData(fontFamily: 'Roboto'),
         );
       },
     );

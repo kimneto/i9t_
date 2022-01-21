@@ -23,6 +23,12 @@ class _LoginPageState extends State<LoginPage> {
     return ValueListenableBuilder(
         valueListenable: controller,
         builder: (context, value, child) {
+          if (value is LoginSuccess) {
+            Future.delayed(Duration.zero).then((_) {
+              Navigator.of(context)
+                  .pushReplacementNamed('/home', arguments: value.user);
+            });
+          }
           if (value is LoginLoading) {
             return Scaffold(
               body: Center(
@@ -35,10 +41,6 @@ class _LoginPageState extends State<LoginPage> {
             return Center(
               child: Text(value.error),
             );
-          }
-
-          if (value is LoginSuccess) {
-            Navigator.pushNamed(context, '/home', arguments: value.user);
           }
 
           return Scaffold(

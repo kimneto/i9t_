@@ -1,0 +1,7 @@
+{
+    "editor.defaultFormatter": "Dart-Code.flutter",
+    "editor.formatOnSave": true,
+    "html.format.preserveNewLines": false,
+    "dart.flutterHotReloadOnSave": "always",
+    "dart.previewHotReloadOnSaveWatcher": true
+}
