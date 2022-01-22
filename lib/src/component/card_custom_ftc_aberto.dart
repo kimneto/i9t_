@@ -1,82 +1,202 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:i9t/src/shared/tema.dart';
 
 class CardCustomFctAberto extends StatelessWidget {
+  double w, h;
+
+  CardCustomFctAberto({required this.w, required this.h});
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Container(
-          height: 200,
-          width: 400,
+          height: 400,
+          width: 350,
           decoration: BoxDecoration(
-            color: Colors.blue[100],
-            image: DecorationImage(
-                scale: 3.0,
-                image: AssetImage('assets/vtr.png'),
-                fit: BoxFit.none,
-                alignment: AlignmentDirectional(1.8, 0)),
+            boxShadow: [
+              BoxShadow(
+                color: cinzalitei9t,
+                blurRadius: 10.0, // has the effect of softening the shadow
+                spreadRadius: 1.0, // has the effect of extending the shadow
+                offset: Offset(
+                  10.0, // horizontal, move right 10
+                  10.0, // vertical, move down 10
+                ),
+              ),
+            ],
+            color: ColorTween(begin: pretoi9t, end: pretoi9t)
+                .evaluate(AlwaysStoppedAnimation(0.1)),
             border: Border.all(style: BorderStyle.none),
             borderRadius: BorderRadius.all(Radius.elliptical(38, 40)),
           ),
           child: Padding(
-            padding: EdgeInsets.fromLTRB(200, 0, 20, 0),
+            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+            child: Row(
+              children: [
+                Container(
+                  //  color: Colors.red,
+                  padding: EdgeInsets.only(top: 100),
+                  width: 120,
+                  child: Column(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Icon(
+                            FontAwesomeIcons.tachometerAlt,
+                            color: cinzalitei9t,
+                            size: h * 0.035,
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            '120.5 Km',
+                            style: TextStyle(
+                                fontSize: h * 0.015,
+                                fontWeight: FontWeight.bold,
+                                color: cinzalitei9t),
+                          ),
+                          Text('Utilizados',
+                              style: TextStyle(
+                                  fontSize: h * 0.015, color: cinzalitei9t))
+                        ],
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Icon(
+                            FontAwesomeIcons.route,
+                            color: cinzalitei9t,
+                            size: h * 0.035,
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            '2',
+                            style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: cinzalitei9t),
+                          ),
+                          Text('Pontos',
+                              style:
+                                  TextStyle(fontSize: 13, color: cinzalitei9t)),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Icon(FontAwesomeIcons.hourglassHalf,
+                                  color: cinzalitei9t, size: 30),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Text(
+                                '01:25:00:00',
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                    color: cinzalitei9t),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    padding: EdgeInsets.only(bottom: 65),
+                    alignment: Alignment.bottomCenter,
+                    child: Image.asset(
+                      'assets/vtr.png',
+                      colorBlendMode: BlendMode.softLight,
+                      scale: 4,
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.only(top: 100),
+                  width: 120,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 55,
+                      ),
+                      Column(),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         //
         Positioned(
-          top: 12,
-          left: 16,
+          top: 20,
+          left: 26,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 child: Text(
                   'São Paulo',
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: h * 0.032,
+                      fontWeight: FontWeight.bold,
+                      color: cinzalitei9t),
                 ),
               ),
               Container(
                 child: Text(
                   'Viatura GM SPIN - Placa: ABC1234',
-                  style: TextStyle(fontSize: 16),
+                  style: TextStyle(fontSize: h * 0.020, color: cinzalitei9t),
                 ),
               ),
               Container(
                 child: Text(
                   'Data Inicial: 01/01/22',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: h * 0.020,
+                      fontWeight: FontWeight.bold,
+                      color: cinzalitei9t),
                 ),
               ),
               SizedBox(
-                height: 50,
+                height: 30,
               ),
-              Row(
-                children: [
-                  Container(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Center(
-                          child: Text('INSERIR\nPARADA',
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black)),
-                        ),
-                      ],
+              Container(
+                margin: EdgeInsets.only(left: 190, top: h * 0.30),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      width: 5,
                     ),
-                    width: 130,
-                    height: 60,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.elliptical(18, 20)),
+                    Center(
+                      child: Text('Inserir\nParada',
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: pretoi9t)),
                     ),
-                  ),
-                ],
+                  ],
+                ),
+                width: 120,
+                height: 60,
+                decoration: BoxDecoration(
+                  color: amareloi9t,
+                  borderRadius: BorderRadius.all(Radius.elliptical(18, 20)),
+                ),
               ),
             ],
           ),
@@ -142,12 +262,12 @@ Column(
                 children: [
                   MaterialButton(
                       color: Colors.red,
-                      textColor: Colors.white,
+                      textColor: cinzalitei9t,
                       onPressed: () {},
                       child: Text('DESTINO')),
                   MaterialButton(
                       color: Colors.green,
-                      textColor: Colors.white,
+                      textColor: cinzalitei9t,
                       onPressed: () {
                         Navigator.pushNamed(context, '/parada');
                       },

@@ -1,4 +1,4 @@
-import 'package:i9trafego/src/model/condutor.model.dart';
+import 'package:i9t/src/model/condutor.model.dart';
 
 abstract class HomeState {}
 

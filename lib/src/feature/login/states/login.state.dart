@@ -1,4 +1,4 @@
-import 'package:i9trafego/src/model/condutor.model.dart';
+import 'package:i9t/src/model/condutor.model.dart';
 
 abstract class LoginState {}
 
@@ -13,7 +13,7 @@ class LoginFailure extends LoginState {
 }
 
 class LoginSuccess extends LoginState {
-  final CondutorModel user;
+  final CondutorModel condutor;
 
-  LoginSuccess({required this.user});
+  LoginSuccess({required this.condutor});
 }

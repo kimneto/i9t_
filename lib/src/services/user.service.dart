@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:i9trafego/src/model/condutor.model.dart';
+import 'package:i9t/src/model/condutor.model.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 
 class CondutorService {
@@ -17,16 +17,16 @@ class CondutorService {
     return listaCondutores;
   }
 
-  Future<CondutorModel> pegaUsuarioPorCpf(String CPF) async {
-    CondutorModel usuario = CondutorModel();
+  Future<CondutorModel> pegaCondutorPorCpf(String CPF) async {
+    CondutorModel condutor = CondutorModel();
 
     queryCondutorService.whereEqualTo("cpf", CPF);
 
     final response = await queryCondutorService.query();
     if (response.success) {
-      usuario = CondutorModel.fromJson(await response.result[0].toJson());
+      condutor = CondutorModel.fromJson(await response.result[0].toJson());
     }
 
-    return usuario;
+    return condutor;
   }
 }

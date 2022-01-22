@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:i9trafego/src/feature/fct/form_fct_seleciona_vtr/form_fct_seleciona_vtr_controller.dart';
-import 'package:i9trafego/src/model/viatura.model.dart';
+import 'package:i9t/src/feature/fct/form_fct_seleciona_vtr/form_fct_seleciona_vtr_controller.dart';
+import 'package:i9t/src/model/viatura.model.dart';
 import 'package:provider/src/provider.dart';
 
 class FormFctSelecionaVtr extends StatefulWidget {

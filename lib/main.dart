@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:i9trafego/src/services/user.service.dart';
+import 'package:i9t/src/services/user.service.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 
 import 'src/app/app.dart';

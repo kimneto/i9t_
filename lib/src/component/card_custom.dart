@@ -1,4 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:i9t/src/shared/tema.dart';
 
 class CardCustom extends StatelessWidget {
   String? titulo, subtitulo, textoBotao;
@@ -15,7 +19,7 @@ class CardCustom extends StatelessWidget {
       margin: EdgeInsets.fromLTRB(20, 8, 20, 8),
       height: 100,
       decoration: BoxDecoration(
-          color: Colors.black12,
+          color: cinzaultralitei9t,
           border: Border.all(
             style: BorderStyle.none,
             width: 1,
@@ -29,10 +33,35 @@ class CardCustom extends StatelessWidget {
             width: 1,
             color: Colors.blue,
       */
+      child: Row(
+        children: [
+          Flexible(
+              flex: 2,
+              child: Container(
+                  child: iconesLevel[
+                      Random(iconesLevel.length).nextInt(iconesLevel.length)])),
+          Flexible(
+            flex: 4,
+            child: Container(),
+          ),
+          Flexible(
+            flex: 4,
+            child: Container(
+              color: amareloi9t,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
 
+List<Widget> iconesLevel = <Icon>[
+  Icon(FontAwesomeIcons.star, color: cinzaultralitei9t, size: 20),
+  //Icon(FontAwesomeIcons.trophy, color: Colors.yellow),
+  //Icon(FontAwesomeIcons.starOfDavid, color: Colors.yellow),
+  // Icon(FontAwesomeIcons.starOfDavid, color: Colors.yellow),
+];
 /*
 
 Card(

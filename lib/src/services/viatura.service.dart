@@ -1,4 +1,4 @@
-import 'package:i9trafego/src/model/viatura.model.dart';
+import 'package:i9t/src/model/viatura.model.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 
 class ViaturaService {

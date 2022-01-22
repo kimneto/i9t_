@@ -1,4 +1,4 @@
-import 'package:i9trafego/src/model/fct.model.dart';
+import 'package:i9t/src/model/fct.model.dart';
 
 class TrafegoModel {
   int? id;

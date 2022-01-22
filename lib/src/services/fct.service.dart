@@ -1,6 +1,6 @@
-import 'package:i9trafego/src/model/fct.model.dart';
-import 'package:i9trafego/src/model/condutor.model.dart';
-import 'package:i9trafego/src/model/pointer.model.dart';
+import 'package:i9t/src/model/fct.model.dart';
+import 'package:i9t/src/model/condutor.model.dart';
+import 'package:i9t/src/model/pointer.model.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 
 class FctService {

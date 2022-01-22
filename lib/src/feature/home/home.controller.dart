@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:i9trafego/src/feature/home/states/home.states.dart';
-import 'package:i9trafego/src/model/condutor.model.dart';
-import 'package:i9trafego/src/services/fct.service.dart';
-import 'package:i9trafego/src/services/user.service.dart';
+import 'package:i9t/src/feature/home/states/home.states.dart';
+import 'package:i9t/src/model/condutor.model.dart';
+import 'package:i9t/src/services/fct.service.dart';
+import 'package:i9t/src/services/user.service.dart';
 
 class HomeController extends ValueNotifier<HomeState> {
   HomeController() : super(HomeInitial());

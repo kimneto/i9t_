@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:i9trafego/src/app/app.controller.dart';
-import 'package:i9trafego/src/component/card_custom.dart';
-import 'package:i9trafego/src/component/card_custom_ftc_aberto.dart';
-import 'package:i9trafego/src/feature/home/home.controller.dart';
-import 'package:i9trafego/src/model/condutor.model.dart';
-import 'package:i9trafego/src/model/fct.model.dart';
-import 'package:i9trafego/src/services/user.service.dart';
+import 'package:i9t/src/app/app.controller.dart';
+import 'package:i9t/src/component/card_custom.dart';
+import 'package:i9t/src/component/card_custom_ftc_aberto.dart';
+import 'package:i9t/src/feature/home/home.controller.dart';
+import 'package:i9t/src/model/condutor.model.dart';
+import 'package:i9t/src/model/fct.model.dart';
+import 'package:i9t/src/services/user.service.dart';
+import 'package:i9t/src/shared/tema.dart';
 
 import 'package:provider/src/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -23,7 +26,8 @@ class _HomeState extends State<Home> {
     final homeController = Provider.of<HomeController>(context);
     homeController.condutor =
         ModalRoute.of(context)?.settings.arguments as CondutorModel;
-
+    final w = MediaQuery.of(context).size.width;
+    final h = MediaQuery.of(context).size.height;
     return ValueListenableBuilder(
         valueListenable: homeController,
         builder: (context, value, child) {
@@ -35,18 +39,19 @@ class _HomeState extends State<Home> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
-                      Icons.car_rental,
-                      color: Colors.white,
+                      FontAwesomeIcons.car,
+                      color: pretoi9t,
                     ),
                     SizedBox(
                       width: 10,
                     ),
                     Text(
-                      'NOVA\nVIAGEM',
+                      'Nova\nViagem',
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white),
+                          color: pretoi9t),
                     ),
                   ],
                 ),
@@ -54,22 +59,48 @@ class _HomeState extends State<Home> {
               width: 130,
               height: 60,
               decoration: BoxDecoration(
-                color: Colors.green[400],
+                boxShadow: [
+                  BoxShadow(
+                    color: cinzai9t,
+                    blurRadius: 10,
+                    offset: Offset(4, 6),
+                  ),
+                ],
+                color: amareloi9t,
                 borderRadius: BorderRadius.all(Radius.elliptical(18, 20)),
               ),
             ),
             appBar: AppBar(
+              actions: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 20, right: 20),
+                  child: Column(
+                    children: [
+                      IconButton(
+                          iconSize: 30,
+                          icon: Icon(
+                            Icons.logout,
+                            size: 30,
+                            color: pretoi9t,
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          }),
+                    ],
+                  ),
+                )
+              ],
               toolbarHeight: 80,
-              leading: IconButton(
+              /* leading: IconButton(
                 icon: Icon(
-                  Icons.arrow_back_ios_new_rounded,
+                  FontAwesomeIcons.signOutAlt,
                   size: 30,
-                  color: Colors.black,
+                  color: pretoi9t,
                 ),
                 onPressed: () {
                   Navigator.pop(context);
                 },
-              ),
+              ),*/
               elevation: 0,
               foregroundColor: Colors.transparent,
               backgroundColor: Color.fromARGB(0, 255, 255, 255),
@@ -80,12 +111,12 @@ class _HomeState extends State<Home> {
                   Text(
                     'Olá Joaquim',
                     style: TextStyle(
-                        color: Colors.black,
+                        color: pretoi9t,
                         fontSize: 28,
                         fontWeight: FontWeight.bold),
                   ),
                   Text('Seja bem-vindo novamente.',
-                      style: TextStyle(color: Colors.black, fontSize: 13))
+                      style: TextStyle(color: pretoi9t, fontSize: 13))
                 ],
               ),
             ),
@@ -104,7 +135,7 @@ class _HomeState extends State<Home> {
                           Text(
                             'Você tem FCT em aberto:',
                             style: TextStyle(
-                                color: Colors.black,
+                                color: pretoi9t,
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold),
                           ),
@@ -115,7 +146,7 @@ class _HomeState extends State<Home> {
                       ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                        child: CardCustomFctAberto(),
+                        child: CardCustomFctAberto(w: w, h: h),
                       ),
                       Container(
                         alignment: AlignmentDirectional.centerStart,
@@ -123,20 +154,15 @@ class _HomeState extends State<Home> {
                         child: Text(
                           'Trafegos finalizados:',
                           style: TextStyle(
-                              color: Colors.black,
+                              color: pretoi9t,
                               fontSize: 16,
                               fontWeight: FontWeight.bold),
                         ),
                       ),
-                      ListView(
-                        shrinkWrap: true,
-                        children: [
-                          CardCustom(),
-                          CardCustom(),
-                          CardCustom(),
-                          CardCustom(),
-                        ],
-                      )
+                      CardCustom(),
+                      CardCustom(),
+                      CardCustom(),
+                      CardCustom(),
                     ],
                   ),
                 ),
