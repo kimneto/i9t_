@@ -24,7 +24,7 @@ class CardCustom extends StatelessWidget {
             style: BorderStyle.none,
             width: 1,
           ),
-          borderRadius: BorderRadius.all(Radius.elliptical(28, 30))),
+          borderRadius: BorderRadius.all(Radius.elliptical(16, 20))),
 
       /* decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
@@ -34,20 +34,84 @@ class CardCustom extends StatelessWidget {
             color: Colors.blue,
       */
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Flexible(
-              flex: 2,
-              child: Container(
-                  child: iconesLevel[
-                      Random(iconesLevel.length).nextInt(iconesLevel.length)])),
-          Flexible(
-            flex: 4,
-            child: Container(),
+            flex: 1,
+            child: Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                      enableFeedback: true,
+                      icon: Icon(
+                        FontAwesomeIcons.solidFilePdf,
+                        color: pretoi9t,
+                        size: 28,
+                      ),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/imprime-fct');
+                      }),
+                  Text(
+                    'Gerar FCT',
+                    style: TextStyle(fontSize: 12),
+                  ),
+                ],
+              ),
+            ),
           ),
           Flexible(
-            flex: 4,
-            child: Container(
-              color: amareloi9t,
+            flex: 2,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 0.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Data: 25/12/21', style: TextStyle(fontSize: 12)),
+                  Text(
+                    'Rio das Pedras',
+                    style: TextStyle(fontSize: 12),
+                  ),
+                  Text(
+                    'GW TAOS - I-25550',
+                    style: TextStyle(fontSize: 12),
+                  ),
+                  Text(
+                    '550 Minutos - 450 Kms',
+                    style: TextStyle(fontSize: 12),
+                  ),
+                  Text(
+                    'FCT: CPI9-001/420/22',
+                    style: TextStyle(fontSize: 12),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Container(
+            child: Center(
+              child: Container(
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 10.0,
+                      spreadRadius: 1.0,
+                    ),
+                  ],
+                  borderRadius: BorderRadius.circular(100),
+                  color: Colors.white,
+                ),
+                child: Icon(
+                  FontAwesomeIcons.trophy,
+                  color: amareloi9t,
+                  size: 25,
+                ),
+              ),
             ),
           ),
         ],
@@ -55,53 +119,3 @@ class CardCustom extends StatelessWidget {
     );
   }
 }
-
-List<Widget> iconesLevel = <Icon>[
-  Icon(FontAwesomeIcons.star, color: cinzaultralitei9t, size: 20),
-  //Icon(FontAwesomeIcons.trophy, color: Colors.yellow),
-  //Icon(FontAwesomeIcons.starOfDavid, color: Colors.yellow),
-  // Icon(FontAwesomeIcons.starOfDavid, color: Colors.yellow),
-];
-/*
-
-Card(
-      margin: EdgeInsets.fromLTRB(17, 0, 17, 10),
-      elevation: 5.0,
-      child: ListTile(
-        leading: Icon(Icons.directions_car),
-        title: Text(
-          this.titulo ?? '',
-          style: TextStyle(fontSize: 12),
-        ),
-        subtitle: Text(
-          subtitulo ?? '',
-          style: TextStyle(fontSize: 10),
-        ),
-        isThreeLine: true,
-        trailing: GestureDetector(
-          onTap: () {
-            aoApertar ?? () {};
-          },
-          child: Container(
-            padding: EdgeInsets.all(4),
-            decoration: BoxDecoration(
-              color: Colors.grey[200],
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-            ),
-            child: Column(
-              children: [
-                Icon(
-                  Icons.picture_as_pdf_sharp,
-                  color: Colors.red,
-                ),
-                Text(
-                  textoBotao ?? '',
-                  style: TextStyle(fontSize: 10),
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  **/

@@ -7,7 +7,7 @@ import 'package:i9t/src/component/card_custom_ftc_aberto.dart';
 import 'package:i9t/src/feature/home/home.controller.dart';
 import 'package:i9t/src/model/condutor.model.dart';
 import 'package:i9t/src/model/fct.model.dart';
-import 'package:i9t/src/services/user.service.dart';
+import 'package:i9t/src/services/condutor.service.dart';
 import 'package:i9t/src/shared/tema.dart';
 
 import 'package:provider/src/provider.dart';
@@ -24,8 +24,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     final appController = Provider.of<AppController>(context);
     final homeController = Provider.of<HomeController>(context);
-    homeController.condutor =
-        ModalRoute.of(context)?.settings.arguments as CondutorModel;
+    //  homeController.condutor =        ModalRoute.of(context)?.settings.arguments as CondutorModel;
     final w = MediaQuery.of(context).size.width;
     final h = MediaQuery.of(context).size.height;
     return ValueListenableBuilder(
@@ -84,7 +83,7 @@ class _HomeState extends State<Home> {
                             color: pretoi9t,
                           ),
                           onPressed: () {
-                            Navigator.of(context).pop();
+                            Navigator.of(context).popAndPushNamed('/logout');
                           }),
                     ],
                   ),
@@ -146,7 +145,7 @@ class _HomeState extends State<Home> {
                       ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                        child: CardCustomFctAberto(w: w, h: h),
+                        child: CardCustomFctAberto(),
                       ),
                       Container(
                         alignment: AlignmentDirectional.centerStart,

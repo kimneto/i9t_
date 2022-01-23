@@ -3,7 +3,11 @@ import 'package:i9t/src/feature/fct/form_fct_ponto_parada.dart';
 import 'package:i9t/src/feature/fct/form_fct_seleciona_vtr/form_fct_seleciona_vtr.dart';
 import 'package:i9t/src/feature/fct/form_fct_hodometro/form_fct_hodometro_inicial.dart';
 import 'package:i9t/src/feature/fct/form_fct_seleciona_vtr/form_fct_seleciona_vtr_controller.dart';
+import 'package:i9t/src/feature/fct/pdf/pdf.controller.dart';
+import 'package:i9t/src/feature/fct/pdf/pdf.page.dart';
+import 'package:i9t/src/feature/formulario_de_cadastro_usuario/form_cadastro.controller.dart';
 import 'package:i9t/src/feature/formulario_de_cadastro_usuario/form_cadastro.dart';
+import 'package:i9t/src/feature/formulario_de_cadastro_usuario/states/form_cadastro.state.dart';
 import 'package:i9t/src/feature/home/home.controller.dart';
 import 'package:i9t/src/feature/home/home.dart';
 import 'package:i9t/src/feature/login/login.controller.dart';
@@ -22,15 +26,18 @@ class App extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => AppController()),
         ChangeNotifierProvider(create: (_) => HomeController()),
+        ChangeNotifierProvider(create: (_) => PdfController()),
         ChangeNotifierProvider(create: (_) => LoginController(LoginInitial())),
         ChangeNotifierProvider(
           create: (context) => FormFctSelecionaVtrController(),
-        )
+        ),
+        ChangeNotifierProvider(
+            create: (_) => FormCadastroController(FormCadastroInitial())),
       ],
       builder: (context, child) {
         context.watch<AppController>().lerTema();
         return MaterialApp(
-          initialRoute: '/login',
+          initialRoute: '/home',
           routes: {
             '/login': (context) => LoginPage(),
             '/home': (context) => Home(),
@@ -38,6 +45,7 @@ class App extends StatelessWidget {
             '/hodometro': (context) => FormFctHodometroIncial(),
             '/parada': (context) => FormFctPontoParada(),
             '/cadastro': (context) => FormCadastro(),
+            '/imprime-fct': (context) => PdfPage(),
           },
           debugShowCheckedModeBanner: false,
           title: 'I9 Controle de Tráfego',

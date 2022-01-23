@@ -19,11 +19,11 @@ flutter_native_splash:
 
   # The image parameter allows you to specify an image used in the splash screen.  It must be a
   # png file and should be sized for 4x pixel density.
-  #image: assets/splash.png
+  image: assets/logo.png
 
   # This property allows you to specify an image used as branding in the splash screen. It must be
   # a png file. Currently, it is only supported for Android and iOS.
-  branding: assets/logo.png
+ #  branding: assets/logo.png
 
   # Specify your branding image for dark mode.
   #branding_dark: assets/dart_dark.png 
@@ -33,7 +33,7 @@ flutter_native_splash:
   #
   # Make sure this content mode value should not be similar to android_gravity value and ios_content_mode
   # value.
-  # branding_mode: center
+  branding_mode: center
 
   # The color_dark, background_image_dark, and image_dark are parameters that set the background
   # and image when the device is in dark mode. If they are not specified, the app will use the
@@ -46,9 +46,9 @@ flutter_native_splash:
 
   # The android, ios and web parameters can be used to disable generating a splash screen on a given
   # platform.
-  #android: false
-  #ios: false
-  #web: false
+  android: true
+  ios: true
+  web: true
 
   # The position of the splash image can be set with android_gravity, ios_content_mode, and
   # web_image_mode parameters.  All default to center.
@@ -57,16 +57,16 @@ flutter_native_splash:
   # https://developer.android.com/reference/android/view/Gravity): bottom, center,
   # center_horizontal, center_vertical, clip_horizontal, clip_vertical, end, fill, fill_horizontal,
   # fill_vertical, left, right, start, or top.
-  # android_gravity: center
+  android_gravity: center
   #
   # ios_content_mode can be one of the following iOS UIView.ContentMode (see
   # https://developer.apple.com/documentation/uikit/uiview/contentmode): scaleToFill,
   # scaleAspectFit, scaleAspectFill, center, top, bottom, left, right, topLeft, topRight,
   # bottomLeft, or bottomRight.
-  #ios_content_mode: center
+  ios_content_mode: center
   #
   # web_image_mode can be one of the following modes: center, contain, stretch, and cover.
-  # web_image_mode: center
+  web_image_mode: center
 
   # To hide the notification bar, use the fullscreen parameter.  Has no affect in web since web
   # has no notification bar.  Defaults to false.
@@ -74,7 +74,7 @@ flutter_native_splash:
   #       To show the notification bar, add the following code to your Flutter app:
   #       WidgetsFlutterBinding.ensureInitialized();
   #       SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom, SystemUiOverlay.top]);
-  #fullscreen: true
+  fullscreen: true
   
   # If you have changed the name(s) of your info.plist file(s), you can specify the filename(s) 
   # with the info_plist_files parameter.  Remove only the # characters in the three lines below,

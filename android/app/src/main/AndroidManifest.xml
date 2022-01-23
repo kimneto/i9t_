@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.i9trafego">
+    package="com.example.i9t">
    <application
-        android:label="i9trafego"
+        android:label="i9t"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -29,4 +29,15 @@ class CondutorService {
 
     return condutor;
   }
+
+  Future<void> cadastraCondutor(CondutorModel condutor) async {
+    final condutorParse = ParseObject('Condutor');
+    await condutorParse
+      ..set('nome', condutor.nome)
+      ..set('cpf', condutor.cpf)
+      ..set('email', condutor.email)
+      ..set('codUnidade', condutor.codUnidade)
+      ..set('nivel', 1)
+      ..save().then((value) => print(value));
+  }
 }

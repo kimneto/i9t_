@@ -5,7 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:i9t/src/shared/tema.dart';
 
 class CustomInputField extends StatelessWidget {
-  final String label, hint;
+  final String label;
+  final String? hint;
   final bool hasIcon;
   final Widget? icon;
   final Widget? botaoCampoForm;
@@ -16,10 +17,12 @@ class CustomInputField extends StatelessWidget {
   final TextEditingController controller;
   final String? Function(String?)? validator;
   double? w, h;
+  GlobalKey<FormState>? key;
 
   CustomInputField({
+    this.key,
     required this.label,
-    required this.hint,
+    this.hint,
     required this.hasIcon,
     this.icon,
     required this.isPassword,
@@ -38,16 +41,17 @@ class CustomInputField extends StatelessWidget {
     return Material(
       borderOnForeground: true,
       child: TextFormField(
+        key: key,
         onTap: () {},
 
         validator: validator, //validar as String Function(String),
 
         style: TextStyle(
-          fontSize: (w! / h!) * 35,
+          fontSize: 14,
           color: pretoi9t,
         ),
         cursorColor: pretoi9t,
-        cursorHeight: (w! / h!) * 35,
+        cursorHeight: 18,
         //cursorWidth: (h! / 200.0),
         //cursorRadius: Radius.elliptical(30, 10),
         keyboardType: keyboardType,
@@ -76,7 +80,7 @@ class CustomInputField extends StatelessWidget {
           errorBorder: OutlineInputBorder(
             //     borderRadius: BorderRadius.all(Radius.elliptical(10, 14)),
             borderSide: BorderSide(
-                style: BorderStyle.solid, color: Colors.red, width: 5),
+                style: BorderStyle.solid, color: vermelhoi9t, width: 2),
           ),
           //QUANDO ESTIVER PARADO
           enabledBorder: OutlineInputBorder(
@@ -91,17 +95,17 @@ class CustomInputField extends StatelessWidget {
           ),
 
           //fillColor: Color.fromARGB(40, 255, 255, 255),
-          errorStyle: TextStyle(color: Colors.red),
+          errorStyle: TextStyle(color: vermelhoi9t),
 
           suffixIcon: botaoCampoForm,
-          hintStyle: TextStyle(color: amareloi9t),
+          hintStyle: TextStyle(color: cinzalitei9t, fontSize: 12),
           //alignLabelWithHint: true,
-
+          suffix: Text(hint ?? ''),
           //   floatingLabelBehavior: FloatingLabelBehavior.never,
           labelText: ' $label ',
 
           labelStyle: TextStyle(
-            fontSize: (w! / h!) * 28,
+            fontSize: 14,
             fontWeight: FontWeight.bold,
             //height: 2.2,
             color: cinzai9t,

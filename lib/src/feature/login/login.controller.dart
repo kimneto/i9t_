@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:i9t/src/feature/login/states/login.state.dart';
 import 'package:i9t/src/model/condutor.model.dart';
 import 'package:i9t/src/services/autentica_pm.dart';
-import 'package:i9t/src/services/user.service.dart';
+import 'package:i9t/src/services/condutor.service.dart';
 import 'package:i9t/src/shared/settings.dart';
 import 'package:url_launcher/url_launcher.dart';
 
