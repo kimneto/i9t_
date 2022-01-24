@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AppController extends ChangeNotifier {
+class AppController {
   bool isThemeDark = false;
 
   void setThemeDark(bool value) {
     isThemeDark = value;
     gravaTema(value);
-    notifyListeners();
   }
 
   void gravaTema(bool isDark) async {

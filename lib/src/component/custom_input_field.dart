@@ -16,10 +16,12 @@ class CustomInputField extends StatelessWidget {
   final int maxLength;
   final TextEditingController controller;
   final String? Function(String?)? validator;
-  double? w, h;
+  final Function? onTap;
+  final double? w, h;
   GlobalKey<FormState>? key;
 
   CustomInputField({
+    this.onTap,
     this.key,
     required this.label,
     this.hint,
@@ -29,8 +31,8 @@ class CustomInputField extends StatelessWidget {
     required this.keyboardType,
     required this.maxLength,
     required this.controller,
-    required this.w,
-    required this.h,
+    this.w,
+    this.h,
     this.inputFormatters,
     this.botaoCampoForm,
     this.validator,

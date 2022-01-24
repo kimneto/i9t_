@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:i9t/src/services/condutor.service.dart';
+import 'package:i9t/src/features/condutor/services/condutor.service.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 
 import 'src/app/app.dart';

@@ -2,9 +2,12 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:i9t/src/component/botao_grande.component.dart';
 import 'package:i9t/src/shared/tema.dart';
 
 class CardCustomFctAberto extends StatelessWidget {
+  Function aoApertar;
+  CardCustomFctAberto({required this.aoApertar});
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -177,30 +180,8 @@ class CardCustomFctAberto extends StatelessWidget {
         SizedBox(
           height: 20,
         ),
-        Container(
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                width: 5,
-              ),
-              Center(
-                child: Text('Inserir Parada',
-                    style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: pretoi9t)),
-              ),
-            ],
-          ),
-          width: 430,
-          height: 60,
-          decoration: BoxDecoration(
-            color: amareloi9t,
-            borderRadius: BorderRadius.all(Radius.elliptical(18, 20)),
-          ),
-        ),
+        BotaoGrandeI9t(
+            texto: 'Inserir Parada', aoApertar: aoApertar, estaAtivo: true)
       ],
     );
   }
