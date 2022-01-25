@@ -43,14 +43,6 @@ class _CadastroOdometroInicialState extends State<CadastroOdometroInicial> {
       body: ListView(
         children: [
           tileCarroSelecionado(),
-          Padding(
-            padding: const EdgeInsets.only(
-              top: 10.0,
-              left: 30,
-            ),
-            child: Text("Último odômetro registrado: [ 025.327 ]",
-                style: TextStyle(fontSize: 14, color: pretoi9t)),
-          ),
           Container(
             padding: EdgeInsets.only(left: 20, right: 20, top: 20),
             child: Center(
@@ -194,18 +186,27 @@ Widget tileCarroSelecionado() {
           children: [
             Text(
               'Renaut Duster',
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             Text('Placa: ABC-1234',
-                style: TextStyle(fontSize: 18, color: cinzai9t)),
-            SizedBox(
-              height: 12,
-            ),
+                style: TextStyle(fontSize: 14, color: cinzai9t)),
             Text(
               'Prefixo: ABC-1234',
-              style: TextStyle(
-                  fontSize: 16, fontWeight: FontWeight.bold, color: cinzai9t),
+              style: TextStyle(fontSize: 14, color: cinzai9t),
             ),
+            Container(
+              child: Text("Último odômetro registrado:",
+                  style: TextStyle(fontSize: 10, color: pretoi9t)),
+            ),
+            Container(
+              width: double.maxFinite,
+              alignment: Alignment.centerLeft,
+              child: Text("025327",
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.green,
+                      fontWeight: FontWeight.bold)),
+            )
           ],
         ),
       ),

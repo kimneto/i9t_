@@ -63,17 +63,15 @@ class CustomInputField extends StatelessWidget {
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.fromLTRB(20, 18, 10, 20),
           fillColor: cinzaultralitei9t,
-
           filled: true,
           focusColor: Color(0xffe9e9e9),
           hoverColor: Color(0xFFE2E1E1),
-
           focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                  style: BorderStyle.solid, color: amareloi9t, width: 2),
-              borderRadius: BorderRadius.circular(10)
-              //borderRadius: BorderRadius.all(Radius.elliptical(10, 14)),
-              ),
+            borderSide: BorderSide(
+                style: BorderStyle.solid, color: amareloi9t, width: 2),
+            //  borderRadius: BorderRadius.circular(10)
+            // borderRadius: BorderRadius.all(Radius.elliptical(10, 14)),
+          ),
           focusedErrorBorder: OutlineInputBorder(
             borderSide: BorderSide(
                 style: BorderStyle.solid, color: amareloi9t, width: 1),
@@ -86,9 +84,9 @@ class CustomInputField extends StatelessWidget {
           ),
           //QUANDO ESTIVER PARADO
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.elliptical(10, 14)),
+            // borderRadius: BorderRadius.all(Radius.elliptical(10, 14)),
             borderSide: BorderSide(
-                style: BorderStyle.solid, color: amareloi9t, width: 5),
+                style: BorderStyle.solid, color: amareloi9t, width: 0.5),
           ),
           border: OutlineInputBorder(
             // borderRadius: BorderRadius.all(Radius.elliptical(10, 14)),

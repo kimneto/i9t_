@@ -5,9 +5,15 @@ class BotaoGrandeI9t extends StatelessWidget {
   String texto;
   Function aoApertar;
   bool estaAtivo = false;
+  Color? cor;
+  Color? corTexto;
 
   BotaoGrandeI9t(
-      {required this.texto, required this.aoApertar, required this.estaAtivo});
+      {required this.texto,
+      required this.aoApertar,
+      required this.estaAtivo,
+      this.corTexto,
+      this.cor});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +21,7 @@ class BotaoGrandeI9t extends StatelessWidget {
       return Container(
         height: 50,
         decoration: BoxDecoration(
-            color: amareloi9t,
+            color: cor ?? amareloi9t,
             borderRadius: BorderRadius.all(Radius.elliptical(10, 14))),
         child: InkWell(
           onTap: () {
@@ -25,7 +31,9 @@ class BotaoGrandeI9t extends StatelessWidget {
             child: Text(
               texto,
               style: TextStyle(
-                  color: pretoi9t, fontSize: 16, fontWeight: FontWeight.bold),
+                  color: corTexto ?? pretoi9t,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold),
             ),
           ),
         ),

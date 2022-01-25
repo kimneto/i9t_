@@ -9,14 +9,14 @@ import 'package:i9t/src/shared/tema.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:timelines/timelines.dart';
 
-class CadastroPontoParada extends StatefulWidget {
-  const CadastroPontoParada({Key? key}) : super(key: key);
+class CadastroSaida extends StatefulWidget {
+  const CadastroSaida({Key? key}) : super(key: key);
 
   @override
-  _CadastroPontoParadaState createState() => _CadastroPontoParadaState();
+  _CadastroSaidaState createState() => _CadastroSaidaState();
 }
 
-class _CadastroPontoParadaState extends State<CadastroPontoParada> {
+class _CadastroSaidaState extends State<CadastroSaida> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

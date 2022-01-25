@@ -193,7 +193,19 @@ class CardCustomFctAberto extends StatelessWidget {
           Container(
             width: 350,
             child: BotaoGrandeI9t(
-                texto: 'Inserir Parada', aoApertar: aoApertar, estaAtivo: true),
+              texto: 'Inserir Parada',
+              estaAtivo: true,
+              cor: amareloi9t,
+              aoApertar: () => Navigator.of(context).pushNamed('/chegada'),
+            ),
+          ),
+          Container(
+            width: 350,
+            child: BotaoGrandeI9t(
+              texto: 'Sair',
+              estaAtivo: true,
+              aoApertar: () => Navigator.of(context).pushNamed('/saida'),
+            ),
           )
         ],
       ),
