@@ -67,8 +67,12 @@ class _HomeState extends State<Home> {
       ),
       body: ListView(
         children: [
-          FctAbertaComponents(),
-          FctsFechadasComponents(),
+          FctAbertaComponents(
+            condutorModel: condutorController.condutor,
+          ),
+          FctsFechadasComponents(
+            condutorModel: condutorController.condutor,
+          ),
         ],
       ),
     );
