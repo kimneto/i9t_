@@ -7,7 +7,7 @@ import 'package:i9t/src/features/fct/models/fct.model.dart';
 class FctAbertaController extends ValueNotifier<FctAbertaState> {
   final FctAbertaService service;
   late CondutorModel condutor;
-  FctAbertaController(this.service) : super(FctAbertaInitial());
+  FctAbertaController(this.service, this.condutor) : super(FctAbertaInitial());
 
   late FctModel fctAberta;
 
@@ -19,6 +19,8 @@ class FctAbertaController extends ValueNotifier<FctAbertaState> {
           if (v.objectId != null) {
             fctAberta = v;
             value = FctAbertaSuccess(fctAberta: v);
+          } else {
+            value = FctAbertaFailure(error: '${v.condutor}');
           }
         },
       );

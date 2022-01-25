@@ -8,9 +8,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i9t/src/component/botao_grande.component.dart';
 import 'package:i9t/src/component/custom_input_field.dart';
 import 'package:i9t/src/component/logo.dart';
-
 import 'package:i9t/src/shared/tema.dart';
-
 import '../../condutor/controllers/condutor.controller.dart';
 
 class LoginPage extends StatefulWidget {
@@ -20,7 +18,9 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool saida = false;
+
   bool olhoMagico = false;
+
   String mensagemErro = "";
 
   @override
@@ -40,11 +40,15 @@ class _LoginPageState extends State<LoginPage> {
     }
 
     if (state is LoginLoadingState) {
-      widget = Expanded(
-        child: Center(
-          child: CircularProgressIndicator(
-            color: amareloi9t,
-            strokeWidth: 10,
+      widget = Container(
+        height: double.maxFinite,
+        child: Flexible(
+          flex: 1,
+          child: Center(
+            child: CircularProgressIndicator(
+              color: amareloi9t,
+              strokeWidth: 10,
+            ),
           ),
         ),
       );
@@ -129,14 +133,16 @@ class _LoginPageState extends State<LoginPage> {
                           color: pretoi9t,
                           icon: olhoMagico
                               ? Icon(FontAwesomeIcons.eyeSlash,
-                                  size: 16, color: cinzalitei9t)
+                                  size: 16, color: cinzai9t)
                               : Icon(
                                   FontAwesomeIcons.eye,
                                   size: 16,
-                                  color: cinzalitei9t,
+                                  color: cinzai9t,
                                 ),
                           onPressed: () {
-                            olhoMagico = !olhoMagico;
+                            setState(() {
+                              olhoMagico = !olhoMagico;
+                            });
                           }),
                     ),
                     Center(

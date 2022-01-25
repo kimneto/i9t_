@@ -10,10 +10,11 @@ class VeiculoService extends ChangeNotifier {
   Future<List<VeiculoModel>> pegaVeiculosMenosStatusZero() async {
     List<VeiculoModel> listaVeiculos = [];
 
-    queryVeiculoService.whereNotEqualTo('statusVtr', 0);
+    queryVeiculoService.whereNotEqualTo('statusVtr', 1);
     final response = await queryVeiculoService.query();
-    for (var vtr in response.results!) {
-      listaVeiculos.add(VeiculoModel.fromJson(vtr.toJson()));
+    if (response.error is! ParseError) {
+      response.results!
+          .map((e) => {listaVeiculos.add(VeiculoModel.fromJson(e.toJson()))});
     }
     return listaVeiculos;
   }
@@ -22,14 +23,14 @@ class VeiculoService extends ChangeNotifier {
     List<VeiculoModel> listaVeiculos = [];
     await ParseObject('Veiculo').getAll().then((Veiculos) {
       if (Veiculos.success) {
-        Veiculos.results?.forEach((element) {
-          listaVeiculos.add(VeiculoModel.fromJson(element.toJson()));
+        Veiculos.results!.map((e) {
+          listaVeiculos.add(VeiculoModel.fromJson(e.toJson()));
         });
       }
     });
     return listaVeiculos;
   }
-
+}
   /*Future<VeiculoModel> pegaUsuarioPorCpf(String CPF) async {
     VeiculoModel usuario = VeiculoModel();
 
@@ -42,4 +43,3 @@ class VeiculoService extends ChangeNotifier {
 
     return usuario;
   }*/
-}

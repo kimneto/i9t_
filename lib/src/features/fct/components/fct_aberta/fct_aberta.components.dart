@@ -1,58 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:i9t/src/component/card_custom_ftc_aberto.dart';
+import 'package:i9t/src/component/loading_card_custom_ftc_aberto.dart';
 import 'package:i9t/src/features/condutor/controllers/condutor.controller.dart';
+import 'package:i9t/src/features/condutor/models/condutor.model.dart';
+import 'package:i9t/src/features/home/controllers/home.controller.dart';
 import 'package:i9t/src/shared/tema.dart';
 import 'package:provider/src/provider.dart';
 import 'controllers/fct_aberta.controller.dart';
 import 'state/fct_aberta.states.dart';
 
-class FctAbertaComponents extends StatefulWidget {
-  FctAbertaComponents({Key? key}) : super(key: key);
-
-  @override
-  State<FctAbertaComponents> createState() => _FctAbertaComponentsState();
-}
-
-class _FctAbertaComponentsState extends State<FctAbertaComponents> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
-      context.read<FctAbertaController>().carregaFctAberta();
-    });
-  }
+class FctAbertaComponents extends StatelessWidget {
+  FctAbertaComponents({required this.condutorModel});
+  final CondutorModel condutorModel;
 
   @override
   Widget build(BuildContext context) {
     final fctAbertaController = context.watch<FctAbertaController>();
+    final homeController = context.watch<HomeController>();
+    final condutorController = context.read<CondutorController>();
+    fctAbertaController.condutor = condutorController.condutor;
 
     if (fctAbertaController.value is FctAbertaSuccess) {
+      homeController.value = false;
       return CardCustomFctAberto(
-        aoApertar: () {},
+        aoApertar: () {
+          Navigator.pushNamed(context, '/parada');
+        },
       );
     }
 
     if (fctAbertaController.value is FctAbertaInitial) {
-      return Container();
+      homeController.value = false;
+      fctAbertaController.carregaFctAberta();
     }
 
     if (fctAbertaController.value is FctAbertaFailure) {
-      return Container(
-        child: Text(
-          '${fctAbertaController.value}',
-          style: TextStyle(color: vermelhoi9t),
-        ),
-      );
+      print('I9T===>${fctAbertaController.value.error}');
+      homeController.value = true;
+      return Container();
     }
 
     if (fctAbertaController.value is FctAbertaLoading) {
-      return Center(
-        child: CircularProgressIndicator(
-          color: amareloi9t,
-          strokeWidth: 10,
-        ),
-      );
+      homeController.value = false;
+      return LoadingCardCustomFtcAberta();
     }
 
     return Container();

@@ -39,6 +39,10 @@ dependencies:
   syncfusion_flutter_pdf: ^19.4.43-beta
   timelines: ^0.1.0
   material_design_icons_flutter: 5.0.6595
+  path_provider: ^2.0.8
+  open_file: ^3.2.1  
+  #shimmer: ^2.0.0
+  permission_handler: ^8.3.0
   #flutter_datetime_picker: ^1.5.1
   #pdf: ^3.6.5
   #cpf_cnpj_validator: ˆ2.0.0
@@ -76,6 +80,7 @@ flutter:
     - assets/logo.png
     - assets/ponte_pira.jpg
     - assets/vtr.png
+    - assets/vtr2.png
     - assets/icon/icon.png
     - assets/icon/car_checked.png
 

@@ -10,7 +10,6 @@ class FctAbertaService extends ChangeNotifier {
   Future<FctModel> pegaFtcsNaoConcluidasPorCondutor(
       CondutorModel condutor) async {
     FctModel fctModel = FctModel();
-    var fct;
 
     queryFctsService.whereEqualTo(
         "condutor",
@@ -21,10 +20,8 @@ class FctAbertaService extends ChangeNotifier {
 
     final response = await queryFctsService.query();
 
-    if (response.success) {
-      fct = response.results!.last;
-
-      fctModel = FctModel.fromJson(fct.toJson());
+    if (response.success && response.results != null) {
+      fctModel = await FctModel.fromJson(response.results!.last.toJson());
     }
 
     return fctModel;

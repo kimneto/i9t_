@@ -1,34 +1,191 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:i9t/src/component/botao_grande.component.dart';
+import 'package:i9t/src/component/card_custom.dart';
+import 'package:i9t/src/component/custom_input_field.dart';
+import 'package:i9t/src/component/logo.dart';
 import 'package:i9t/src/features/veiculo/controllers/veiculo_controller.dart';
 import 'package:i9t/src/features/veiculo/model/veiculo.model.dart';
+import 'package:i9t/src/shared/tema.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/src/provider.dart';
 
-class VeiculoPage extends StatefulWidget {
-  VeiculoPage({Key? key}) : super(key: key);
-
-  @override
-  _VeiculoPageState createState() => _VeiculoPageState();
-}
-
-class _VeiculoPageState extends State<VeiculoPage> {
+class VeiculoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final vtrFormFctController = context.watch<VeiculoController>();
+    double w = MediaQuery.of(context).size.width;
+    double h = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () => Navigator.pop(context)),
-      ),
-      body: ListView(
-        children: [
-          Container(
-            padding: EdgeInsets.all(30),
-            child: Center(
-              child: Text('Selecione a Veiculo'),
-            ),
+            onPressed: () => Navigator.pop(context),
+            icon: Icon(
+              MdiIcons.chevronLeft,
+              size: 50,
+              color: pretoi9t,
+            )),
+        title: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text(
+            "Veículo",
+            style: TextStyle(
+                fontSize: 26, fontWeight: FontWeight.w900, color: pretoi9t),
           ),
-          FutureBuilder<List<VeiculoModel>>(
+          Text("Selecione o veículo que será utilizado.",
+              style: TextStyle(fontSize: 13, color: cinzai9t)),
+        ]),
+        toolbarHeight: 80,
+        elevation: 0,
+        backgroundColor: brancoi9t,
+        centerTitle: false,
+      ),
+      body: Container(
+        margin: EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 20),
+        decoration: BoxDecoration(
+          color: cinzaultralitei9t,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        height: h / 1.5,
+        child: ListView(
+          children: [
+            tileNovo(context),
+            tileNovo(context),
+            tileNovo(context),
+            tileNovo(context),
+            tileNovo(context),
+            tileNovo(context),
+            tileNovo(context),
+            tileNovo(context),
+            tileNovo(context),
+            tileNovo(context),
+            tileNovo(context),
+            tileNovo(context),
+            tileNovo(context),
+            tileNovo(context),
+            tileNovo(context),
+            tileNovo(context),
+            tileNovo(context),
+            tileNovo(context),
+            tileNovo(context),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+Widget tileNovo(BuildContext context) {
+  return InkWell(
+    onTap: () {
+      Navigator.pushNamed(context, '/cadastra-odometro');
+    },
+    child: Container(
+        margin: EdgeInsets.fromLTRB(20, 8, 20, 8),
+        height: 70,
+        decoration: BoxDecoration(
+            color: brancoi9t,
+            border: Border.all(
+              style: BorderStyle.none,
+              width: 1,
+            ),
+            borderRadius: BorderRadius.all(Radius.elliptical(16, 20))),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Flexible(
+                  flex: 1,
+                  child: Container(
+                      child: Image.asset(
+                    'assets/vtr2.png',
+                    scale: 1,
+                  ))),
+              SizedBox(
+                width: 20,
+              ),
+              Flexible(
+                  flex: 2,
+                  child: Container(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text(
+                          'Renaut Duster',
+                          style: TextStyle(
+                              fontSize: 12, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          height: 4,
+                        ),
+                        Text('Placa: ABC-1234',
+                            style: TextStyle(fontSize: 10, color: cinzai9t)),
+                        SizedBox(
+                          height: 4,
+                        ),
+                        Text(
+                          'Prefixo: ABC-1234',
+                          style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              color: cinzai9t),
+                        ),
+                      ],
+                    ),
+                  ))
+            ],
+          ),
+        )),
+  );
+}
+
+/*
+
+
+
+
+ Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Checkbox(
+                                activeColor: amareloi9t,
+                                checkColor: pretoi9t,
+                                splashRadius: 5,
+                                shape: RoundedRectangleBorder(
+                                    side: BorderSide(
+                                        width: 100,
+                                        color: pretoi9t,
+                                        style: BorderStyle.solid),
+                                    borderRadius: BorderRadius.circular(3)),
+                                materialTapTargetSize:
+                                    MaterialTapTargetSize.padded,
+                                value: true,
+                                onChanged: (_) {}),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              'Confirmo que estou apto em todos \n os sentidos para condução do veículo.',
+                              style: TextStyle(color: pretoi9t, fontSize: 13),
+                            ),
+                          ],
+                        ),
+
+
+
+
+
+
+
+
+
+
+ListView(
+        children: [
+        FutureBuilder<List<VeiculoModel>>(
             future:
                 vtrFormFctController.vtrService.pegaVeiculosMenosStatusZero(),
             builder: (ctx, snp) {
@@ -146,14 +303,6 @@ class _VeiculoPageState extends State<VeiculoPage> {
           ),
         ],
       ),
-    );
-  }
-}
-
-
-
-
-/*
 
 
 

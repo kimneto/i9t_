@@ -106,7 +106,7 @@ class _CadastroPontoParadaState extends State<CadastroPontoParada> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Veículo: VW TAOS - Prefixo 15113',
+                        'Veículo: Renault Duster - Prefixo 15113',
                         style: TextStyle(
                             color: pretoi9t,
                             fontSize: 14,
@@ -226,7 +226,7 @@ class _CadastroPontoParadaState extends State<CadastroPontoParada> {
                       contentsAlign: ContentsAlign.alternating,
                       oppositeContentsBuilder: (context, index) => Container(
                         padding: EdgeInsets.all(20),
-                        child: Text('São Paulo',
+                        child: Text('São Paulo - 12:35',
                             style: TextStyle(
                                 color: pretoi9t,
                                 fontSize: 10,

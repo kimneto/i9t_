@@ -5,14 +5,30 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i9t/src/shared/tema.dart';
 
 class CardCustom extends StatelessWidget {
-  String? titulo, subtitulo, textoBotao;
   Function? aoApertar;
+  String? dataPartida;
+  String? primeiraParada;
+  String? veiculo;
+  String? prefixo;
+  String? tempoDeUso;
+  String? distanciaDeUso;
+  String? numeroDocumento;
+  String? id;
+  Widget? level;
+
   CardCustom({
-    this.titulo,
-    this.subtitulo,
-    this.textoBotao,
-    this.aoApertar,
+    this.id,
+    this.dataPartida,
+    this.primeiraParada,
+    this.veiculo,
+    this.prefixo,
+    this.tempoDeUso,
+    this.distanciaDeUso,
+    this.numeroDocumento,
+    required this.aoApertar,
+    this.level,
   });
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,14 +41,6 @@ class CardCustom extends StatelessWidget {
             width: 1,
           ),
           borderRadius: BorderRadius.all(Radius.elliptical(16, 20))),
-
-      /* decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-            style: BorderStyle.solid,
-            width: 1,
-            color: Colors.blue,
-      */
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -51,7 +59,7 @@ class CardCustom extends StatelessWidget {
                         size: 28,
                       ),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/imprime-fct');
+                        aoApertar!();
                       }),
                   Text(
                     'Gerar FCT',
@@ -69,21 +77,21 @@ class CardCustom extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Data: 25/12/21', style: TextStyle(fontSize: 12)),
+                  Text('Data: $dataPartida', style: TextStyle(fontSize: 12)),
                   Text(
-                    'Rio das Pedras',
+                    '$primeiraParada',
                     style: TextStyle(fontSize: 12),
                   ),
                   Text(
-                    'GW TAOS - I-25550',
+                    '$veiculo - $prefixo',
                     style: TextStyle(fontSize: 12),
                   ),
                   Text(
-                    '550 Minutos - 450 Kms',
+                    '$tempoDeUso Minutos - $distanciaDeUso Kms',
                     style: TextStyle(fontSize: 12),
                   ),
                   Text(
-                    'FCT: CPI9-001/420/22',
+                    'FCT: $numeroDocumento',
                     style: TextStyle(fontSize: 12),
                   ),
                 ],
@@ -106,11 +114,7 @@ class CardCustom extends StatelessWidget {
                   borderRadius: BorderRadius.circular(100),
                   color: Colors.white,
                 ),
-                child: Icon(
-                  FontAwesomeIcons.trophy,
-                  color: amareloi9t,
-                  size: 25,
-                ),
+                child: level,
               ),
             ),
           ),

@@ -1,12 +1,16 @@
 import 'package:i9t/src/features/fct/models/fct.model.dart';
 
-abstract class FctsFechadasState {}
+abstract class FctsFechadasState {
+  late String error;
+  late List<FctModel> fctsFechadas;
+}
 
 class FctsFechadasInitial extends FctsFechadasState {}
 
 class FctsFechadasLoading extends FctsFechadasState {}
 
 class FctsFechadasFailure extends FctsFechadasState {
+  @override
   final String error;
 
   FctsFechadasFailure({required this.error});

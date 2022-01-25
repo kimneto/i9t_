@@ -17,10 +17,12 @@ import 'package:i9t/src/features/fct/components/fcts_fechadas/services/fcts_fech
 import 'package:i9t/src/features/fct/pages/cadastro_odometro_inicial.page.dart';
 import 'package:i9t/src/features/fct/pages/cadastro_ponto_parada.page.dart';
 import 'package:i9t/src/features/home/controllers/home.controller.dart';
-import 'package:i9t/src/features/home/pages/home.page.dart';
+import 'package:i9t/src/features/home/home.page.dart';
 import 'package:i9t/src/features/login/controllers/login.controller.dart';
 import 'package:i9t/src/features/login/pages/login.page.dart';
 import 'package:i9t/src/features/login/states/login.state.dart';
+import 'package:i9t/src/features/veiculo/controllers/veiculo_controller.dart';
+import 'package:i9t/src/features/veiculo/pages/veiculo.page.dart';
 import 'package:provider/provider.dart';
 import '../features/veiculo/services/veiculo.service.dart';
 
@@ -31,6 +33,8 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        //MODELS
+        Provider<CondutorModel>(create: (_) => CondutorModel()),
 //SERVICES
         Provider<VeiculoService>(create: (_) => VeiculoService()),
         Provider<CondutorService>(create: (_) => CondutorService()),
@@ -39,13 +43,15 @@ class App extends StatelessWidget {
         Provider<AutenticaPM>(create: (_) => AutenticaPM()),
 
 //CONTROLLERS
+        ChangeNotifierProvider(create: (_) => VeiculoController()),
+        ChangeNotifierProvider(create: (_) => CompartilhaController()),
 
         ChangeNotifierProvider(
             create: (_) => LoginController(LoginInitialState())),
         ChangeNotifierProvider(create: (_) => HomeController()),
         ChangeNotifierProvider(create: (_) => CondutorController(_.read())),
         ChangeNotifierProvider(
-            create: (_) => FctAbertaController(FctAbertaService())),
+            create: (_) => FctAbertaController(FctAbertaService(), _.read())),
         ChangeNotifierProvider(
             create: (_) => FctsFechadasController(FctsFechadasService())),
 
@@ -71,7 +77,9 @@ class App extends StatelessWidget {
             '/hodometro': (context) => CadastroOdometroInicial(),
             '/parada': (context) => CadastroPontoParada(),
             '/cadastro': (context) => CadastroCondutor(),
+            '/seleciona-veiculo': (context) => VeiculoPage(),
             '/compartilha': (context) => CompartilhaPage(),
+            '/cadastra-odometro': (context) => CadastroOdometroInicial(),
           },
           debugShowCheckedModeBanner: false,
           title: 'I9 Controle de Tráfego',
