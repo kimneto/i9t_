@@ -69,6 +69,7 @@ class CustomInputField extends StatelessWidget {
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
                 style: BorderStyle.solid, color: amareloi9t, width: 2),
+
             //  borderRadius: BorderRadius.circular(10)
             // borderRadius: BorderRadius.all(Radius.elliptical(10, 14)),
           ),
@@ -91,7 +92,7 @@ class CustomInputField extends StatelessWidget {
           border: OutlineInputBorder(
             // borderRadius: BorderRadius.all(Radius.elliptical(10, 14)),
             borderSide: BorderSide(
-                style: BorderStyle.solid, color: amareloi9t, width: 5),
+                style: BorderStyle.solid, color: amareloi9t, width: 1),
           ),
 
           //fillColor: Color.fromARGB(40, 255, 255, 255),

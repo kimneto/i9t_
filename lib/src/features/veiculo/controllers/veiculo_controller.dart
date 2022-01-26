@@ -1,8 +1,22 @@
 import 'package:flutter/cupertino.dart';
-import 'package:i9t/src/features/veiculo/model/veiculo.model.dart';
+
 import 'package:i9t/src/features/veiculo/services/veiculo.service.dart';
 
-class VeiculoController extends ChangeNotifier {
-  VeiculoService vtrService = VeiculoService();
-  VeiculoModel vtrModel = VeiculoModel();
+import 'package:i9t/src/features/veiculo/states/veiculo.states.dart';
+
+class VeiculoController extends ValueNotifier<VeiculoState> {
+  VeiculoController() : super(VeiculoInitial());
+
+  VeiculoService veiculoService = VeiculoService();
+
+  pegaVeiculos() {
+    try {
+      value = VeiculoLoading();
+      veiculoService.pegaVeiculosMenosStatusZero().then((items) {
+        value = VeiculoSuccess(veiculos: items);
+      });
+    } catch (e) {
+      value = VeiculoFailure(error: e.toString());
+    }
+  }
 }

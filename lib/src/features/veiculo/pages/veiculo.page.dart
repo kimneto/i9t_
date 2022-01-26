@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:i9t/src/component/botao_grande.component.dart';
-import 'package:i9t/src/component/card_custom.dart';
-import 'package:i9t/src/component/custom_input_field.dart';
-import 'package:i9t/src/component/logo.dart';
 import 'package:i9t/src/features/veiculo/controllers/veiculo_controller.dart';
 import 'package:i9t/src/features/veiculo/model/veiculo.model.dart';
+import 'package:i9t/src/features/veiculo/states/veiculo.states.dart';
 import 'package:i9t/src/shared/tema.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/src/provider.dart';
@@ -13,7 +9,8 @@ import 'package:provider/src/provider.dart';
 class VeiculoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final vtrFormFctController = context.watch<VeiculoController>();
+    final controller = context.watch<VeiculoController>();
+
     double w = MediaQuery.of(context).size.width;
     double h = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -46,28 +43,43 @@ class VeiculoPage extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
         ),
         height: h / 1.5,
-        child: ListView(
-          children: [
-            tileNovo(context),
-            tileNovo(context),
-            tileNovo(context),
-            tileNovo(context),
-            tileNovo(context),
-            tileNovo(context),
-            tileNovo(context),
-            tileNovo(context),
-            tileNovo(context),
-            tileNovo(context),
-            tileNovo(context),
-            tileNovo(context),
-            tileNovo(context),
-            tileNovo(context),
-            tileNovo(context),
-            tileNovo(context),
-            tileNovo(context),
-            tileNovo(context),
-            tileNovo(context),
-          ],
+        child: ValueListenableBuilder(
+          valueListenable: controller,
+          builder: (context, value, child) {
+            if (value is VeiculoLoading) {
+              return Scaffold(
+                body: Center(
+                  child: CircularProgressIndicator(
+                    color: amareloi9t,
+                    strokeWidth: 10,
+                  ),
+                ),
+              );
+            }
+
+            if (value is VeiculoFailure) {
+              return Center(
+                child: Text(
+                  'data',
+                  style: TextStyle(color: amareloi9t),
+                ),
+              );
+            }
+
+            if (value is VeiculoSuccess) {
+              ListView.builder(
+                  itemCount: controller.value.veiculos!.length,
+                  itemBuilder: (ctx, i) {
+                    return tileNovo(ctx);
+                  });
+            }
+
+            if (value is VeiculoInitial) {
+              print("VeiculoInitial");
+              controller.pegaVeiculos();
+            }
+            return Container();
+          },
         ),
       ),
     );

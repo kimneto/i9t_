@@ -3,7 +3,7 @@ import 'package:i9t/src/shared/tema.dart';
 
 class BotaoGrandeI9t extends StatelessWidget {
   String texto;
-  Function aoApertar;
+  Function aoApertar = () {};
   bool estaAtivo = false;
   Color? cor;
   Color? corTexto;

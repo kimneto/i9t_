@@ -10,17 +10,12 @@ import 'package:i9t/src/features/condutor/state/cadastro.states.dart';
 import 'package:i9t/src/shared/tema.dart';
 import 'package:provider/src/provider.dart';
 
-class CadastroCondutor extends StatefulWidget {
-  @override
-  _CadastroCondutorState createState() => _CadastroCondutorState();
-}
-
-class _CadastroCondutorState extends State<CadastroCondutor> {
+class CadastroCondutor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final w = MediaQuery.of(context).size.width;
     final h = MediaQuery.of(context).size.height;
-    final controller = Provider.of<CadastroCondutorController>(context);
+    final controller = context.watch<CadastroCondutorController>();
 
     return ValueListenableBuilder(
       valueListenable: controller,
@@ -30,7 +25,7 @@ class _CadastroCondutorState extends State<CadastroCondutor> {
             body: Center(
               child: CircularProgressIndicator(
                 color: amareloi9t,
-                strokeWidth: 5,
+                strokeWidth: 10,
               ),
             ),
           );
@@ -42,7 +37,7 @@ class _CadastroCondutorState extends State<CadastroCondutor> {
         }
 
         if (value is CadastroCondutorSuccess) {
-          setState(() {
+          Future.delayed(Duration.zero, () async {
             Navigator.of(context).pop();
           });
         }
@@ -191,25 +186,27 @@ class _CadastroCondutorState extends State<CadastroCondutor> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Checkbox(
-                                        activeColor: amareloi9t,
-                                        checkColor: pretoi9t,
-                                        splashRadius: 5,
-                                        shape: RoundedRectangleBorder(
-                                            side: BorderSide(
-                                                width: 100,
-                                                color: pretoi9t,
-                                                style: BorderStyle.solid),
-                                            borderRadius:
-                                                BorderRadius.circular(3)),
-                                        materialTapTargetSize:
-                                            MaterialTapTargetSize.padded,
-                                        value: controller.checkBox,
-                                        onChanged: (_) {
-                                          setState(() {
-                                            controller.checkBox =
-                                                !controller.checkBox;
-                                          });
+                                    ValueListenableBuilder(
+                                        valueListenable: controller.checkBox,
+                                        builder: (_, value, child) {
+                                          return Checkbox(
+                                              activeColor: amareloi9t,
+                                              checkColor: pretoi9t,
+                                              splashRadius: 5,
+                                              shape: RoundedRectangleBorder(
+                                                  side: BorderSide(
+                                                      width: 100,
+                                                      color: pretoi9t,
+                                                      style: BorderStyle.solid),
+                                                  borderRadius:
+                                                      BorderRadius.circular(3)),
+                                              materialTapTargetSize:
+                                                  MaterialTapTargetSize.padded,
+                                              value: controller.checkBox.value,
+                                              onChanged: (_) {
+                                                controller.checkBox.value =
+                                                    !controller.checkBox.value;
+                                              });
                                         }),
                                     SizedBox(
                                       height: 10,
@@ -224,15 +221,17 @@ class _CadastroCondutorState extends State<CadastroCondutor> {
                                 Padding(
                                   padding: const EdgeInsets.only(top: 20),
                                   child: Container(
-                                    width: double.infinity,
-                                    child: BotaoGrandeI9t(
-                                      estaAtivo: controller.checkBox,
-                                      texto: 'Cadastrar',
-                                      aoApertar: () {
-                                        controller.cadastrarCondutor();
-                                      },
-                                    ),
-                                  ),
+                                      width: double.infinity,
+                                      child: ValueListenableBuilder(
+                                          valueListenable: controller.checkBox,
+                                          builder: (_, value, child) {
+                                            return BotaoGrandeI9t(
+                                                estaAtivo:
+                                                    controller.checkBox.value,
+                                                texto: 'Cadastrar',
+                                                aoApertar: () => controller
+                                                    .cadastrarCondutor());
+                                          })),
                                 ),
                               ],
                             ),
