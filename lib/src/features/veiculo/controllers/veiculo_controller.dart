@@ -13,7 +13,11 @@ class VeiculoController extends ValueNotifier<VeiculoState> {
     try {
       value = VeiculoLoading();
       veiculoService.pegaVeiculosMenosStatusZero().then((items) {
-        value = VeiculoSuccess(veiculos: items);
+        if (items.isNotEmpty) {
+          value = VeiculoSuccess(veiculos: items);
+        } else {
+          value = VeiculoFailure(error: 'Não existe veículos cadastrados');
+        }
       });
     } catch (e) {
       value = VeiculoFailure(error: e.toString());

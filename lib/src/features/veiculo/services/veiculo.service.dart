@@ -7,19 +7,17 @@ class VeiculoService {
 
   Future<List<VeiculoModel>> pegaVeiculosMenosStatusZero() async {
     List<VeiculoModel> listaVeiculos = [];
-
     queryVeiculoService.whereNotEqualTo('statusVtr', '1');
     final response = await queryVeiculoService.query();
-    if (response.error is! ParseError) {
-      response.results!.map((e) => {
-            listaVeiculos.add(
-              VeiculoModel.fromJson(
-                e.toJson(),
-              ),
-            ),
-          });
+
+    if (response.success && response.results != null) {
+      for (final object in response.results!) {
+        listaVeiculos.add(VeiculoModel.fromJson(object.toJson()));
+      }
+      return listaVeiculos;
+    } else {
+      return listaVeiculos;
     }
-    return listaVeiculos;
   }
 
   Future<List<VeiculoModel>> pegaVeiculos() async {

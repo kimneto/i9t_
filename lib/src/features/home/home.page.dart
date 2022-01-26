@@ -19,7 +19,9 @@ class Home extends StatelessWidget {
     return Scaffold(
       floatingActionButton: BotaoNovaFct(
         aoApertar: () {
-          Navigator.of(context).pushNamed('/seleciona-veiculo');
+          Navigator.of(context)
+              .pushNamed('/seleciona-veiculo')
+              .then((value) => homeController.dispose());
         },
         estaAtivo: homeController.value,
       ),

@@ -26,6 +26,7 @@ class FctAbertaComponents extends StatelessWidget {
         aoApertar: () {
           Navigator.pushNamed(context, '/parada');
         },
+        entradaSaida: 1,
       );
     }
 
@@ -35,7 +36,6 @@ class FctAbertaComponents extends StatelessWidget {
     }
 
     if (fctAbertaController.value is FctAbertaFailure) {
-      print('I9T===>${fctAbertaController.value.error}');
       homeController.value = true;
       return Container();
     }

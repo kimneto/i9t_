@@ -18,6 +18,8 @@ class CustomInputField extends StatelessWidget {
   final String? Function(String?)? validator;
   final Function? onTap;
   final double? w, h;
+  final int? maxLines;
+
   GlobalKey<FormState>? key;
 
   CustomInputField({
@@ -36,6 +38,7 @@ class CustomInputField extends StatelessWidget {
     this.inputFormatters,
     this.botaoCampoForm,
     this.validator,
+    this.maxLines,
   });
 
   @override
@@ -59,6 +62,7 @@ class CustomInputField extends StatelessWidget {
         keyboardType: keyboardType,
         obscureText: isPassword,
         controller: controller,
+        maxLines: maxLines,
         inputFormatters: inputFormatters,
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.fromLTRB(20, 18, 10, 20),

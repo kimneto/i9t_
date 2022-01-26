@@ -1,7 +1,6 @@
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i9t/src/component/botao_grande.component.dart';
 import 'package:i9t/src/component/custom_input_field.dart';
@@ -9,39 +8,34 @@ import 'package:i9t/src/shared/tema.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:timelines/timelines.dart';
 
-class CadastroChegada extends StatefulWidget {
-  const CadastroChegada({Key? key}) : super(key: key);
+class FinalizaFctPage extends StatelessWidget {
+  const FinalizaFctPage({Key? key}) : super(key: key);
 
-  @override
-  _CadastroChegadaState createState() => _CadastroChegadaState();
-}
-
-class _CadastroChegadaState extends State<CadastroChegada> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [],
         leading: IconButton(
             iconSize: 30,
             icon: Icon(
               FontAwesomeIcons.chevronLeft,
               size: 30,
-              color: pretoi9t,
+              color: brancoi9t,
             ),
             onPressed: () {
               Navigator.of(context).pop();
             }),
         toolbarHeight: 80,
         elevation: 0,
-        foregroundColor: Colors.transparent,
-        backgroundColor: Color.fromARGB(0, 255, 255, 255),
+        backgroundColor: pretoi9t,
         centerTitle: false,
         title: Container(
           child: Text(
-            'Chegada',
+            'Finalização de FCT',
             textAlign: TextAlign.start,
             style: TextStyle(
-                color: pretoi9t, fontSize: 22, fontWeight: FontWeight.bold),
+                color: brancoi9t, fontSize: 22, fontWeight: FontWeight.bold),
           ),
         ),
       ),
@@ -56,79 +50,96 @@ class _CadastroChegadaState extends State<CadastroChegada> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Form(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                Padding(
+                  padding: const EdgeInsets.only(top: 0.0, bottom: 20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        'Veículo: Renault Duster - Prefixo 15113',
-                        style: TextStyle(
+                      Flexible(
+                        flex: 1,
+                        child: Container(
+                          height: 120,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
                             color: pretoi9t,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                MdiIcons.mapMarkerDistance,
+                                color: cinzaultralitei9t,
+                                size: 40,
+                              ),
+                              Center(
+                                child: Text('152',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        color: cinzaultralitei9t,
+                                        fontWeight: FontWeight.bold)),
+                              ),
+                              Text('Kilometros',
+                                  style: TextStyle(
+                                      fontSize: 10,
+                                      color: cinzaultralitei9t,
+                                      fontWeight: FontWeight.bold)),
+                            ],
+                          ),
+                        ),
                       ),
-                      Text(
-                        'Odômetro Anterior: 120000 Km',
-                        style: TextStyle(
-                            color: cinzai9t,
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Flexible(
+                        flex: 1,
+                        child: Container(
+                          height: 120,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: amareloi9t,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                MdiIcons.clockOutline,
+                                color: pretoi9t,
+                                size: 40,
+                              ),
+                              Center(
+                                child: Text('350',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        color: pretoi9t,
+                                        fontWeight: FontWeight.bold)),
+                              ),
+                              Text('Minutos',
+                                  style: TextStyle(
+                                      fontSize: 10,
+                                      color: pretoi9t,
+                                      fontWeight: FontWeight.bold)),
+                            ],
+                          ),
+                        ),
                       ),
                     ],
                   ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                CustomInputField(
-                  controller: TextEditingController(),
-                  maxLength: 30,
-                  keyboardType: TextInputType.text,
-                  isPassword: false,
-                  label: '* Localização',
-                  hasIcon: true,
-                  hint: 'Digite o local da parada',
-                  inputFormatters: [],
-                ),
-                SizedBox(
-                  height: 10,
                 ),
                 Row(
                   children: [
                     Flexible(
                       child: CustomInputField(
                         onTap: () {},
-                        controller: TextEditingController(),
-                        maxLength: 11,
-                        keyboardType: TextInputType.number,
+                        maxLines: 8,
+                        controller: TextEditingController(
+                            text: 'Viatura abastecida, óleo e filtro ok '),
+                        maxLength: 500,
+                        keyboardType: TextInputType.multiline,
                         isPassword: false,
-                        label: '* Odômetro',
+                        label: 'Observações',
                         hasIcon: true,
-                        inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly,
-                          LengthLimitingTextInputFormatter(11),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Container(
-                      width: 140,
-                      child: CustomInputField(
-                        controller: TextEditingController(),
-                        maxLength: 11,
-                        keyboardType: TextInputType.datetime,
-                        isPassword: false,
-                        label: 'Hora',
-                        hasIcon: true,
-                        hint: 'Hora da parada',
-                        onTap: () {},
-                        inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly,
-                          HoraInputFormatter(),
-                        ],
                       ),
                     ),
                   ],
@@ -142,9 +153,9 @@ class _CadastroChegadaState extends State<CadastroChegada> {
                     Flexible(
                       flex: 1,
                       child: BotaoGrandeI9t(
-                          texto: 'Inserir Chegada',
+                          texto: 'Finalizar',
                           aoApertar: () {
-                            print('CLICOU');
+                            Navigator.popAndPushNamed(context, '/home');
                           },
                           estaAtivo: true),
                     ),
@@ -198,29 +209,5 @@ class _CadastroChegadaState extends State<CadastroChegada> {
         ],
       ),
     );
-  }
-}
-
-class MyCustomClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    final path = Path();
-
-    path.addPolygon([
-      Offset(0, 0),
-      Offset(80, 0),
-      Offset(80, 80),
-      Offset(80, 80),
-      Offset(18, 80),
-      Offset(0, 63),
-    ], true);
-    path.close();
-    return path;
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    // TODO: implement shouldReclip
-    throw UnimplementedError();
   }
 }

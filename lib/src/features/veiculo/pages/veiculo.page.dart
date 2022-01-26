@@ -36,63 +36,74 @@ class VeiculoPage extends StatelessWidget {
         backgroundColor: brancoi9t,
         centerTitle: false,
       ),
-      body: Container(
-        margin: EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 20),
-        decoration: BoxDecoration(
-          color: cinzaultralitei9t,
-          borderRadius: BorderRadius.circular(20),
-        ),
-        height: h / 1.5,
-        child: ValueListenableBuilder(
-          valueListenable: controller,
-          builder: (context, value, child) {
-            if (value is VeiculoLoading) {
-              return Scaffold(
-                body: Center(
-                  child: CircularProgressIndicator(
-                    color: amareloi9t,
-                    strokeWidth: 10,
-                  ),
+      body: ValueListenableBuilder(
+        valueListenable: controller,
+        builder: (context, value, child) {
+          if (value is VeiculoLoading) {
+            return Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(
+                  color: amareloi9t,
+                  strokeWidth: 10,
                 ),
-              );
-            }
+              ),
+            );
+          }
 
-            if (value is VeiculoFailure) {
-              return Center(
-                child: Text(
-                  'data',
-                  style: TextStyle(color: amareloi9t),
-                ),
-              );
-            }
+          if (value is VeiculoFailure) {
+            return Center(
+              child: Text(
+                value.error,
+                style: TextStyle(color: amareloi9t),
+              ),
+            );
+          }
 
-            if (value is VeiculoSuccess) {
-              ListView.builder(
-                  itemCount: controller.value.veiculos!.length,
-                  itemBuilder: (ctx, i) {
-                    return tileNovo(ctx);
-                  });
-            }
+          if (value is VeiculoSuccess) {
+            return Container(
+              height: h * 0.6,
+              decoration: BoxDecoration(
+                color: cinzaultralitei9t,
+                borderRadius: BorderRadius.all(Radius.elliptical(16, 18)),
+              ),
+              margin: EdgeInsets.all(20),
+              child: Center(
+                child: ListView.builder(
+                    itemCount: value.veiculos.length,
+                    itemBuilder: (_, i) {
+                      return tileNovo(
+                        context: context,
+                        nome: value.veiculos[i].tipo,
+                        placa: value.veiculos[i].placa,
+                        prefixo: value.veiculos[i].grupo,
+                      );
+                    }),
+              ),
+            );
+          }
 
-            if (value is VeiculoInitial) {
-              print("VeiculoInitial");
-              controller.pegaVeiculos();
-            }
-            return Container();
-          },
-        ),
+          if (value is VeiculoInitial) {
+            controller.pegaVeiculos();
+          }
+          return Container();
+        },
       ),
     );
   }
 }
 
-Widget tileNovo(BuildContext context) {
+Widget tileNovo({
+  required BuildContext context,
+  String? nome,
+  String? placa,
+  String? prefixo,
+}) {
   return InkWell(
     onTap: () {
       Navigator.pushNamed(context, '/cadastra-odometro');
     },
     child: Container(
-        margin: EdgeInsets.fromLTRB(20, 8, 20, 8),
+        margin: EdgeInsets.fromLTRB(10, 8, 10, 8),
         height: 70,
         decoration: BoxDecoration(
             color: brancoi9t,
@@ -125,20 +136,20 @@ Widget tileNovo(BuildContext context) {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Text(
-                          'Renaut Duster',
+                          '$nome',
                           style: TextStyle(
                               fontSize: 12, fontWeight: FontWeight.bold),
                         ),
                         SizedBox(
                           height: 4,
                         ),
-                        Text('Placa: ABC-1234',
+                        Text('Placa: $placa',
                             style: TextStyle(fontSize: 10, color: cinzai9t)),
                         SizedBox(
                           height: 4,
                         ),
                         Text(
-                          'Prefixo: ABC-1234',
+                          'Prefixo: $prefixo',
                           style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.bold,

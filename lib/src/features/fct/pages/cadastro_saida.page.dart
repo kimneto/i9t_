@@ -21,50 +21,6 @@ class _CadastroSaidaState extends State<CadastroSaida> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          Stack(
-            fit: StackFit.passthrough,
-            children: [
-              Container(
-                color: amareloi9t,
-                width: 80,
-                height: double.infinity,
-              ),
-              ClipPath(
-                clipper: MyCustomClipper(),
-                child: Container(
-                  color: pretoi9t,
-                  width: 80,
-                  child: IconButton(
-                    highlightColor: amareloi9t,
-                    color: amareloi9t,
-                    focusColor: amareloi9t,
-                    splashColor: amareloi9t,
-                    icon: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          MdiIcons.carOff,
-                          color: amareloi9t,
-                          size: 30,
-                        ),
-                        Text('Finalizar',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: amareloi9t,
-                              fontSize: 12,
-                            ))
-                      ],
-                    ),
-                    onPressed: () {
-                      print('SAIR');
-                    },
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
         leading: IconButton(
             iconSize: 30,
             icon: Icon(
@@ -82,7 +38,7 @@ class _CadastroSaidaState extends State<CadastroSaida> {
         centerTitle: false,
         title: Container(
           child: Text(
-            'Percurso',
+            'Saída',
             textAlign: TextAlign.start,
             style: TextStyle(
                 color: pretoi9t, fontSize: 22, fontWeight: FontWeight.bold),
@@ -112,70 +68,30 @@ class _CadastroSaidaState extends State<CadastroSaida> {
                             fontSize: 14,
                             fontWeight: FontWeight.bold),
                       ),
-                      Text(
-                        'Odômetro Anterior: 120000 Km',
-                        style: TextStyle(
-                            color: cinzai9t,
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold),
-                      ),
                     ],
                   ),
                 ),
                 SizedBox(
                   height: 20,
                 ),
-                CustomInputField(
-                  controller: TextEditingController(),
-                  maxLength: 30,
-                  keyboardType: TextInputType.text,
-                  isPassword: false,
-                  label: '* Localização',
-                  hasIcon: true,
-                  hint: 'Digite o local da parada',
-                  inputFormatters: [],
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  children: [
-                    Flexible(
-                      child: CustomInputField(
-                        onTap: () {},
-                        controller: TextEditingController(),
-                        maxLength: 11,
-                        keyboardType: TextInputType.number,
-                        isPassword: false,
-                        label: '* Odômetro',
-                        hasIcon: true,
-                        inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly,
-                          LengthLimitingTextInputFormatter(11),
-                        ],
-                      ),
+                Center(
+                  child: Container(
+                    width: 320,
+                    child: CustomInputField(
+                      controller: TextEditingController(),
+                      maxLength: 11,
+                      keyboardType: TextInputType.datetime,
+                      isPassword: false,
+                      label: 'Hora',
+                      hasIcon: true,
+                      hint: 'Hora da parada',
+                      onTap: () {},
+                      inputFormatters: [
+                        FilteringTextInputFormatter.digitsOnly,
+                        HoraInputFormatter(),
+                      ],
                     ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Container(
-                      width: 140,
-                      child: CustomInputField(
-                        controller: TextEditingController(),
-                        maxLength: 11,
-                        keyboardType: TextInputType.datetime,
-                        isPassword: false,
-                        label: 'Hora',
-                        hasIcon: true,
-                        hint: 'Hora da parada',
-                        onTap: () {},
-                        inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly,
-                          HoraInputFormatter(),
-                        ],
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
                 SizedBox(
                   height: 20,
@@ -186,7 +102,7 @@ class _CadastroSaidaState extends State<CadastroSaida> {
                     Flexible(
                       flex: 1,
                       child: BotaoGrandeI9t(
-                          texto: 'Inserir Percurso',
+                          texto: 'Sair',
                           aoApertar: () {
                             print('CLICOU');
                           },
@@ -242,29 +158,5 @@ class _CadastroSaidaState extends State<CadastroSaida> {
         ],
       ),
     );
-  }
-}
-
-class MyCustomClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    final path = Path();
-
-    path.addPolygon([
-      Offset(0, 0),
-      Offset(80, 0),
-      Offset(80, 80),
-      Offset(80, 80),
-      Offset(18, 80),
-      Offset(0, 63),
-    ], true);
-    path.close();
-    return path;
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    // TODO: implement shouldReclip
-    throw UnimplementedError();
   }
 }

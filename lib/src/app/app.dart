@@ -17,6 +17,7 @@ import 'package:i9t/src/features/fct/components/fcts_fechadas/services/fcts_fech
 import 'package:i9t/src/features/fct/pages/cadastro_chegada.page.dart';
 import 'package:i9t/src/features/fct/pages/cadastro_odometro_inicial.page.dart';
 import 'package:i9t/src/features/fct/pages/cadastro_saida.page.dart';
+import 'package:i9t/src/features/fct/pages/finalizar_fct.page.dart';
 import 'package:i9t/src/features/home/controllers/home.controller.dart';
 import 'package:i9t/src/features/home/home.page.dart';
 import 'package:i9t/src/features/login/controllers/login.controller.dart';
@@ -81,7 +82,7 @@ class App extends StatelessWidget {
             '/cadastro': (context) => CadastroCondutor(),
             '/seleciona-veiculo': (context) => VeiculoPage(),
             '/compartilha': (context) => CompartilhaPage(),
-            '/cadastra-odometro': (context) => CadastroOdometroInicial(),
+            '/finalizar': (context) => FinalizaFctPage(),
           },
           debugShowCheckedModeBanner: false,
           title: 'I9 Controle de Tráfego',
