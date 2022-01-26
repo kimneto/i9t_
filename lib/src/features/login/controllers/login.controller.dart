@@ -4,6 +4,7 @@ import 'package:i9t/src/features/condutor/models/condutor.model.dart';
 import 'package:i9t/src/data/autentica_pm.service.dart';
 import 'package:i9t/src/features/condutor/services/condutor.service.dart';
 import 'package:i9t/src/shared/settings.dart';
+import 'package:parse_server_sdk/parse_server_sdk.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../states/login.state.dart';

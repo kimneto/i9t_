@@ -9,14 +9,20 @@ class CadastroCondutorController extends ValueNotifier<CadastroCondutorState> {
   CadastroCondutorController(CadastroCondutorState value)
       : super(CadastroCondutorInitial());
 
-  TextEditingController nomeEditingController = TextEditingController();
-  TextEditingController emailEditingController = TextEditingController();
-  TextEditingController cpfEditingController = TextEditingController();
-  TextEditingController codUnidadeEditingController = TextEditingController();
-  bool checkBox = false;
+  TextEditingController nomeEditingController =
+      TextEditingController(text: 'Novo Usuario');
+  TextEditingController emailEditingController =
+      TextEditingController(text: 'jj@jj.com');
+  TextEditingController cpfEditingController =
+      TextEditingController(text: '12345678901');
+  TextEditingController codUnidadeEditingController =
+      TextEditingController(text: '609000000');
+
   String errorMessage = "";
   CondutorService condutorService = CondutorService();
   CondutorModel condutorModel = CondutorModel();
+
+  ValueNotifier<bool> checkBox = ValueNotifier(false);
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -86,25 +92,24 @@ class CadastroCondutorController extends ValueNotifier<CadastroCondutorState> {
   }
 
   cadastrarCondutor() async {
-    bool estaValidado = await validaFormCondutor();
-
     try {
-      if (estaValidado) {
-        // value = CadastroCondutorLoading();
+      if (validaFormCondutor()) {
+        value = CadastroCondutorLoading();
         await condutorService
             .pegaCondutorPorCpf(condutorModel.cpf.toString())
-            .then((v) {
-          if (v.cpf != null) {
+            .then((item) {
+          if (item.length == []) {
             value =
                 CadastroCondutorFailure(error: 'Esse CPF já está cadastrado');
           } else {
-            condutorService.cadastraCondutor(condutorModel);
-            value = CadastroCondutorSuccess(condutor: condutorModel);
+            condutorService.cadastraCondutor(condutorModel).then((item) =>
+                value = CadastroCondutorSuccess(condutor: condutorModel));
           }
         });
       }
     } catch (e) {
-      throw Exception("I9T Erro ==> ${e.toString()}");
+      print(e);
+      value = CadastroCondutorFailure(error: 'Erro ao cadastrar');
     }
   }
 }
