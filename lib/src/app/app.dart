@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:i9t/src/features/compartilha/controllers/compartilha.controller.dart';
 import 'package:i9t/src/features/compartilha/pages/compartilha.page.dart';
+import 'package:i9t/src/features/compartilha/pages/pdf.dart';
 import 'package:i9t/src/features/condutor/controllers/cadastro_condutor.controller.dart';
 import 'package:i9t/src/features/condutor/controllers/condutor.controller.dart';
 
@@ -72,7 +73,7 @@ class App extends StatelessWidget {
       ],
       builder: (context, child) {
         return MaterialApp(
-          initialRoute: '/login',
+          initialRoute: '/pdf',
           routes: {
             '/login': (context) => LoginPage(),
             '/home': (context) => Home(),
@@ -83,6 +84,7 @@ class App extends StatelessWidget {
             '/seleciona-veiculo': (context) => VeiculoPage(),
             '/compartilha': (context) => CompartilhaPage(),
             '/finalizar': (context) => FinalizaFctPage(),
+            '/pdf': (context) => PdfHome(),
           },
           debugShowCheckedModeBanner: false,
           title: 'I9 Controle de Tráfego',

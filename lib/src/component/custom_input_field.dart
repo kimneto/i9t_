@@ -62,7 +62,7 @@ class CustomInputField extends StatelessWidget {
         keyboardType: keyboardType,
         obscureText: isPassword,
         controller: controller,
-        maxLines: maxLines,
+        maxLines: maxLines ?? 1,
         inputFormatters: inputFormatters,
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.fromLTRB(20, 18, 10, 20),

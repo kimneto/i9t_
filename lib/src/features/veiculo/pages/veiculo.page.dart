@@ -100,7 +100,7 @@ Widget tileNovo({
 }) {
   return InkWell(
     onTap: () {
-      Navigator.pushNamed(context, '/cadastra-odometro');
+      Navigator.pushNamed(context, '/hodometro');
     },
     child: Container(
         margin: EdgeInsets.fromLTRB(10, 8, 10, 8),
@@ -122,7 +122,7 @@ Widget tileNovo({
                   flex: 1,
                   child: Container(
                       child: Image.asset(
-                    'assets/vtr2.png',
+                    'assets/image/vtr2.png',
                     scale: 1,
                   ))),
               SizedBox(

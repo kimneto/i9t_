@@ -165,7 +165,7 @@ Widget tileCarroSelecionado() {
               width: 1,
             ),
             image: DecorationImage(
-                image: AssetImage('assets/vtr2.png'),
+                image: AssetImage('assets/image/vtr2.png'),
                 fit: BoxFit.none,
                 scale: 4,
                 alignment: AlignmentDirectional(-2, 0)),

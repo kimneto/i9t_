@@ -44,7 +44,7 @@ class CardCustomFctAberto extends StatelessWidget {
                 height: 250,
                 width: 350,
                 child: Container(
-                  child: Image.asset('assets/vtr.png',
+                  child: Image.asset('assets/image/vtr.png',
                       scale: 2.8,
                       fit: BoxFit.none,
                       alignment: Alignment(0, -4.5)),
