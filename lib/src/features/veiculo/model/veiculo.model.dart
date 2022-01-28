@@ -5,7 +5,7 @@ class VeiculoModel {
   String? tipo;
   String? grupo;
   int? statusVtr;
-  int? hodometroAtualizado;
+  int? ultimoOdometro;
 
   VeiculoModel(
       {this.objectId,
@@ -14,7 +14,7 @@ class VeiculoModel {
       this.tipo,
       this.grupo,
       this.statusVtr,
-      this.hodometroAtualizado});
+      this.ultimoOdometro});
 
   VeiculoModel.fromJson(Map<String, dynamic> json) {
     objectId = json['objectId'];
@@ -23,7 +23,7 @@ class VeiculoModel {
     tipo = json['tipo'];
     grupo = json['grupo'];
     statusVtr = json['statusVtr'];
-    hodometroAtualizado = json['hodometroAtualizado'];
+    ultimoOdometro = json['ultimoOdometro'];
   }
 
   Map<String, dynamic> toJson() {
@@ -34,7 +34,7 @@ class VeiculoModel {
     data['tipo'] = this.tipo;
     data['grupo'] = this.grupo;
     data['statusVtr'] = this.statusVtr;
-    data['hodometroAtualizado'] = this.hodometroAtualizado;
+    data['ultimoOdometro'] = this.ultimoOdometro;
     return data;
   }
 }

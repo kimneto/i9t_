@@ -6,6 +6,8 @@ class LoginInitialState extends LoginState {}
 
 class LoginLoadingState extends LoginState {}
 
+class LoginConnectionStateError extends LoginState {}
+
 class LoginFailureState extends LoginState {
   final String error;
 

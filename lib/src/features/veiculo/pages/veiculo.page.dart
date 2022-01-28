@@ -72,11 +72,9 @@ class VeiculoPage extends StatelessWidget {
                     itemCount: value.veiculos.length,
                     itemBuilder: (_, i) {
                       return tileNovo(
-                        context: context,
-                        nome: value.veiculos[i].tipo,
-                        placa: value.veiculos[i].placa,
-                        prefixo: value.veiculos[i].grupo,
-                      );
+                          context: context,
+                          veiculoModel: value.veiculos[i],
+                          args: value.veiculos[i]);
                     }),
               ),
             );
@@ -92,15 +90,11 @@ class VeiculoPage extends StatelessWidget {
   }
 }
 
-Widget tileNovo({
-  required BuildContext context,
-  String? nome,
-  String? placa,
-  String? prefixo,
-}) {
+Widget tileNovo(
+    {required BuildContext context, VeiculoModel? veiculoModel, dynamic args}) {
   return InkWell(
     onTap: () {
-      Navigator.pushNamed(context, '/hodometro');
+      Navigator.pushNamed(context, '/hodometro', arguments: args);
     },
     child: Container(
         margin: EdgeInsets.fromLTRB(10, 8, 10, 8),
@@ -136,20 +130,20 @@ Widget tileNovo({
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Text(
-                          '$nome',
+                          '${veiculoModel!.tipo}',
                           style: TextStyle(
                               fontSize: 12, fontWeight: FontWeight.bold),
                         ),
                         SizedBox(
                           height: 4,
                         ),
-                        Text('Placa: $placa',
+                        Text('Placa: ${veiculoModel.placa}',
                             style: TextStyle(fontSize: 10, color: cinzai9t)),
                         SizedBox(
                           height: 4,
                         ),
                         Text(
-                          'Prefixo: $prefixo',
+                          'Prefixo: ${veiculoModel.grupo}',
                           style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.bold,

@@ -17,13 +17,17 @@ class Home extends StatelessWidget {
     HomeController homeController = context.watch<HomeController>();
 
     return Scaffold(
-      floatingActionButton: BotaoNovaFct(
-        aoApertar: () {
-          Navigator.of(context)
-              .pushNamed('/seleciona-veiculo')
-              .then((value) => homeController.dispose());
-        },
-        estaAtivo: homeController.value,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 10),
+        child: BotaoNovaFct(
+          aoApertar: () {
+            Navigator.of(context)
+                .pushNamed('/seleciona-veiculo')
+                .then((value) => homeController.dispose());
+          },
+          estaAtivo: true,
+          //homeController.value,
+        ),
       ),
       appBar: AppBar(
         actions: [

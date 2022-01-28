@@ -15,10 +15,12 @@ import 'package:i9t/src/features/fct/components/fct_aberta/controllers/fct_abert
 import 'package:i9t/src/features/fct/components/fct_aberta/services/fct_aberta.service.dart';
 import 'package:i9t/src/features/fct/components/fcts_fechadas/controllers/fcts_fechadas.controller.dart';
 import 'package:i9t/src/features/fct/components/fcts_fechadas/services/fcts_fechada.service.dart';
+import 'package:i9t/src/features/fct/controllers/cadastro_odometro_inicial.controller.dart';
 import 'package:i9t/src/features/fct/pages/cadastro_chegada.page.dart';
 import 'package:i9t/src/features/fct/pages/cadastro_odometro_inicial.page.dart';
 import 'package:i9t/src/features/fct/pages/cadastro_saida.page.dart';
 import 'package:i9t/src/features/fct/pages/finalizar_fct.page.dart';
+import 'package:i9t/src/features/fct/states/cadastro_odometro_inicial.state.dart';
 import 'package:i9t/src/features/home/controllers/home.controller.dart';
 import 'package:i9t/src/features/home/home.page.dart';
 import 'package:i9t/src/features/login/controllers/login.controller.dart';
@@ -48,6 +50,9 @@ class App extends StatelessWidget {
 //CONTROLLERS
         ChangeNotifierProvider(create: (_) => VeiculoController()),
         ChangeNotifierProvider(create: (_) => CompartilhaController()),
+        ChangeNotifierProvider(
+            create: (_) => CadastroOdometroInicialController(
+                CadastroOdometroInicialInitialState())),
 
         ChangeNotifierProvider(
             create: (_) => LoginController(LoginInitialState())),

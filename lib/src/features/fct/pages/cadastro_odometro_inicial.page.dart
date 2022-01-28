@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i9t/src/component/botao_grande.component.dart';
 import 'package:i9t/src/component/custom_input_field.dart';
+import 'package:i9t/src/features/fct/controllers/cadastro_odometro_inicial.controller.dart';
+import 'package:i9t/src/features/veiculo/model/veiculo.model.dart';
 import 'package:i9t/src/shared/tema.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:provider/src/provider.dart';
 
-class CadastroOdometroInicial extends StatefulWidget {
-  const CadastroOdometroInicial({Key? key}) : super(key: key);
-
-  @override
-  _CadastroOdometroInicialState createState() =>
-      _CadastroOdometroInicialState();
-}
-
-class _CadastroOdometroInicialState extends State<CadastroOdometroInicial> {
+class CadastroOdometroInicial extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final controller = context.watch<CadastroOdometroInicialController>();
+
+    controller.veiculoModel =
+        ModalRoute.of(context)?.settings.arguments as VeiculoModel;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -42,39 +40,49 @@ class _CadastroOdometroInicialState extends State<CadastroOdometroInicial> {
       ),
       body: ListView(
         children: [
-          tileCarroSelecionado(),
-          Container(
-            padding: EdgeInsets.only(left: 20, right: 20, top: 20),
-            child: Center(
-              child: CustomInputField(
-                controller: TextEditingController(),
-                hasIcon: true,
-                isPassword: false,
-                maxLength: 10,
-                keyboardType: TextInputType.text,
-                label: 'Localização',
-                icon: Icon(
-                  FontAwesomeIcons.tachometerAlt,
-                  color: pretoi9t,
+          tileCarroSelecionado(controller.veiculoModel),
+          Form(
+            key: controller.formKey,
+            child: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.only(left: 20, right: 20, top: 20),
+                  child: Center(
+                    child: CustomInputField(
+                      controller: controller.localizacaoEditingController,
+                      hasIcon: true,
+                      isPassword: false,
+                      maxLength: 10,
+                      keyboardType: TextInputType.text,
+                      validator: controller.validaCampoLocalizacao,
+                      label: 'Localização',
+                      icon: Icon(
+                        FontAwesomeIcons.tachometerAlt,
+                        color: pretoi9t,
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
-            child: Center(
-              child: CustomInputField(
-                controller: TextEditingController(),
-                hasIcon: true,
-                isPassword: false,
-                maxLength: 10,
-                keyboardType: TextInputType.number,
-                label: 'Odômetro Inicial',
-                icon: Icon(
-                  FontAwesomeIcons.tachometerAlt,
-                  color: pretoi9t,
+                Container(
+                  padding:
+                      EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
+                  child: Center(
+                    child: CustomInputField(
+                      controller: controller.odometroInicial,
+                      hasIcon: true,
+                      isPassword: false,
+                      validator: controller.validaCampoOdometroInicial,
+                      maxLength: 10,
+                      keyboardType: TextInputType.number,
+                      label: 'Odômetro Inicial',
+                      icon: Icon(
+                        FontAwesomeIcons.tachometerAlt,
+                        color: pretoi9t,
+                      ),
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
           ),
           Container(
@@ -87,19 +95,25 @@ class _CadastroOdometroInicialState extends State<CadastroOdometroInicial> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Checkbox(
-                        activeColor: amareloi9t,
-                        checkColor: pretoi9t,
-                        splashRadius: 5,
-                        shape: RoundedRectangleBorder(
-                            side: BorderSide(
-                                width: 100,
-                                color: pretoi9t,
-                                style: BorderStyle.solid),
-                            borderRadius: BorderRadius.circular(3)),
-                        materialTapTargetSize: MaterialTapTargetSize.padded,
-                        value: true,
-                        onChanged: (_) {}),
+                    ValueListenableBuilder(
+                      builder: (_, __, ___) => Checkbox(
+                          activeColor: amareloi9t,
+                          checkColor: pretoi9t,
+                          splashRadius: 5,
+                          shape: RoundedRectangleBorder(
+                              side: BorderSide(
+                                  width: 100,
+                                  color: pretoi9t,
+                                  style: BorderStyle.solid),
+                              borderRadius: BorderRadius.circular(3)),
+                          materialTapTargetSize: MaterialTapTargetSize.padded,
+                          value: controller.checkBox.value,
+                          onChanged: (_) {
+                            controller.checkBox.value =
+                                !controller.checkBox.value;
+                          }),
+                      valueListenable: controller.checkBox,
+                    ),
                     SizedBox(
                       height: 10,
                     ),
@@ -122,12 +136,17 @@ class _CadastroOdometroInicialState extends State<CadastroOdometroInicial> {
             child: Center(
               child: Column(
                 children: [
-                  BotaoGrandeI9t(
-                      texto: 'Pegar Veículo Agora',
-                      aoApertar: () {
-                        Navigator.of(context).pushNamed('/home');
-                      },
-                      estaAtivo: true),
+                  ValueListenableBuilder(
+                    valueListenable: controller.checkBox,
+                    builder: (_, __, ___) => BotaoGrandeI9t(
+                        texto: 'Pegar Veículo Agora',
+                        aoApertar: () {
+                          //  Navigator.of(context).pushNamed('/home');
+
+                          controller.validaFormCondutor();
+                        },
+                        estaAtivo: controller.checkBox.value),
+                  ),
                   SizedBox(
                     height: 20,
                   ),
@@ -141,7 +160,7 @@ class _CadastroOdometroInicialState extends State<CadastroOdometroInicial> {
   }
 }
 
-Widget tileCarroSelecionado() {
+Widget tileCarroSelecionado(VeiculoModel veiculoModel) {
   return Stack(
     children: [
       Container(
@@ -185,13 +204,13 @@ Widget tileCarroSelecionado() {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              'Renaut Duster',
+              veiculoModel.tipo.toString(),
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            Text('Placa: ABC-1234',
+            Text('Placa: ${veiculoModel.placa}',
                 style: TextStyle(fontSize: 14, color: cinzai9t)),
             Text(
-              'Prefixo: ABC-1234',
+              'Prefixo: ${veiculoModel.grupo}',
               style: TextStyle(fontSize: 14, color: cinzai9t),
             ),
             Container(
@@ -201,7 +220,7 @@ Widget tileCarroSelecionado() {
             Container(
               width: double.maxFinite,
               alignment: Alignment.centerLeft,
-              child: Text("025327",
+              child: Text("${veiculoModel.ultimoOdometro}",
                   style: TextStyle(
                       fontSize: 16,
                       color: Colors.green,

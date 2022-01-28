@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:i9t/src/features/condutor/models/condutor.model.dart';
@@ -22,6 +24,8 @@ class LoginController extends ValueNotifier<LoginState> {
 
   logar() async {
     try {
+      //VERIFICA CONEXAO SERVIDOR PM
+
       CPFValidator.strip(controllerCPF.text);
       // 1 - Coloca a Pagina no modo Status
       value = LoginLoadingState();

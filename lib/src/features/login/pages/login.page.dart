@@ -1,5 +1,6 @@
 import 'package:i9t/src/features/login/controllers/login.controller.dart';
 import 'package:i9t/src/features/login/states/login.state.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
@@ -48,6 +49,22 @@ class _LoginPageState extends State<LoginPage> {
             child: CircularProgressIndicator(
               color: amareloi9t,
               strokeWidth: 10,
+            ),
+          ),
+        ),
+      );
+    }
+
+    if (state is LoginConnectionStateError) {
+      widget = Container(
+        height: double.maxFinite,
+        child: Flexible(
+          flex: 1,
+          child: Center(
+            child: Icon(
+              MdiIcons.lanDisconnect,
+              color: amareloi9t,
+              size: 30,
             ),
           ),
         ),

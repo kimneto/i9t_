@@ -26,7 +26,7 @@ class BotaoNovaFct extends StatelessWidget {
                   width: 10,
                 ),
                 Text(
-                  'Nova\nFCT',
+                  'Novo',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 16,
@@ -36,18 +36,18 @@ class BotaoNovaFct extends StatelessWidget {
               ],
             ),
           ),
-          width: 130,
-          height: 60,
+          width: 100,
+          height: 50,
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
                 color: cinzalitei9t,
                 blurRadius: 10,
-                offset: Offset(4, 6),
+                offset: Offset(2, 4),
               ),
             ],
             color: amareloi9t,
-            borderRadius: BorderRadius.all(Radius.elliptical(18, 20)),
+            borderRadius: BorderRadius.all(Radius.elliptical(10, 12)),
           ),
         ),
       );

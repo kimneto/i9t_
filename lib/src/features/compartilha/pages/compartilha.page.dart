@@ -105,8 +105,8 @@ class CompartilhaPage extends StatelessWidget {
                                 decoration: tabela(),
                                 padding: pw.EdgeInsets.only(top: 10, left: 2),
                                 child: pw.Text(
-                                    'Secretaria .................................',
-                                    style: pw.TextStyle(fontSize: 12)),
+                                    'Secretaria ...........................................',
+                                    style: pw.TextStyle(fontSize: 10)),
                               ),
                               pw.Container(
                                 padding: pw.EdgeInsets.only(
@@ -115,12 +115,12 @@ class CompartilhaPage extends StatelessWidget {
                               pw.Column(
                                 children: [
                                   pw.Text(
-                                      'Subfrota....................................',
-                                      style: pw.TextStyle(fontSize: 12)),
+                                      'Subfrota..............................................',
+                                      style: pw.TextStyle(fontSize: 10)),
                                   pw.SizedBox(height: 10),
                                   pw.Text(
-                                      'Cidade.......................................',
-                                      style: pw.TextStyle(fontSize: 12)),
+                                      'Cidade.................................................',
+                                      style: pw.TextStyle(fontSize: 10)),
                                 ],
                               )
                             ],
@@ -144,7 +144,7 @@ class CompartilhaPage extends StatelessWidget {
                     //NUMERO DA FICHA
                     pw.Container(
                       width: 365,
-                      height: 22.64,
+                      height: 22.5,
                       padding: pw.EdgeInsets.only(top: 5),
                       decoration: tabela(),
                       child: pw.Text(
@@ -152,7 +152,7 @@ class CompartilhaPage extends StatelessWidget {
                           textAlign: pw.TextAlign.center,
                           style: pw.TextStyle(fontSize: 10)),
                     ),
-                    pw.SizedBox(height: 14.15),
+                    pw.SizedBox(height: 7.15),
                     //PLACA PATRIMONIO TIPO
                     pw.Container(
                       width: 365,
@@ -213,7 +213,7 @@ class CompartilhaPage extends StatelessWidget {
                           pw.Column(
                             children: [
                               pw.Container(
-                                width: 81.5,
+                                width: 81.9,
                                 height: 11.32,
                                 decoration: tabela(),
                                 child: pw.Text('GRUPO',
@@ -221,7 +221,7 @@ class CompartilhaPage extends StatelessWidget {
                                     style: pw.TextStyle(fontSize: 10)),
                               ),
                               pw.Container(
-                                width: 81.5,
+                                width: 81.9,
                                 height: 15.0,
                                 decoration: tabela(),
                               )
@@ -264,16 +264,18 @@ class CompartilhaPage extends StatelessWidget {
                             mainAxisAlignment: pw.MainAxisAlignment.center,
                             children: [
                               pw.Container(
-                                  height: 16,
-                                  width: 55.84,
-                                  margin: pw.EdgeInsets.only(left: 5),
-                                  child: pw.Transform.rotateBox(
-                                      angle: 1.58,
-                                      child: pw.Text(
-                                        'Kilometragem',
-                                        textDirection: pw.TextDirection.rtl,
-                                        style: pw.TextStyle(fontSize: 8),
-                                      ))),
+                                height: 16,
+                                width: 55.84,
+                                margin: pw.EdgeInsets.only(left: 5),
+                                child: pw.Transform.rotateBox(
+                                  angle: 1.57,
+                                  child: pw.Text(
+                                    'Quilometragem',
+                                    textDirection: pw.TextDirection.rtl,
+                                    style: pw.TextStyle(fontSize: 8),
+                                  ),
+                                ),
+                              ),
                               pw.Container(
                                 height: 71.85,
                                 decoration: tabela(),
@@ -292,42 +294,45 @@ class CompartilhaPage extends StatelessWidget {
                                     pw.Row(children: [
                                       pw.Container(
                                           child: pw.Text(
-                                            'Retorno',
-                                            style: pw.TextStyle(fontSize: 10),
+                                            ' Retorno',
+                                            textAlign: pw.TextAlign.left,
+                                            style: pw.TextStyle(fontSize: 9),
                                           ),
-                                          width: 65,
+                                          width: 49.43,
                                           height: 16.98,
                                           decoration: tabela()),
                                       pw.Container(
-                                          width: 49.43,
+                                          width: 65,
                                           height: 16.98,
                                           decoration: tabela()),
                                     ]),
                                     pw.Row(children: [
                                       pw.Container(
                                           child: pw.Text(
-                                            'Partida',
-                                            style: pw.TextStyle(fontSize: 10),
+                                            ' Partida',
+                                            textAlign: pw.TextAlign.left,
+                                            style: pw.TextStyle(fontSize: 9),
                                           ),
-                                          width: 65,
+                                          width: 49.43,
                                           height: 16.98,
                                           decoration: tabela()),
                                       pw.Container(
-                                          width: 49.43,
+                                          width: 65,
                                           height: 16.98,
                                           decoration: tabela()),
                                     ]),
                                     pw.Row(children: [
                                       pw.Container(
                                           child: pw.Text(
-                                            'Diferença',
-                                            style: pw.TextStyle(fontSize: 10),
+                                            ' Diferença',
+                                            textAlign: pw.TextAlign.left,
+                                            style: pw.TextStyle(fontSize: 9),
                                           ),
-                                          width: 65,
+                                          width: 49.43,
                                           height: 16.98,
                                           decoration: tabela()),
                                       pw.Container(
-                                          width: 49.43,
+                                          width: 65,
                                           height: 16.98,
                                           decoration: tabela()),
                                     ]),
@@ -342,6 +347,117 @@ class CompartilhaPage extends StatelessWidget {
                           width: 183.95,
                           height: 70.85,
                           decoration: tabela(),
+                          child: pw.Row(children: [
+                            pw.Container(
+                              height: 20,
+                              width: 58.84,
+                              margin: pw.EdgeInsets.only(left: 5),
+                              child: pw.Transform.rotateBox(
+                                angle: 1.57,
+                                child: pw.Text(
+                                  'Abastecimento',
+                                  textAlign: pw.TextAlign.center,
+                                  textDirection: pw.TextDirection.rtl,
+                                  style: pw.TextStyle(fontSize: 9),
+                                ),
+                              ),
+                            ),
+                            pw.Column(children: [
+                              pw.Row(children: [
+                                pw.Container(
+                                    child: pw.Center(
+                                      child: pw.Text(
+                                        'Natureza',
+                                        textAlign: pw.TextAlign.center,
+                                        style: pw.TextStyle(fontSize: 9),
+                                      ),
+                                    ),
+                                    width: 53.77,
+                                    height: 12,
+                                    decoration: tabela()),
+                                pw.Container(
+                                    child: pw.Center(
+                                      child: pw.Text(
+                                        'Quantidade',
+                                        style: pw.TextStyle(fontSize: 9),
+                                      ),
+                                    ),
+                                    width: 62.26,
+                                    height: 12,
+                                    decoration: tabela()),
+                                pw.Container(
+                                    child: pw.Center(
+                                      child: pw.Text(
+                                        'Req. Nº',
+                                        style: pw.TextStyle(fontSize: 9),
+                                      ),
+                                    ),
+                                    width: 42.45,
+                                    height: 12,
+                                    decoration: tabela()),
+                              ]),
+                              pw.Row(children: [
+                                pw.Container(
+                                    child: pw.Center(
+                                      child: pw.Text(
+                                        'Gasolina',
+                                        style: pw.TextStyle(fontSize: 9),
+                                      ),
+                                    ),
+                                    width: 53.77,
+                                    height: 19.6,
+                                    decoration: tabela()),
+                                pw.Container(
+                                    width: 62.26,
+                                    height: 19.6,
+                                    decoration: tabela()),
+                                pw.Container(
+                                    width: 42.45,
+                                    height: 19.6,
+                                    decoration: tabela()),
+                              ]),
+                              pw.Row(children: [
+                                pw.Container(
+                                    child: pw.Center(
+                                      child: pw.Text(
+                                        'Óleo',
+                                        style: pw.TextStyle(fontSize: 9),
+                                      ),
+                                    ),
+                                    width: 53.77,
+                                    height: 19.6,
+                                    decoration: tabela()),
+                                pw.Container(
+                                    width: 62.26,
+                                    height: 19.6,
+                                    decoration: tabela()),
+                                pw.Container(
+                                    width: 42.45,
+                                    height: 19.6,
+                                    decoration: tabela()),
+                              ]),
+                              pw.Row(children: [
+                                pw.Container(
+                                    child: pw.Center(
+                                      child: pw.Text(
+                                        'Diesel',
+                                        style: pw.TextStyle(fontSize: 9),
+                                      ),
+                                    ),
+                                    width: 53.77,
+                                    height: 19.6,
+                                    decoration: tabela()),
+                                pw.Container(
+                                    width: 62.26,
+                                    height: 19.6,
+                                    decoration: tabela()),
+                                pw.Container(
+                                    width: 42.45,
+                                    height: 19.6,
+                                    decoration: tabela()),
+                              ]),
+                            ])
+                          ]),
                         ),
                       ]),
                     ),
@@ -358,6 +474,169 @@ class CompartilhaPage extends StatelessWidget {
                       width: 365,
                       height: 200.93,
                       decoration: tabela(),
+
+                      //O USUARIO PREENCHERA
+                      child: pw.Column(
+                        children: [
+                          pw.Container(
+                            width: 365,
+                            decoration: tabela(),
+                            child: pw.Text(
+                              'O USUÁRIO PREENCHERÁ',
+                              style: pw.TextStyle(fontSize: 10),
+                            ),
+                          ),
+                          pw.Container(
+                              padding: pw.EdgeInsets.only(
+                                  left: 20, top: 15, right: 20),
+                              width: 365,
+                              child: pw.Column(
+                                mainAxisAlignment:
+                                    pw.MainAxisAlignment.spaceAround,
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.stretch,
+                                children: [
+                                  pw.Row(
+                                    children: [
+                                      pw.Text(
+                                        'O veículo foi apresentado na hora e no local certos?      sim      ',
+                                        style: pw.TextStyle(fontSize: 10),
+                                      ),
+                                      pw.Container(
+                                        width: 6,
+                                        height: 6,
+                                        decoration: tabela(),
+                                      ),
+                                      pw.Text(
+                                        '         não    ',
+                                        style: pw.TextStyle(fontSize: 10),
+                                      ),
+                                      pw.Container(
+                                        width: 6,
+                                        height: 6,
+                                        decoration: tabela(),
+                                      ),
+                                    ],
+                                  ),
+                                  pw.SizedBox(height: 3),
+                                  pw.Row(
+                                    children: [
+                                      pw.Text(
+                                        'Dispensado às ............ horas ...........minutos',
+                                        style: pw.TextStyle(fontSize: 10),
+                                      ),
+                                    ],
+                                  ),
+                                  pw.SizedBox(height: 3),
+                                  pw.Row(
+                                    children: [
+                                      pw.Text(
+                                        'Local: ......................................................................................................................',
+                                        style: pw.TextStyle(fontSize: 10),
+                                      ),
+                                    ],
+                                  ),
+                                  pw.SizedBox(height: 3),
+                                  pw.Row(
+                                    children: [
+                                      pw.Text(
+                                        'Nova Apresentação?      ',
+                                        style: pw.TextStyle(fontSize: 10),
+                                      ),
+                                      pw.Text(
+                                        '        sim      ',
+                                        style: pw.TextStyle(fontSize: 10),
+                                      ),
+                                      pw.Container(
+                                        width: 6,
+                                        height: 6,
+                                        decoration: tabela(),
+                                      ),
+                                      pw.Text(
+                                        '                     não    ',
+                                        style: pw.TextStyle(fontSize: 10),
+                                      ),
+                                      pw.Container(
+                                        width: 6,
+                                        height: 6,
+                                        decoration: tabela(),
+                                      ),
+                                    ],
+                                  ),
+                                  pw.SizedBox(height: 3),
+                                  pw.Row(
+                                    children: [
+                                      pw.Text(
+                                        'Especificar para o caso de sim: dia - hora - local ',
+                                        style: pw.TextStyle(fontSize: 10),
+                                      ),
+                                    ],
+                                  ),
+                                  pw.SizedBox(height: 3),
+                                  pw.Row(
+                                    children: [
+                                      pw.Text(
+                                        '.................................................................................................................................',
+                                        style: pw.TextStyle(fontSize: 10),
+                                      ),
+                                    ],
+                                  ),
+                                  pw.SizedBox(height: 3),
+                                  pw.Row(
+                                    children: [
+                                      pw.Text(
+                                        'Considerações gerais sobre o veículo condutor: e/ou',
+                                        style: pw.TextStyle(fontSize: 10),
+                                      ),
+                                    ],
+                                  ),
+                                  pw.SizedBox(height: 3),
+                                  pw.Row(
+                                    children: [
+                                      pw.Text(
+                                        '.................................................................................................................................',
+                                        style: pw.TextStyle(fontSize: 10),
+                                      ),
+                                    ],
+                                  ),
+                                  pw.SizedBox(height: 3),
+                                  pw.Row(
+                                    children: [
+                                      pw.Text(
+                                        '.................................................................................................................................',
+                                        style: pw.TextStyle(fontSize: 10),
+                                      ),
+                                    ],
+                                  ),
+                                  pw.SizedBox(height: 3),
+                                  pw.Row(
+                                    children: [
+                                      pw.Text(
+                                        '.................................................................................................................................',
+                                        style: pw.TextStyle(fontSize: 10),
+                                      ),
+                                    ],
+                                  ),
+                                  pw.SizedBox(height: 3),
+                                  pw.Row(
+                                    children: [
+                                      pw.Column(children: [
+                                        pw.Text(
+                                          '                                                                        .........................................................',
+                                          style: pw.TextStyle(fontSize: 10),
+                                        ),
+                                        pw.SizedBox(height: 3),
+                                        pw.Text(
+                                          '                                                                            USUÁRIO',
+                                          style: pw.TextStyle(fontSize: 10),
+                                        ),
+                                      ])
+                                    ],
+                                  ),
+                                ],
+                              )),
+                        ],
+                      ),
                     ),
                     pw.Container(
                         width: 365,
@@ -382,7 +661,7 @@ class CompartilhaPage extends StatelessWidget {
                   children: [
                     pw.Container(
                       width: 365,
-                      height: 356.58,
+                      height: 347.58,
                       decoration: tabela(),
                       child: pw.Column(children: [
                         pw.Container(
@@ -406,49 +685,55 @@ class CompartilhaPage extends StatelessWidget {
                             decoration: tabela(),
                             child: pw.Column(children: [
                               pw.Container(
+                                padding: pw.EdgeInsets.only(top: 10),
                                 width: 182.53,
                                 height: 24.95,
                                 decoration: tabela(),
-                                child: pw.Text('Destino (s)'),
+                                child: pw.Text(
+                                  'Destino (s)',
+                                  style: pw.TextStyle(
+                                    fontSize: 10,
+                                  ),
+                                ),
                               ),
                               pw.Container(
                                 width: 182.53,
-                                height: 22.64,
+                                height: 17.5,
                                 decoration: tabela(),
                               ),
                               pw.Container(
                                 width: 182.53,
-                                height: 22.64,
+                                height: 17.5,
                                 decoration: tabela(),
                               ),
                               pw.Container(
                                 width: 182.53,
-                                height: 22.64,
+                                height: 17.5,
                                 decoration: tabela(),
                               ),
                               pw.Container(
                                 width: 182.53,
-                                height: 22.64,
+                                height: 17.5,
                                 decoration: tabela(),
                               ),
                               pw.Container(
                                 width: 182.53,
-                                height: 22.64,
+                                height: 17.5,
                                 decoration: tabela(),
                               ),
                               pw.Container(
                                 width: 182.53,
-                                height: 22.64,
+                                height: 17.5,
                                 decoration: tabela(),
                               ),
                               pw.Container(
                                 width: 182.53,
-                                height: 22.64,
+                                height: 17.5,
                                 decoration: tabela(),
                               ),
                               pw.Container(
                                 width: 182.53,
-                                height: 22.64,
+                                height: 17.5,
                                 decoration: tabela(),
                               )
                             ]),
@@ -464,27 +749,27 @@ class CompartilhaPage extends StatelessWidget {
                                   height: 12.47,
                                   child: pw.Text(
                                     'Horários',
-                                    style: pw.TextStyle(fontSize: 8),
+                                    style: pw.TextStyle(fontSize: 10),
                                   ),
                                 ),
                                 pw.Column(children: [
                                   pw.Row(children: [
                                     pw.Container(
                                       width: 48.11,
-                                      height: 12,
+                                      height: 12.8,
                                       decoration: tabela(),
                                       child: pw.Text(
                                         'Chegada',
-                                        style: pw.TextStyle(fontSize: 8),
+                                        style: pw.TextStyle(fontSize: 10),
                                       ),
                                     ),
                                     pw.Container(
                                       width: 56.5,
-                                      height: 12,
+                                      height: 12.8,
                                       decoration: tabela(),
                                       child: pw.Text(
                                         'Partida',
-                                        style: pw.TextStyle(fontSize: 8),
+                                        style: pw.TextStyle(fontSize: 10),
                                       ),
                                     )
                                   ]),
@@ -492,156 +777,383 @@ class CompartilhaPage extends StatelessWidget {
                                 pw.Row(children: [
                                   pw.Container(
                                     width: 48.11,
-                                    height: 22.64,
+                                    height: 17.5,
                                     decoration: tabela(),
                                   ),
                                   pw.Container(
                                     width: 56.5,
-                                    height: 22.64,
+                                    height: 17.5,
                                     decoration: tabela(),
                                   )
                                 ]),
                                 pw.Row(children: [
                                   pw.Container(
                                     width: 48.11,
-                                    height: 22.64,
+                                    height: 17.5,
                                     decoration: tabela(),
                                   ),
                                   pw.Container(
                                     width: 56.5,
-                                    height: 22.64,
+                                    height: 17.5,
                                     decoration: tabela(),
                                   )
                                 ]),
                                 pw.Row(children: [
                                   pw.Container(
                                     width: 48.11,
-                                    height: 22.64,
+                                    height: 17.5,
                                     decoration: tabela(),
                                   ),
                                   pw.Container(
                                     width: 56.5,
-                                    height: 22.64,
+                                    height: 17.5,
                                     decoration: tabela(),
                                   )
                                 ]),
                                 pw.Row(children: [
                                   pw.Container(
                                     width: 48.11,
-                                    height: 22.64,
+                                    height: 17.5,
                                     decoration: tabela(),
                                   ),
                                   pw.Container(
                                     width: 56.5,
-                                    height: 22.64,
+                                    height: 17.5,
                                     decoration: tabela(),
                                   )
                                 ]),
                                 pw.Row(children: [
                                   pw.Container(
                                     width: 48.11,
-                                    height: 22.64,
+                                    height: 17.5,
                                     decoration: tabela(),
                                   ),
                                   pw.Container(
                                     width: 56.5,
-                                    height: 22.64,
+                                    height: 17.5,
                                     decoration: tabela(),
                                   )
                                 ]),
                                 pw.Row(children: [
                                   pw.Container(
                                     width: 48.11,
-                                    height: 22.64,
+                                    height: 17.5,
                                     decoration: tabela(),
                                   ),
                                   pw.Container(
                                     width: 56.5,
-                                    height: 22.64,
+                                    height: 17.5,
                                     decoration: tabela(),
                                   )
                                 ]),
                                 pw.Row(children: [
                                   pw.Container(
                                     width: 48.11,
-                                    height: 22.64,
+                                    height: 17.5,
                                     decoration: tabela(),
                                   ),
                                   pw.Container(
                                     width: 56.5,
-                                    height: 22.64,
+                                    height: 17.5,
+                                    decoration: tabela(),
+                                  )
+                                ]),
+                                pw.Row(children: [
+                                  pw.Container(
+                                    width: 48.11,
+                                    height: 17.5,
+                                    decoration: tabela(),
+                                  ),
+                                  pw.Container(
+                                    width: 56.5,
+                                    height: 17.5,
+                                    decoration: tabela(),
+                                  )
+                                ]),
+                                pw.Row(children: [
+                                  pw.Container(
+                                    width: 48.11,
+                                    height: 17.5,
+                                    decoration: tabela(),
+                                  ),
+                                  pw.Container(
+                                    width: 56.5,
+                                    height: 17.5,
                                     decoration: tabela(),
                                   ),
                                 ]),
                               ]),
                             ]),
                           ),
-                          pw.SizedBox(width: 1.5),
+                          pw.SizedBox(width: 1.0),
                           pw.Container(
                             width: 74.58,
                             height: 182.95,
                             decoration: tabela(),
                             child: pw.Column(children: [
                               pw.Container(
-                                width: 73.60,
+                                width: 76.60,
                                 height: 24.95,
                                 decoration: tabela(),
-                                child: pw.Text('HODÔMETRO',
-                                    style: pw.TextStyle(fontSize: 8)),
+                                child: pw.Center(
+                                  child: pw.Text('HODÔMETRO',
+                                      style: pw.TextStyle(fontSize: 10)),
+                                ),
                               ),
                               pw.Container(
-                                width: 73.60,
-                                height: 22.64,
+                                width: 76.60,
+                                height: 17.5,
                                 decoration: tabela(),
                               ),
                               pw.Container(
-                                width: 73.60,
-                                height: 22.64,
+                                width: 76.60,
+                                height: 17.5,
                                 decoration: tabela(),
                               ),
                               pw.Container(
-                                width: 73.60,
-                                height: 22.64,
+                                width: 76.60,
+                                height: 17.5,
                                 decoration: tabela(),
                               ),
                               pw.Container(
-                                width: 73.60,
-                                height: 22.64,
+                                width: 76.60,
+                                height: 17.5,
                                 decoration: tabela(),
                               ),
                               pw.Container(
-                                width: 73.60,
-                                height: 22.64,
+                                width: 76.60,
+                                height: 17.5,
                                 decoration: tabela(),
                               ),
                               pw.Container(
-                                width: 73.60,
-                                height: 22.64,
+                                width: 76.60,
+                                height: 17.5,
                                 decoration: tabela(),
                               ),
                               pw.Container(
-                                width: 73.60,
-                                height: 22.64,
+                                width: 76.60,
+                                height: 17.5,
                                 decoration: tabela(),
                               ),
                               pw.Container(
-                                width: 73.60,
-                                height: 22.64,
+                                width: 76.60,
+                                height: 17.5,
+                                decoration: tabela(),
+                              ),
+                              pw.Container(
+                                width: 76.60,
+                                height: 17.5,
                                 decoration: tabela(),
                               )
                             ]),
                           ),
                         ]),
+                        pw.Container(
+                          padding: pw.EdgeInsets.only(
+                            left: 5,
+                            top: 15,
+                          ),
+                          height: 146,
+                          decoration: tabela(),
+                          child: pw.Column(
+                              mainAxisAlignment:
+                                  pw.MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: pw.CrossAxisAlignment.stretch,
+                              children: [
+                                pw.Row(
+                                  children: [
+                                    pw.Text(
+                                      'O condutor anotará os defeitos verificados.........................................................................',
+                                      style: pw.TextStyle(fontSize: 10),
+                                    ),
+                                  ],
+                                ),
+                                pw.SizedBox(height: 2),
+                                pw.Row(
+                                  children: [
+                                    pw.Text(
+                                      '.............................................................................................................................................',
+                                      style: pw.TextStyle(fontSize: 10),
+                                    ),
+                                  ],
+                                ),
+                                pw.SizedBox(height: 2),
+                                pw.Row(
+                                  children: [
+                                    pw.Text(
+                                      '.............................................................................................................................................',
+                                      style: pw.TextStyle(fontSize: 10),
+                                    ),
+                                  ],
+                                ),
+                                pw.SizedBox(height: 2),
+                                pw.Row(
+                                  children: [
+                                    pw.Text(
+                                      'O condutor fará observações sobre multas, irregularidades e acidentes:............................',
+                                      style: pw.TextStyle(fontSize: 10),
+                                    ),
+                                  ],
+                                ),
+                                pw.SizedBox(height: 2),
+                                pw.Row(
+                                  children: [
+                                    pw.Text(
+                                      '.............................................................................................................................................',
+                                      style: pw.TextStyle(fontSize: 10),
+                                    ),
+                                  ],
+                                ),
+                                pw.SizedBox(height: 2),
+                                pw.Row(
+                                  children: [
+                                    pw.Text(
+                                      '.............................................................................................................................................',
+                                      style: pw.TextStyle(fontSize: 10),
+                                    ),
+                                  ],
+                                ),
+                                pw.SizedBox(height: 2),
+                                pw.Row(
+                                  children: [
+                                    pw.Text(
+                                      '                                                                                                .............................................',
+                                      style: pw.TextStyle(fontSize: 10),
+                                    ),
+                                  ],
+                                ),
+                                pw.SizedBox(height: 2),
+                                pw.Row(
+                                  children: [
+                                    pw.Text(
+                                      '                                                                                                              CONDUTOR',
+                                      style: pw.TextStyle(fontSize: 10),
+                                    ),
+                                  ],
+                                ),
+                              ]),
+                        ),
                       ]),
                     ),
                     pw.SizedBox(height: 6),
                     pw.Container(
-                      width: 365,
-                      height: 181.12,
-                      decoration: tabela(),
-                      child: pw.Padding(
-                        padding: pw.EdgeInsets.all(20),
+                      padding: pw.EdgeInsets.only(
+                        left: 5,
+                        top: 15,
                       ),
+                      height: 181.12,
+                      width: 365,
+                      decoration: tabela(),
+                      child: pw.Column(
+                          mainAxisAlignment: pw.MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: pw.CrossAxisAlignment.stretch,
+                          children: [
+                            pw.Row(
+                              children: [
+                                pw.Text(
+                                  'O Expedidor preencherá quando do retorno do veículo:',
+                                  style: pw.TextStyle(fontSize: 10),
+                                ),
+                              ],
+                            ),
+                            pw.SizedBox(height: 2),
+                            pw.Row(
+                              children: [
+                                pw.Text(
+                                  '1) Foram preenchidos os itens referentes ao condutor e o usuário?',
+                                  style: pw.TextStyle(fontSize: 10),
+                                ),
+                              ],
+                            ),
+                            pw.Row(
+                              children: [
+                                pw.Container(
+                                  width: 6,
+                                  height: 6,
+                                  decoration: tabela(),
+                                ),
+                                pw.Text(
+                                  '   sim      ',
+                                  style: pw.TextStyle(fontSize: 10),
+                                ),
+                                pw.Container(
+                                  width: 6,
+                                  height: 6,
+                                  decoration: tabela(),
+                                ),
+                                pw.Text(
+                                  '   não      ',
+                                  style: pw.TextStyle(fontSize: 10),
+                                ),
+                              ],
+                            ),
+                            pw.SizedBox(height: 2),
+                            pw.Row(
+                              children: [
+                                pw.Text(
+                                  '2) Estão corretos os itens preenchidos pelo condutor?',
+                                  style: pw.TextStyle(fontSize: 10),
+                                ),
+                              ],
+                            ),
+                            pw.Row(
+                              children: [
+                                pw.Container(
+                                  width: 6,
+                                  height: 6,
+                                  decoration: tabela(),
+                                ),
+                                pw.Text(
+                                  '   sim      ',
+                                  style: pw.TextStyle(fontSize: 10),
+                                ),
+                                pw.Container(
+                                  width: 6,
+                                  height: 6,
+                                  decoration: tabela(),
+                                ),
+                                pw.Text(
+                                  '   não      ',
+                                  style: pw.TextStyle(fontSize: 10),
+                                ),
+                              ],
+                            ),
+                            pw.SizedBox(height: 2),
+                            pw.Row(
+                              children: [
+                                pw.Text(
+                                  '3) O veículo percorreu .................................. Km',
+                                  style: pw.TextStyle(fontSize: 10),
+                                ),
+                              ],
+                            ),
+                            pw.SizedBox(height: 2),
+                            pw.Row(
+                              children: [
+                                pw.Text(
+                                  'Tempo de utilização ................horas e .......................minutos.',
+                                  style: pw.TextStyle(fontSize: 10),
+                                ),
+                              ],
+                            ),
+                            pw.SizedBox(height: 2),
+                            pw.Row(
+                              children: [
+                                pw.Text(
+                                  '                                                                                                .............................................',
+                                  style: pw.TextStyle(fontSize: 10),
+                                ),
+                              ],
+                            ),
+                            pw.Row(
+                              children: [
+                                pw.Text(
+                                  '                                                                                                              EXPEDIDOR',
+                                  style: pw.TextStyle(fontSize: 10),
+                                ),
+                              ],
+                            ),
+                          ]),
                     ),
                   ],
                 ),
