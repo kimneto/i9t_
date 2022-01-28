@@ -13,6 +13,7 @@
 
     This is a placeholder for base href that will be replaced by the value of
     the `--base-href` argument provided to `flutter build`.
+
   -->
   <base href="$FLUTTER_BASE_HREF">
 
@@ -32,6 +33,12 @@
   <title>i9t</title>
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" type="text/css" href="splash/style.css">
+
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/pdf.js/2.8.335/pdf.min.js"></script>
+  <script type="text/javascript">
+      pdfjsLib.GlobalWorkerOptions.workerSrc = "//cdnjs.cloudflare.com/ajax/libs/pdf.js/2.8.335/pdf.worker.min.js";
+  </script>
 </head>
 <body>
   <picture id="splash">

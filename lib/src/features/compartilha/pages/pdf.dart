@@ -1,11 +1,8 @@
-// ignore_for_file: public_member_api_docs
-
-import 'dart:io';
-import 'dart:math';
 import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:i9t/src/shared/tema.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
@@ -15,16 +12,53 @@ class PdfHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(),
-        body: PdfPreview(
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+            iconSize: 30,
+            icon: Icon(
+              FontAwesomeIcons.chevronLeft,
+              size: 30,
+              color: brancoi9t,
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            }),
+        toolbarHeight: 80,
+        elevation: 0,
+        foregroundColor: Colors.transparent,
+        backgroundColor: pretoi9t,
+        centerTitle: false,
+        title: Container(
+          child: Text(
+            'PDF',
+            textAlign: TextAlign.start,
+            style: TextStyle(
+                color: brancoi9t, fontSize: 22, fontWeight: FontWeight.bold),
+          ),
+        ),
+      ),
+      body: Theme(
+        data: ThemeData(primaryColor: pretoi9t),
+        child: PdfPreview(
+          canDebug: false,
+          allowPrinting: false,
+          canChangeOrientation: true,
+          pdfPreviewPageDecoration: BoxDecoration(
+            color: brancoi9t,
+            border: Border.all(
+              color: Colors.transparent,
+            ),
+          ),
+          initialPageFormat: PdfPageFormat.a4.landscape,
+          canChangePageFormat: false,
           build: (format) => _generatePdf(format.landscape, 'FCT 001'),
         ),
       ),
     );
   }
 
+//
   Future<Uint8List> _generatePdf(PdfPageFormat format, String title) async {
     final pdf = pw.Document(
         version: PdfVersion.pdf_1_5,
@@ -226,18 +260,27 @@ class PdfHome extends StatelessWidget {
                           height: 70.85,
                           decoration: tabela(),
                           child: pw.Row(
+                            crossAxisAlignment: pw.CrossAxisAlignment.center,
+                            mainAxisAlignment: pw.MainAxisAlignment.center,
                             children: [
                               pw.Container(
-                                width: 27.0,
-                                height: 10.85,
-                              ),
+                                  height: 16,
+                                  width: 55.84,
+                                  margin: pw.EdgeInsets.only(left: 5),
+                                  child: pw.Transform.rotateBox(
+                                      angle: 1.58,
+                                      child: pw.Text(
+                                        'Kilometragem',
+                                        textDirection: pw.TextDirection.rtl,
+                                        style: pw.TextStyle(fontSize: 8),
+                                      ))),
                               pw.Container(
-                                height: 70.85,
+                                height: 71.85,
                                 decoration: tabela(),
                                 child: pw.Column(
                                   children: [
                                     pw.Container(
-                                      width: 109.0,
+                                      width: 115.0,
                                       height: 19.5,
                                       padding: pw.EdgeInsets.only(top: 7),
                                       decoration: tabela(),
@@ -252,7 +295,7 @@ class PdfHome extends StatelessWidget {
                                             'Retorno',
                                             style: pw.TextStyle(fontSize: 10),
                                           ),
-                                          width: 60,
+                                          width: 65,
                                           height: 16.98,
                                           decoration: tabela()),
                                       pw.Container(
@@ -266,7 +309,7 @@ class PdfHome extends StatelessWidget {
                                             'Partida',
                                             style: pw.TextStyle(fontSize: 10),
                                           ),
-                                          width: 60,
+                                          width: 65,
                                           height: 16.98,
                                           decoration: tabela()),
                                       pw.Container(
@@ -280,7 +323,7 @@ class PdfHome extends StatelessWidget {
                                             'Diferença',
                                             style: pw.TextStyle(fontSize: 10),
                                           ),
-                                          width: 60,
+                                          width: 65,
                                           height: 16.98,
                                           decoration: tabela()),
                                       pw.Container(

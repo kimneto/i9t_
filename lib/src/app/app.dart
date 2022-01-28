@@ -73,7 +73,7 @@ class App extends StatelessWidget {
       ],
       builder: (context, child) {
         return MaterialApp(
-          initialRoute: '/pdf',
+          initialRoute: '/login',
           routes: {
             '/login': (context) => LoginPage(),
             '/home': (context) => Home(),

@@ -44,11 +44,11 @@ class CardCustomFctAberto extends StatelessWidget {
                 height: 250,
                 width: 350,
                 child: Container(
-                  child: Image.asset('assets/image/vtr.png',
-                      scale: 2.8,
-                      fit: BoxFit.none,
-                      alignment: Alignment(0, -4.5)),
-                ),
+                    child: Icon(
+                  FontAwesomeIcons.car,
+                  size: 150,
+                  color: Color.fromARGB(7, 255, 255, 255),
+                )),
               ),
               Container(
                 width: 350,
@@ -86,11 +86,6 @@ class CardCustomFctAberto extends StatelessWidget {
                                       SizedBox(
                                         width: 5,
                                       ),
-                                      Text(
-                                        '- FCT CPI9-026/440/22',
-                                        style: TextStyle(
-                                            fontSize: 14, color: cinzalitei9t),
-                                      ),
                                     ],
                                   ),
                                 ),
@@ -126,6 +121,7 @@ class CardCustomFctAberto extends StatelessWidget {
                             ),
                           ),
                           Container(
+                            padding: EdgeInsets.only(top: 20),
                             alignment: Alignment.center,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -183,6 +179,13 @@ class CardCustomFctAberto extends StatelessWidget {
                         ],
                       ),
                     ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 60),
+                      child: Text(
+                        'Controle de Tráfego CPI9-026/440/22',
+                        style: TextStyle(fontSize: 10, color: amareloi9t),
+                      ),
+                    )
                   ],
                 ),
               ),
@@ -259,11 +262,10 @@ class CardCustomFctAberto extends StatelessWidget {
                     child: Container(
                       color: pretoi9t,
                       width: 40,
-                      child: 
+                      child:
                     ),
                   ),
                 ],
               ),
 */
               //
-          
