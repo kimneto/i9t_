@@ -11,13 +11,12 @@ import 'package:i9t/src/component/botao_grande.component.dart';
 import 'package:i9t/src/component/custom_input_field.dart';
 import 'package:i9t/src/component/logo.dart';
 import 'package:i9t/src/shared/tema.dart';
-import '../condutor/controllers/condutor.controller.dart';
+import '../condutor/condutor.controller.dart';
 
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final loginController = context.watch<LoginController>();
-
     final condutorController = context.watch<CondutorController>();
 
     final w = MediaQuery.of(context).size.width;

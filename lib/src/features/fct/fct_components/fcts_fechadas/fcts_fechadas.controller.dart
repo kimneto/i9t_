@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:i9t/src/features/condutor/models/condutor.model.dart';
+import 'package:i9t/src/features/condutor/condutor.model.dart';
 import 'package:i9t/src/features/fct/fct_components/fcts_fechadas/fcts_fechada.service.dart';
 import 'package:i9t/src/features/fct/fct_components/fcts_fechadas/fcts_fechadas.states.dart';
 

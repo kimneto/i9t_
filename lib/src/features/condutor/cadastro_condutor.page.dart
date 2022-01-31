@@ -6,8 +6,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i9t/src/component/botao_grande.component.dart';
 import 'package:i9t/src/component/custom_input_field.dart';
 import 'package:i9t/src/component/logo.dart';
-import 'package:i9t/src/features/condutor/controllers/cadastro_condutor.controller.dart';
-import 'package:i9t/src/features/condutor/state/cadastro.states.dart';
+import 'package:i9t/src/features/condutor/cadastro_condutor.controller.dart';
+import 'package:i9t/src/features/condutor/cadastro.states.dart';
 import 'package:i9t/src/shared/tema.dart';
 
 class CadastroCondutor extends StatelessWidget {
@@ -53,7 +53,7 @@ class CadastroCondutor extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: IconButton(
-                            onPressed: () => Modular.to.pop(),
+                            onPressed: () => Modular.to.navigate('/'),
                             icon: Icon(
                               FontAwesomeIcons.chevronLeft,
                               size: 30,

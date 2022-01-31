@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:i9t/src/features/condutor/controllers/condutor.controller.dart';
+import 'package:i9t/src/features/condutor/condutor.controller.dart';
 import 'package:i9t/src/features/fct/fct_components/fct_aberta/fct_aberta.service.dart';
 import 'package:i9t/src/features/fct/fct_components/fct_aberta/fct_aberta.states.dart';
 import 'package:i9t/src/features/fct/models/fct.model.dart';

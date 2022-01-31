@@ -9,8 +9,8 @@ import 'package:i9t/src/shared/tema.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:timelines/timelines.dart';
 
-class FinalizaFctPage extends StatelessWidget {
-  const FinalizaFctPage({Key? key}) : super(key: key);
+class FctFechamentoPage extends StatelessWidget {
+  const FctFechamentoPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,9 +1,9 @@
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:i9t/src/features/condutor/state/cadastro.states.dart';
-import 'package:i9t/src/features/condutor/models/condutor.model.dart';
-import 'package:i9t/src/features/condutor/services/condutor.service.dart';
+import 'package:i9t/src/features/condutor/cadastro.states.dart';
+import 'package:i9t/src/features/condutor/condutor.model.dart';
+import 'package:i9t/src/features/condutor/condutor.service.dart';
 
 class CadastroCondutorController extends ValueNotifier<CadastroCondutorState> {
   CadastroCondutorController(CadastroCondutorState value)

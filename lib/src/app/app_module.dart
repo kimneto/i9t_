@@ -1,10 +1,20 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:i9t/src/features/condutor/controllers/condutor.controller.dart';
-import 'package:i9t/src/features/condutor/models/condutor.model.dart';
-import 'package:i9t/src/features/condutor/pages/cadastro_condutor.page.dart';
+import 'package:i9t/src/features/compartilha/controllers/compartilha.controller.dart';
+import 'package:i9t/src/features/condutor/cadastro_condutor.controller.dart';
+import 'package:i9t/src/features/condutor/condutor.controller.dart';
+import 'package:i9t/src/features/condutor/condutor.model.dart';
+import 'package:i9t/src/features/condutor/cadastro_condutor.page.dart';
+import 'package:i9t/src/features/condutor/cadastro.states.dart';
+import 'package:i9t/src/features/fct/fct_abertura/fct_abertura.controller.dart';
+import 'package:i9t/src/features/fct/fct_abertura/fct_abertura.page.dart';
+import 'package:i9t/src/features/fct/fct_abertura/fct_abertura.state.dart';
+import 'package:i9t/src/features/fct/fct_chegada/cadastro_chegada.page.dart';
 import 'package:i9t/src/features/fct/fct_components/fct_aberta/fct_aberta.controller.dart';
 import 'package:i9t/src/features/fct/fct_components/fcts_fechadas/fcts_fechadas.controller.dart';
-import 'package:i9t/src/features/fct/ftc.module.dart';
+import 'package:i9t/src/features/fct/fct_fechamento/fct_fechamento.page.dart';
+import 'package:i9t/src/features/fct/fct_saida/cadastro_saida.page.dart';
+import 'package:i9t/src/features/fct/fct_seleciona_veiculo/fct_seleciona_veiculo.controller.dart';
+import 'package:i9t/src/features/fct/fct_seleciona_veiculo/fct_seleciona_veiculo.page.dart';
 import 'package:i9t/src/features/fct/models/fct.model.dart';
 import 'package:i9t/src/features/home/home.controller.dart';
 import 'package:i9t/src/features/home/home.page.dart';
@@ -16,31 +26,27 @@ import 'package:i9t/src/shared/guarda_rota.dart';
 class AppModule extends Module {
   @override
   List<Bind> get binds => [
-        Bind.singleton((i) => LoginController(LoginInitialState())),
-        Bind.singleton((i) => FctAbertaController(FctModel())),
-        Bind.singleton((i) => FctsFechadasController()),
+        Bind.lazySingleton((i) => FctAbertaController(FctModel())),
 
-        //Services
-        // Bind.factory((i) => CondutorService()),
-        // Bind.factory((i) => AutenticaPM()),
+        Bind.lazySingleton((i) => FctsFechadasController()),
+        Bind.lazySingleton(
+          (i) => FctSelecionaVeiculoController(),
+        ),
+        Bind.lazySingleton(
+            (i) => FctAberturaController(FctAberturaInitialState())),
         //Controllers
         Bind.singleton((i) => CondutorController(CondutorModel())),
         Bind.singleton((i) => HomeController()),
-        // Bind.singleton((i) => CompartilhaController()),
-        // Bind.singleton((i) => LoginController(LoginInitialState())),
-        // Bind.singleton((i) => CondutorController(CondutorModel())),
-        // Bind.singleton((i) => CompartilhaController()),
-        // Bind.singleton(
-        // (i) => CadastroCondutorController(CadastroCondutorInitial())),
+        Bind.singleton((i) => CompartilhaController()),
+        Bind.singleton((i) => LoginController(LoginInitialState())),
+        Bind.singleton((i) => CondutorController(CondutorModel())),
+        Bind.singleton((i) => CompartilhaController()),
+        Bind.singleton(
+            (i) => CadastroCondutorController(CadastroCondutorInitial())),
       ];
 
   @override
   List<ModularRoute> get routes => [
-        ModuleRoute(
-          '/fct',
-          module: FctModule(),
-          transition: TransitionType.scale,
-        ),
         ChildRoute(
           '/',
           child: (context, args) => Home(),
@@ -54,5 +60,30 @@ class AppModule extends Module {
         ChildRoute('/cadastro',
             child: (context, args) => CadastroCondutor(),
             transition: TransitionType.size),
+        ChildRoute(
+          '/seleciona-veiculo',
+          child: (context, args) => FctSelecionaVeiculoPage(),
+          guards: [AuthGuard()],
+        ),
+        ChildRoute(
+          '/abertura',
+          child: (context, args) => FctAberturaPage(),
+          guards: [AuthGuard()],
+        ),
+        ChildRoute(
+          '/chegada',
+          child: (context, args) => CadastroChegada(),
+          guards: [AuthGuard()],
+        ),
+        ChildRoute(
+          '/saida',
+          child: (context, args) => CadastroSaida(),
+          guards: [AuthGuard()],
+        ),
+        ChildRoute(
+          '/finalizar',
+          child: (context, args) => FctFechamentoPage(),
+          guards: [AuthGuard()],
+        ),
       ];
 }

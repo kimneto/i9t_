@@ -2,14 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i9t/src/component/botao_grande.component.dart';
-import 'package:i9t/src/component/custom_clip.dart';
 import 'package:i9t/src/shared/tema.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class CardCustomFctAberto extends StatelessWidget {
   Function aoApertar;
-  CardCustomFctAberto({required this.aoApertar, required this.entradaSaida});
+  CardCustomFctAberto(
+      {required this.aoApertar,
+      required this.entradaSaida,
+      this.pontoInicial,
+      this.veiculoGrupo,
+      this.veiculoTipo,
+      this.veiculoPatrimonio,
+      this.veiculoPlaca,
+      this.dataInicial});
   int entradaSaida = 1;
+  String? pontoInicial;
+  String? veiculoGrupo;
+  String? veiculoTipo;
+  String? veiculoPatrimonio;
+  String? documento;
+  String? veiculoPlaca;
+  String? dataInicial;
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +92,7 @@ class CardCustomFctAberto extends StatelessWidget {
                                         width: 5,
                                       ),
                                       Text(
-                                        'São Paulo',
+                                        '$pontoInicial',
                                         style: TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,
@@ -95,7 +109,7 @@ class CardCustomFctAberto extends StatelessWidget {
                                 ),
                                 Container(
                                   child: Text(
-                                    'Viatura GM SPIN - Placa: ABC1234',
+                                    '$veiculoTipo - Placa: $veiculoPlaca',
                                     style: TextStyle(
                                       fontSize: 10,
                                       color: cinzalitei9t,
@@ -104,7 +118,7 @@ class CardCustomFctAberto extends StatelessWidget {
                                 ),
                                 Container(
                                   child: Text(
-                                    'Data Inicial: 01/01/22',
+                                    'Data Inicial:$dataInicial',
                                     style: TextStyle(
                                         fontSize: 10,
                                         fontWeight: FontWeight.bold,
@@ -183,7 +197,7 @@ class CardCustomFctAberto extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(top: 60),
                       child: Text(
-                        'Controle de Tráfego CPI9-026/440/22',
+                        'Controle de Tráfego $documento',
                         style: TextStyle(fontSize: 10, color: amareloi9t),
                       ),
                     )
@@ -246,26 +260,3 @@ class CardCustomFctAberto extends StatelessWidget {
     );
   }
 }
-
-
-/*
-            Stack(
-                fit: StackFit.passthrough,
-                children: [
-                  Container(
-                    color: amareloi9t,
-                    width: 40,
-                    height: double.infinity,
-                  ),
-                  ClipPath(
-                    clipper: MyCustomClipper(),
-                    child: Container(
-                      color: pretoi9t,
-                      width: 40,
-                      child:
-                    ),
-                  ),
-                ],
-              ),
-*/
-              //

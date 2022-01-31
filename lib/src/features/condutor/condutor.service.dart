@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:i9t/src/features/condutor/models/condutor.model.dart';
+import 'package:i9t/src/features/condutor/condutor.model.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 
 class CondutorService extends ChangeNotifier {

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:i9t/src/features/condutor/controllers/condutor.controller.dart';
+import 'package:i9t/src/features/condutor/condutor.controller.dart';
 import 'package:i9t/src/features/fct/fct_components/fct_aberta/fct_aberta.service.dart';
-import 'package:i9t/src/features/fct/models/veiculo.model.dart';
+import 'package:i9t/src/features/fct/fct_components/fct_aberta/fct_aberta.states.dart';
 import 'package:i9t/src/features/fct/models/fct.model.dart';
+import 'package:i9t/src/features/fct/models/veiculo.model.dart';
 import 'package:i9t/src/features/fct/fct_abertura/fct_abertura.state.dart';
 import 'package:i9t/src/features/trafego/trafego.model.dart';
 import 'package:i9t/src/features/trafego/trafego.service.dart';
@@ -18,7 +19,7 @@ class FctAberturaController extends ValueNotifier<FctAberturaState> {
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   ValueNotifier<bool> checkBox = ValueNotifier(false);
-  final fct = FctModel();
+
   VeiculoModel veiculoModel = VeiculoModel();
   FctAbertaService fctAbertaService = FctAbertaService();
   TrafegoService trafegoService = TrafegoService();
@@ -56,7 +57,7 @@ class FctAberturaController extends ValueNotifier<FctAberturaState> {
     // 1 - PEGA O ULTIMO FCT POR DATA ANO CORRENTE
     int numeroDoc = 0;
     TrafegoModel trafegoModel = TrafegoModel();
-
+    final fct = FctModel();
     try {
       if (validaFormFct()) {
         //1- PEGA O ULTIMO FCT POR DATA ANO CORRENTE E GERA NUMERO DE DOCUMENTO
@@ -86,7 +87,7 @@ class FctAberturaController extends ValueNotifier<FctAberturaState> {
         fctAbertaService.criaNovoFctAberto(fct, numeroDoc).then(
           (v) async {
             if (v.objectId == null) {
-              value = FctAberturaSuccessState(fct: fct);
+              value = FctAberturaSuccessState();
             } else {
               await trafegoService.deletaTrafego(trafegoModel);
               value = FctAberturaFailureState(error: 'Algo deu errado!');

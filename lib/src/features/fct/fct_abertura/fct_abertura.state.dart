@@ -13,7 +13,5 @@ class FctAberturaFailureState extends FctAberturaState {
 }
 
 class FctAberturaSuccessState extends FctAberturaState {
-  final FctModel fct;
-
-  FctAberturaSuccessState({required this.fct});
+  FctAberturaSuccessState();
 }

@@ -1,5 +1,4 @@
-import 'package:i9t/src/features/condutor/models/condutor.model.dart';
-import 'package:i9t/src/features/fct/models/fct.model.dart';
+import 'package:i9t/src/features/condutor/condutor.model.dart';
 
 abstract class CondutorState {}
 
