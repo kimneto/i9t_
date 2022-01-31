@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i9t/src/shared/tema.dart';
 import 'package:pdf/pdf.dart';
@@ -22,7 +23,7 @@ class PdfHome extends StatelessWidget {
               color: brancoi9t,
             ),
             onPressed: () {
-              Navigator.of(context).pop();
+              Modular.to.pop();
             }),
         toolbarHeight: 80,
         elevation: 0,

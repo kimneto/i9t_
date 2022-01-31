@@ -1,29 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:i9t/src/component/botao_nova_fct.component.dart';
 import 'package:i9t/src/features/condutor/controllers/condutor.controller.dart';
-import 'package:i9t/src/features/fct/components/fct_aberta/fct_aberta.components.dart';
-import 'package:i9t/src/features/fct/components/fcts_fechadas/fcts_fechadas.components.dart';
-import 'package:i9t/src/features/home/controllers/home.controller.dart';
-
+import 'package:i9t/src/features/fct/fct_components/fct_aberta/fct_aberta.components.dart';
+import 'package:i9t/src/features/fct/fct_components/fcts_fechadas/fcts_fechadas.components.dart';
+import 'package:i9t/src/features/login/login.controller.dart';
 import 'package:i9t/src/shared/functions.dart';
 import 'package:i9t/src/shared/tema.dart';
-
-import 'package:provider/src/provider.dart';
 
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    CondutorController condutorController = context.watch<CondutorController>();
-    HomeController homeController = context.watch<HomeController>();
+    final loginController = context.read<LoginController>();
+    final condutorController = context.watch<CondutorController>();
 
     return Scaffold(
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 10),
         child: BotaoNovaFct(
           aoApertar: () {
-            Navigator.of(context)
-                .pushNamed('/seleciona-veiculo')
-                .then((value) => homeController.dispose());
+            SchedulerBinding.instance?.addPostFrameCallback((_) {
+              Modular.to.navigate('/fct/seleciona-veiculo');
+            });
           },
           estaAtivo: true,
           //homeController.value,
@@ -43,7 +42,13 @@ class Home extends StatelessWidget {
                       color: pretoi9t,
                     ),
                     onPressed: () {
-                      Navigator.of(context).pop();
+                      loginController.estaLogado = false;
+
+                      SchedulerBinding.instance?.addPostFrameCallback((_) {
+                        Modular.to.navigate(
+                          '/login',
+                        );
+                      });
                     }),
               ],
             ),
@@ -69,12 +74,8 @@ class Home extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          FctAbertaComponents(
-            condutorModel: condutorController.condutor,
-          ),
-          FctsFechadasComponents(
-            condutorModel: condutorController.condutor,
-          ),
+          FctAbertaComponents(),
+          FctsFechadasComponents(),
         ],
       ),
     );

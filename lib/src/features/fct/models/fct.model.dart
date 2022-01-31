@@ -1,40 +1,67 @@
+import 'package:i9t/src/data/data.model.dart';
 import 'package:i9t/src/features/condutor/models/condutor.model.dart';
-import 'package:i9t/src/features/veiculo/model/veiculo.model.dart';
+import 'package:i9t/src/features/fct/models/veiculo.model.dart';
+import 'package:i9t/src/features/trafego/trafego.model.dart';
+import 'package:i9t/src/shared/settings.dart';
 
 class FctModel {
   String? objectId;
-  CondutorModel? condutor;
-  VeiculoModel? veiculo;
+  CondutorModel? condutorModel;
+  VeiculoModel? veiculoModel;
+  TrafegoModel? trafegoModel;
   String? documento;
+  String? pontoInicial;
   bool? concluido;
-  String? dataInicio;
+  DataModel? dataInicio;
+  DataModel? dataFinal;
   String? novidadesVerificadas;
+  String? defeitosVerificados;
+  int? hodometroInicial;
+  int? hodometroFinal;
   int? tempoUtilizacao;
   int? kmUtilizacao;
 
   FctModel(
       {this.objectId,
-      this.condutor,
-      this.veiculo,
+      this.condutorModel,
+      this.veiculoModel,
+      this.trafegoModel,
       this.documento,
+      this.pontoInicial,
       this.concluido,
       this.dataInicio,
+      this.dataFinal,
       this.novidadesVerificadas,
+      this.defeitosVerificados,
+      this.hodometroInicial,
+      this.hodometroFinal,
       this.tempoUtilizacao,
       this.kmUtilizacao});
 
   FctModel.fromJson(Map<String, dynamic> json) {
     objectId = json['objectId'];
-    condutor = json['condutor'] != null
-        ? new CondutorModel.fromJson(json['condutor'])
+    condutorModel = json['CondutorModel'] != null
+        ? new CondutorModel.fromJson(json['CondutorModel'])
         : null;
-    veiculo = json['veiculo'] != null
-        ? new VeiculoModel.fromJson(json['veiculo'])
+    veiculoModel = json['VeiculoModel'] != null
+        ? new VeiculoModel.fromJson(json['VeiculoModel'])
+        : null;
+    trafegoModel = json['TrafegoModel'] != null
+        ? new TrafegoModel.fromJson(json['TrafegoModel'])
         : null;
     documento = json['documento'];
+    pontoInicial = json['pontoInicial'];
     concluido = json['concluido'];
-    dataInicio = json['dataInicio'];
+    dataInicio = json['dataInicio'] != null
+        ? new DataModel.fromJson(json['dataInicio'])
+        : null;
+    dataFinal = json['dataFinal'] != null
+        ? new DataModel.fromJson(json['dataFinal'])
+        : null;
     novidadesVerificadas = json['novidadesVerificadas'];
+    defeitosVerificados = json['defeitosVerificados'];
+    hodometroInicial = json['hodometroInicial'];
+    hodometroFinal = json['hodometroFinal'];
     tempoUtilizacao = json['tempoUtilizacao'];
     kmUtilizacao = json['kmUtilizacao'];
   }
@@ -42,18 +69,39 @@ class FctModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['objectId'] = this.objectId;
-    if (this.condutor != null) {
-      data['condutor'] = this.condutor!.toJson();
+    if (this.condutorModel != null) {
+      data['CondutorModel'] = this.condutorModel!.toJson();
     }
-    if (this.veiculo != null) {
-      data['veiculo'] = this.veiculo!.toJson();
+    if (this.veiculoModel != null) {
+      data['VeiculoModel'] = this.veiculoModel!.toJson();
+    }
+    if (this.trafegoModel != null) {
+      data['TrafegoModel'] = this.trafegoModel!.toJson();
     }
     data['documento'] = this.documento;
+    data['pontoInicial'] = this.pontoInicial;
     data['concluido'] = this.concluido;
-    data['dataInicio'] = this.dataInicio;
+    if (this.dataInicio != null) {
+      data['dataInicio'] = this.dataInicio!.toJson();
+    }
+    if (this.dataFinal != null) {
+      data['dataFinal'] = this.dataFinal!.toJson();
+    }
     data['novidadesVerificadas'] = this.novidadesVerificadas;
+    data['defeitosVerificados'] = this.defeitosVerificados;
+    data['hodometroInicial'] = this.hodometroInicial;
+    data['hodometroFinal'] = this.hodometroFinal;
     data['tempoUtilizacao'] = this.tempoUtilizacao;
     data['kmUtilizacao'] = this.kmUtilizacao;
     return data;
+  }
+
+  String geradorNumeroDocumentoFct(int numero) {
+    String ano = DateTime.now().year.toString();
+    ano = ano.substring(2, 4);
+    String codDocumento = numero.toString().padLeft(3, '0');
+    String numeroDocumento =
+        '$PREFIXO_UNIDADE-$codDocumento/$COD_CURTO_UNIDADE/$ano';
+    return numeroDocumento;
   }
 }

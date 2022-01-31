@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i9t/src/component/botao_grande.component.dart';
 import 'package:i9t/src/component/custom_clip.dart';
@@ -213,7 +214,7 @@ class CardCustomFctAberto extends StatelessWidget {
                     ],
                   ),
                   onPressed: () {
-                    Navigator.of(context).pushNamed('/finalizar');
+                    Modular.to.pushNamed('/finalizar');
                   },
                 ),
               ),
@@ -229,8 +230,7 @@ class CardCustomFctAberto extends StatelessWidget {
                     texto: 'Inserir Chegada',
                     estaAtivo: true,
                     cor: amareloi9t,
-                    aoApertar: () =>
-                        Navigator.of(context).pushNamed('/chegada'),
+                    aoApertar: () => Modular.to.pushNamed('/chegada'),
                   ),
                 )
               : Container(
@@ -238,7 +238,7 @@ class CardCustomFctAberto extends StatelessWidget {
                   child: BotaoGrandeI9t(
                     texto: 'Inserir Saída',
                     estaAtivo: true,
-                    aoApertar: () => Navigator.of(context).pushNamed('/saida'),
+                    aoApertar: () => Modular.to.pushNamed('/saida'),
                   ),
                 )
         ],

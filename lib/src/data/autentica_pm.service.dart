@@ -1,8 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'autenticapm.model.dart';
 
-class AutenticaPM extends ChangeNotifier {
+class AutenticaPM extends Module {
   Dio dio = Dio();
 
   AutenticaPMModel autenticaPMModel = AutenticaPMModel(

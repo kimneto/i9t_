@@ -1,6 +1,7 @@
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i9t/src/component/botao_grande.component.dart';
 import 'package:i9t/src/component/custom_input_field.dart';
@@ -8,7 +9,6 @@ import 'package:i9t/src/component/logo.dart';
 import 'package:i9t/src/features/condutor/controllers/cadastro_condutor.controller.dart';
 import 'package:i9t/src/features/condutor/state/cadastro.states.dart';
 import 'package:i9t/src/shared/tema.dart';
-import 'package:provider/src/provider.dart';
 
 class CadastroCondutor extends StatelessWidget {
   @override
@@ -38,7 +38,7 @@ class CadastroCondutor extends StatelessWidget {
 
         if (value is CadastroCondutorSuccess) {
           Future.delayed(Duration.zero, () async {
-            Navigator.of(context).pop();
+            Modular.to.pop();
           });
         }
 
@@ -53,7 +53,7 @@ class CadastroCondutor extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: IconButton(
-                            onPressed: () => Navigator.pop(context),
+                            onPressed: () => Modular.to.pop(),
                             icon: Icon(
                               FontAwesomeIcons.chevronLeft,
                               size: 30,

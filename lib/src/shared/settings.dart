@@ -3,3 +3,7 @@ const API_VERIFICA_CPF_PM =
 
 const URL_RESETAR_SENHA =
     "https://www2.policiamilitar.sp.gov.br/recuperasenhams/";
+
+const PREFIXO_UNIDADE = "CPI9";
+
+const COD_CURTO_UNIDADE = "430";
