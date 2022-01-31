@@ -41,7 +41,7 @@ class FctSelecionaVeiculoPage extends StatelessWidget {
       body: ValueListenableBuilder(
         valueListenable: controller,
         builder: (context, value, child) {
-          if (value is FctSelecionaVeiculLoading) {
+          if (value is FctSelecionaVeiculoLoading) {
             return Scaffold(
               body: Center(
                 child: CircularProgressIndicator(
@@ -52,7 +52,7 @@ class FctSelecionaVeiculoPage extends StatelessWidget {
             );
           }
 
-          if (value is FctSelecionaVeiculFailure) {
+          if (value is FctSelecionaVeiculoFailure) {
             return Center(
               child: Text(
                 value.error,
@@ -61,7 +61,7 @@ class FctSelecionaVeiculoPage extends StatelessWidget {
             );
           }
 
-          if (value is FctSelecionaVeiculSuccess) {
+          if (value is FctSelecionaVeiculoSuccess) {
             return Container(
               height: h * 0.6,
               decoration: BoxDecoration(
@@ -82,7 +82,7 @@ class FctSelecionaVeiculoPage extends StatelessWidget {
             );
           }
 
-          if (value is FctSelecionaVeiculInitial) {
+          if (value is FctSelecionaVeiculoInitial) {
             controller.pegaVeiculos();
           }
           return Container();

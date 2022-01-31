@@ -48,7 +48,7 @@ class TileVeiculos extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Text(
-                            '${veiculoModel!.tipo}',
+                            '${veiculoModel.tipo}',
                             style: TextStyle(
                                 fontSize: 12, fontWeight: FontWeight.bold),
                           ),

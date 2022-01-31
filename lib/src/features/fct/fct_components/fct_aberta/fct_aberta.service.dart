@@ -35,7 +35,13 @@ class FctAbertaService extends ChangeNotifier {
           PointerModel(
               className: 'Veiculo', objectId: fct.veiculoModel?.objectId))
       ..set('dataInicio', DateTime.now())
-      ..set('documento', fct.documento);
+      ..set(
+          'trafego',
+          PointerModel(
+              className: 'Trafego', objectId: fct.trafegoModel?.objectId))
+      ..set('documento', fct.documento)
+      ..set('hodometroInicial', fct.hodometroInicial)
+      ..set('pontoInicial', fct.pontoInicial);
     await fctParse.save();
     return fct;
   }

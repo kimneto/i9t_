@@ -4,23 +4,23 @@ import 'package:i9t/src/features/fct/fct_seleciona_veiculo/fct_seleciona_veiculo
 
 class FctSelecionaVeiculoController
     extends ValueNotifier<FctSelecionaVeiculoState> {
-  FctSelecionaVeiculoController() : super(FctSelecionaVeiculInitial());
+  FctSelecionaVeiculoController() : super(FctSelecionaVeiculoInitial());
 
   VeiculoService veiculoService = VeiculoService();
 
   pegaVeiculos() {
     try {
-      value = FctSelecionaVeiculLoading();
+      value = FctSelecionaVeiculoLoading();
       veiculoService.pegaVeiculosMenosStatusZero().then((items) {
         if (items.isNotEmpty) {
-          value = FctSelecionaVeiculSuccess(veiculos: items);
+          value = FctSelecionaVeiculoSuccess(veiculos: items);
         } else {
-          value = FctSelecionaVeiculFailure(
+          value = FctSelecionaVeiculoFailure(
               error: 'Não existe veículos cadastrados');
         }
       });
     } catch (e) {
-      value = FctSelecionaVeiculFailure(error: e.toString());
+      value = FctSelecionaVeiculoFailure(error: e.toString());
     }
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i9t/src/component/botao_grande.component.dart';
@@ -78,7 +79,7 @@ class FctAberturaPage extends StatelessWidget {
                         left: 20, right: 20, top: 10, bottom: 10),
                     child: Center(
                       child: CustomInputField(
-                        controller: controller.odometroInicial,
+                        controller: controller.odometroInicialEditingController,
                         hasIcon: true,
                         isPassword: false,
                         validator: controller.validaCampoOdometroInicial,
@@ -195,7 +196,9 @@ class FctAberturaPage extends StatelessWidget {
     }
 
     if (state is FctAberturaSuccessState) {
-      Modular.to.navigate("./home");
+      SchedulerBinding.instance?.addPostFrameCallback((_) {
+        Modular.to.navigate("/home");
+      });
     }
 
     if (state is FctAberturaLoadingState) {

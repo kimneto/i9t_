@@ -1,5 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:i9t/src/features/fct/fct_abertura/fct_abertura.page.dart';
+import 'package:i9t/src/features/home/home.page.dart';
 import 'package:i9t/src/shared/guarda_rota.dart';
 import 'fct_abertura/fct_abertura.controller.dart';
 import 'fct_abertura/fct_abertura.state.dart';
@@ -28,6 +29,11 @@ class FctModule extends Module {
         ChildRoute(
           '/abertura',
           child: (context, args) => FctAberturaPage(),
+          guards: [AuthGuard()],
+        ),
+        ChildRoute(
+          '/home',
+          child: (context, args) => Home(),
           guards: [AuthGuard()],
         ),
       ];

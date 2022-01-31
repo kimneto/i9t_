@@ -4,18 +4,18 @@ abstract class FctSelecionaVeiculoState {
   List<VeiculoModel>? veiculos;
 }
 
-class FctSelecionaVeiculInitial extends FctSelecionaVeiculoState {}
+class FctSelecionaVeiculoInitial extends FctSelecionaVeiculoState {}
 
-class FctSelecionaVeiculLoading extends FctSelecionaVeiculoState {}
+class FctSelecionaVeiculoLoading extends FctSelecionaVeiculoState {}
 
-class FctSelecionaVeiculFailure extends FctSelecionaVeiculoState {
+class FctSelecionaVeiculoFailure extends FctSelecionaVeiculoState {
   final String error;
 
-  FctSelecionaVeiculFailure({required this.error});
+  FctSelecionaVeiculoFailure({required this.error});
 }
 
-class FctSelecionaVeiculSuccess extends FctSelecionaVeiculoState {
+class FctSelecionaVeiculoSuccess extends FctSelecionaVeiculoState {
   final List<VeiculoModel> veiculos;
 
-  FctSelecionaVeiculSuccess({required this.veiculos});
+  FctSelecionaVeiculoSuccess({required this.veiculos});
 }

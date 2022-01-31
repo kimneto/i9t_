@@ -1,11 +1,21 @@
 import 'package:flutter/cupertino.dart';
-import 'package:i9t/src/data/pointer.model.dart';
 import 'package:i9t/src/features/trafego/trafego.model.dart';
+
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 
 class TrafegoService extends ChangeNotifier {
-  criaNovoTrafegoVazio(TrafegoModel trafego) async {
+  Future<TrafegoModel> criaNovoTrafegoVazio() async {
     final trafegoParse = ParseObject('Trafego');
-    await trafegoParse.save().then((value) => return value);
+    final response = await trafegoParse.save();
+    return await TrafegoModel.fromJson(await response.results!.last.toJson());
+  }
+
+  Future<TrafegoModel> deletaTrafego(TrafegoModel trafegoModel) async {
+    final trafegoParse = ParseObject('Trafego')
+      ..objectId = trafegoModel.objectId;
+    await trafegoParse.delete().then((value) {
+      trafegoModel = TrafegoModel.fromJson(value.result.toJson());
+    });
+    return trafegoModel;
   }
 }
