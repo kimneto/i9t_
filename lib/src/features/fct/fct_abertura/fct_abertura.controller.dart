@@ -3,7 +3,7 @@ import 'package:i9t/src/features/condutor/condutor.controller.dart';
 import 'package:i9t/src/features/fct/fct_components/fct_aberta/fct_aberta.service.dart';
 import 'package:i9t/src/features/fct/fct_components/fct_aberta/fct_aberta.states.dart';
 import 'package:i9t/src/features/fct/models/fct.model.dart';
-import 'package:i9t/src/features/fct/models/veiculo.model.dart';
+import 'package:i9t/src/features/fct/veiculo/veiculo.model.dart';
 import 'package:i9t/src/features/fct/fct_abertura/fct_abertura.state.dart';
 import 'package:i9t/src/features/trafego/trafego.model.dart';
 import 'package:i9t/src/features/trafego/trafego.service.dart';

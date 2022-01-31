@@ -79,6 +79,8 @@ flutter:
     - assets/icon/icon.png
     - assets/icon/car_checked.png
     - assets/image/brasao.png
+    - assets/image/404.png
+
    # - assets/nivel/1.png
    # - assets/nivel/2.png
    # - assets/nivel/3.png

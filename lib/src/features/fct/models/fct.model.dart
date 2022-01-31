@@ -1,6 +1,6 @@
 import 'package:i9t/src/data/data.model.dart';
 import 'package:i9t/src/features/condutor/condutor.model.dart';
-import 'package:i9t/src/features/fct/models/veiculo.model.dart';
+import 'package:i9t/src/features/fct/veiculo/veiculo.model.dart';
 import 'package:i9t/src/features/trafego/trafego.model.dart';
 import 'package:i9t/src/shared/settings.dart';
 

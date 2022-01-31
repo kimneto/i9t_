@@ -6,7 +6,7 @@ import 'package:i9t/src/component/card_veiculo_selecionado.component.dart';
 import 'package:i9t/src/component/custom_input_field.dart';
 import 'package:i9t/src/features/condutor/condutor.controller.dart';
 import 'package:i9t/src/features/fct/fct_abertura/fct_abertura.controller.dart';
-import 'package:i9t/src/features/fct/models/veiculo.model.dart';
+import 'package:i9t/src/features/fct/veiculo/veiculo.model.dart';
 import 'package:i9t/src/features/fct/fct_abertura/fct_abertura.state.dart';
 import 'package:i9t/src/shared/tema.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';

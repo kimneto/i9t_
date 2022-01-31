@@ -1,5 +1,5 @@
 import 'package:parse_server_sdk/parse_server_sdk.dart';
-import '../models/veiculo.model.dart';
+import '../veiculo/veiculo.model.dart';
 
 class VeiculoService {
   final queryVeiculoService = QueryBuilder(ParseObject('Veiculo'));

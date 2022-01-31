@@ -78,4 +78,19 @@ class FctAbertaService extends ChangeNotifier {
     });
     return listaVeiculos;
   }
+
+  pegaFctComTrafegoComVeiculo() async {
+    QueryBuilder<ParseObject> queryFct =
+        QueryBuilder<ParseObject>(ParseObject('Fct'))
+          ..whereEqualTo('veiculo',
+              (ParseObject('Veiculo')..objectId = 'veiculo').toPointer());
+
+    final ParseResponse apiResponse = await queryFct.query();
+
+    if (apiResponse.success && apiResponse.results != null) {
+      return apiResponse.results;
+    } else {
+      return [];
+    }
+  }
 }

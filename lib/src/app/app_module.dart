@@ -21,6 +21,7 @@ import 'package:i9t/src/features/home/home.page.dart';
 import 'package:i9t/src/features/login/login.controller.dart';
 import 'package:i9t/src/features/login/login.page.dart';
 import 'package:i9t/src/features/login/login.state.dart';
+import 'package:i9t/src/shared/404.dart';
 import 'package:i9t/src/shared/guarda_rota.dart';
 
 class AppModule extends Module {
@@ -85,5 +86,8 @@ class AppModule extends Module {
           child: (context, args) => FctFechamentoPage(),
           guards: [AuthGuard()],
         ),
+        WildcardRoute(
+            child: (context, args) => Page404(),
+            transition: TransitionType.scale),
       ];
 }

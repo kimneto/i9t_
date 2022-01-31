@@ -18,32 +18,30 @@ class FctAbertaComponents extends StatelessWidget {
 
     fctAbertaController.condutorController.condutor =
         condutorController.condutor;
-
-    if (fctAbertaController.value is FctAbertaSuccessState) {
-      Future.delayed(Duration.zero, () async {
-        homeController.value = false;
-        return CardCustomFctAberto(
-          aoApertar: () {
-            Modular.to.navigate("/chegada");
-          },
-          entradaSaida: 1,
-        );
-      });
+    var state = fctAbertaController.value;
+    if (state is FctAbertaSuccessState) {
+      homeController.value = false;
+      return CardCustomFctAberto(
+        aoApertar: () {
+          Modular.to.navigate("/chegada");
+        },
+        entradaSaida: 1,
+      );
     }
 
-    if (fctAbertaController.value is FctAbertaInitialState) {
+    if (state is FctAbertaInitialState) {
       Future.delayed(Duration.zero, () async {
         fctAbertaController.carregaFctAberta();
       });
     }
 
-    if (fctAbertaController.value is FctAbertaFailureState) {
+    if (state is FctAbertaFailureState) {
       Future.delayed(Duration.zero, () async {
         return Container();
       });
     }
 
-    if (fctAbertaController.value is FctAbertaLoadingState) {
+    if (state is FctAbertaLoadingState) {
       Future.delayed(Duration.zero, () async {
         LoadingCardCustomFtcAberta();
       });

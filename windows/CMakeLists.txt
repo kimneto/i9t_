@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
-project(i9trafego LANGUAGES CXX)
+project(i9t LANGUAGES CXX)
 
-set(BINARY_NAME "i9trafego")
+set(BINARY_NAME "i9t")
 
 cmake_policy(SET CMP0063 NEW)
 

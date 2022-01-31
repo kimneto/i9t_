@@ -1,4 +1,4 @@
-import 'package:i9t/src/features/fct/models/veiculo.model.dart';
+import 'package:i9t/src/features/fct/veiculo/veiculo.model.dart';
 
 abstract class FctSelecionaVeiculoState {
   List<VeiculoModel>? veiculos;

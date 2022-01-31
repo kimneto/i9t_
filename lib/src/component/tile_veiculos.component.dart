@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:i9t/src/features/fct/models/veiculo.model.dart';
+import 'package:i9t/src/features/fct/veiculo/veiculo.model.dart';
 import 'package:i9t/src/shared/tema.dart';
 
 class TileVeiculos extends StatelessWidget {
