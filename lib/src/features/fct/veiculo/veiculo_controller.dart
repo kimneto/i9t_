@@ -11,7 +11,7 @@ class VeiculoController extends ValueNotifier<VeiculoState> {
   pegaVeiculos() {
     try {
       value = VeiculoLoadingState();
-      veiculoService.pegaVeiculosMenosStatusZero().then((items) {
+      veiculoService.pegaVeiculosPorStatus(statusVeiculo: 0).then((items) {
         if (items.isNotEmpty) {
           value = VeiculoSuccessState(veiculo: VeiculoModel());
         } else {

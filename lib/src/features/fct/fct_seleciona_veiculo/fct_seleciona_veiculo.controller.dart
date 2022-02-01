@@ -11,7 +11,7 @@ class FctSelecionaVeiculoController
   pegaVeiculos() {
     try {
       value = FctSelecionaVeiculoLoading();
-      veiculoService.pegaVeiculosMenosStatusZero().then((items) {
+      veiculoService.pegaVeiculosPorStatus(statusVeiculo: 1).then((items) {
         if (items.isNotEmpty) {
           value = FctSelecionaVeiculoSuccess(veiculos: items);
         } else {

@@ -2,30 +2,23 @@ import 'package:parse_server_sdk/parse_server_sdk.dart';
 import '../veiculo/veiculo.model.dart';
 
 class VeiculoService {
-  final queryVeiculoService = QueryBuilder(ParseObject('Veiculo'));
+  Future<List<VeiculoModel>> pegaVeiculosPorStatus(
+      {required int statusVeiculo}) async {
+    final funcao = ParseCloudFunction('pega-veiculos-por-status');
 
-  Future<List<VeiculoModel>> pegaVeiculosMenosStatusZero() async {
+    final resultado = await funcao
+        .executeObjectFunction(parameters: {'statusVeiculo': '$statusVeiculo'});
+
     List<VeiculoModel> listaVeiculos = [];
-    queryVeiculoService.whereNotEqualTo('statusVtr', '1');
-    final response = await queryVeiculoService.query();
 
-    if (response.success && response.results != null) {
-      for (final object in response.results!) {
-        listaVeiculos.add(VeiculoModel.fromJson(object.toJson()));
-      }
-      return listaVeiculos;
-    } else {
-      return listaVeiculos;
-    }
+    return listaVeiculos;
   }
 
   Future<List<VeiculoModel>> pegaVeiculos() async {
     List<VeiculoModel> listaVeiculos = [];
-    await ParseObject('Veiculo').getAll().then((Veiculos) {
-      if (Veiculos.success) {
-        Veiculos.results!.map((e) {
-          listaVeiculos.add(VeiculoModel.fromJson(e.toJson()));
-        });
+    await ParseCloudFunction('pega-veiculos').getAll().then((veiculos) {
+      if (veiculos.success) {
+        listaVeiculos.add(VeiculoModel.fromJson(veiculos.result));
       }
     });
     return listaVeiculos;
