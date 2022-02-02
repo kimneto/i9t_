@@ -14,7 +14,7 @@ class CadastroCondutorController extends ValueNotifier<CadastroCondutorState> {
   TextEditingController emailEditingController =
       TextEditingController(text: 'jj@jj.com');
   TextEditingController cpfEditingController =
-      TextEditingController(text: '12345678901');
+      TextEditingController(text: '36433371833');
   TextEditingController codUnidadeEditingController =
       TextEditingController(text: '609000000');
 
@@ -97,19 +97,29 @@ class CadastroCondutorController extends ValueNotifier<CadastroCondutorState> {
         value = CadastroCondutorLoading();
         await condutorService
             .pegaCondutorPorCpf(condutorModel.cpf.toString())
-            .then((item) {
-          if (item.length == []) {
+            .then((resposta) {
+          if (resposta.sucesso == false) {
             value =
                 CadastroCondutorFailure(error: 'Esse CPF já está cadastrado');
           } else {
-            condutorService.cadastraCondutor(condutorModel).then((item) =>
-                value = CadastroCondutorSuccess(condutor: condutorModel));
+            condutorService.cadastraCondutor(condutorModel).then((item) {
+              if (item.sucesso == true) {
+                value = CadastroCondutorSuccess(
+                  condutor: CondutorModel.fromJson(
+                    item.data,
+                  ),
+                );
+              } else {
+                value = CadastroCondutorFailure(
+                    error: 'Erro ao retornar item\n ${item.erro}');
+              }
+            });
           }
         });
       }
     } catch (e) {
       print(e);
-      value = CadastroCondutorFailure(error: 'Erro ao cadastrar');
+      value = CadastroCondutorFailure(error: 'Erro ao cadastrar\n $e');
     }
   }
 }

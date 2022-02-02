@@ -51,15 +51,14 @@ class LoginController extends ValueNotifier<LoginState> {
           condutorService
               .pegaCondutorPorCpf(CPFValidator.strip(controllerCPF.text))
               .then((c) {
-            if (c is CondutorModel) {
-              value = LoginSuccessState(condutor: c);
+            if (c.sucesso == true) {
+              value = LoginSuccessState(
+                  condutor: CondutorModel.fromJson(c.data![0]));
               estaLogado = true;
             } else {
               value = LoginFailureState(error: 'Condutor não encontrado!');
             }
           });
-        } else {
-          value = LoginFailureState(error: 'Usuário ou senha inválido');
         }
       });
     } catch (e) {
