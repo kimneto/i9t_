@@ -19,11 +19,11 @@ class FctAbertaController extends ValueNotifier<FctAbertaState> {
           .pegaFtcsNaoConcluidasPorCondutor(condutorController.condutor)
           .then(
         (v) {
-          if (v.objectId != null) {
-            fctAberta = v;
-            value = FctAbertaSuccessState(fctAberta: v);
+          if (v != null) {
+            //fctAberta = v;
+            value = FctAbertaSuccessState(fctAberta: fctAberta);
           } else {
-            value = FctAbertaFailureState(error: '${v.condutorModel}');
+            value = FctAbertaFailureState(error: '');
           }
         },
       );

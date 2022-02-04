@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:i9t/src/component/card_custom_ftc_aberto.dart';
 import 'package:i9t/src/component/loading_card_custom_ftc_aberto.dart';
 import 'package:i9t/src/features/condutor/condutor.controller.dart';
 import 'package:i9t/src/features/home/home.controller.dart';
-
 import 'fct_aberta.controller.dart';
 import 'fct_aberta.states.dart';
 

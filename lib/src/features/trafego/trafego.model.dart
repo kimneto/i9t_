@@ -1,8 +1,12 @@
 import 'package:i9t/src/data/data.model.dart';
 
+import '../fct/models/fct.model.dart';
+
 class TrafegoModel {
   String? objectId;
   String? pontoDestino;
+  FctModel? fct;
+
   int? hodometro;
   DataModel? horaChegada;
   DataModel? horaPartida;
@@ -12,13 +16,14 @@ class TrafegoModel {
       this.pontoDestino,
       this.horaChegada,
       this.horaPartida,
-      this.hodometro});
+      this.hodometro,
+      this.fct});
 
   TrafegoModel.fromJson(Map<String, dynamic> json) {
     objectId = json['objectId'];
     pontoDestino = json['pontoDestino'];
     hodometro = json['hodometro'];
-
+    fct = json['fct'] != null ? FctModel.fromJson(json['fct']) : null;
     horaChegada = json['horaChegada'] != null
         ? new DataModel.fromJson(json['horaChegada'])
         : null;

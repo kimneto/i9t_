@@ -46,9 +46,12 @@ class FctModel {
     veiculoModel = json['VeiculoModel'] != null
         ? new VeiculoModel.fromJson(json['VeiculoModel'])
         : null;
-    trafegoModel = json['TrafegoModel'] != null
-        ? new TrafegoModel.fromJson(json['TrafegoModel'])
-        : null;
+    if (json['trafego'] != null) {
+      trafegoModel = new TrafegoModel.fromJson(json['TrafegoModel'])
+          as List<TrafegoModel>?;
+    } else {
+      trafegoModel = null;
+    }
     documento = json['documento'];
     pontoInicial = json['pontoInicial'];
     concluido = json['concluido'];
@@ -76,7 +79,7 @@ class FctModel {
       data['VeiculoModel'] = this.veiculoModel!.toJson();
     }
     if (this.trafegoModel != null) {
-      data['TrafegoModel'] = this.trafegoModel!.toJson();
+      data['TrafegoModel'] = this.trafegoModel!.map((v) => v.toJson()).toList();
     }
     data['documento'] = this.documento;
     data['pontoInicial'] = this.pontoInicial;
@@ -96,12 +99,12 @@ class FctModel {
     return data;
   }
 
-  String geradorNumeroDocumentoFct(int numero) {
-    String ano = DateTime.now().year.toString();
+  geradorNumeroDocumentoFct(String numero) {
+    /*
     ano = ano.substring(2, 4);
     String codDocumento = numero.toString().padLeft(3, '0');
     String numeroDocumento =
         '$PREFIXO_UNIDADE-$codDocumento/$COD_CURTO_UNIDADE/$ano';
-    return numeroDocumento;
+    return numeroDocumento;*/
   }
 }

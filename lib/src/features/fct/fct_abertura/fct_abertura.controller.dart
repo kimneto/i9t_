@@ -23,6 +23,7 @@ class FctAberturaController extends ValueNotifier<FctAberturaState> {
   VeiculoModel veiculoModel = VeiculoModel();
   FctAbertaService fctAbertaService = FctAbertaService();
   TrafegoService trafegoService = TrafegoService();
+  TrafegoModel trafegoModel = TrafegoModel();
 
   CondutorController? condutorController;
 
@@ -55,38 +56,32 @@ class FctAberturaController extends ValueNotifier<FctAberturaState> {
   void criaNovoFctbertaComTrafego() async {
     value = FctAberturaLoadingState();
     // 1 - PEGA O ULTIMO FCT POR DATA ANO CORRENTE
-    int numeroDoc = 0;
-    TrafegoModel trafegoModel = TrafegoModel();
+    String? documento;
+
     final fct = FctModel();
     try {
       if (validaFormFct()) {
         //1- PEGA O ULTIMO FCT POR DATA ANO CORRENTE E GERA NUMERO DE DOCUMENTO
-        await fctAbertaService.pegaFctsPorAno(DateTime.now().year).then((fcts) {
-          if (fcts.length > 0) {
-            numeroDoc = fcts.length + 1;
-          } else {
-            numeroDoc = 1;
-          }
+        await fctAbertaService
+            .pegaNumeroDocumentoFct(DateTime.now().year.toString())
+            .then((value) {
+          documento = value.data;
         });
-        //2- CRIA TRAFEGO VAZIO
-        await trafegoService
-            .criaNovoTrafegoVazio()
-            .then((trafego) => trafegoModel = trafego);
 
-        //3- PREENCHE DADOS DO FCT INCIAL
+        //2 - PREENCHE DADOS DO FCT INCIAL
 
         fct.veiculoModel = veiculoModel;
         fct.condutorModel = condutorController!.condutor;
         fct.concluido = false;
-        fct.trafegoModel = trafegoModel;
         fct.pontoInicial = localizacaoEditingController.text;
         fct.hodometroInicial = int.parse(odometroInicialEditingController.text);
-        fct.documento = await fct.geradorNumeroDocumentoFct(numeroDoc);
+        fct.documento = await fct.geradorNumeroDocumentoFct(documento!);
 
         //4- CRIA FCT
-        fctAbertaService.criaNovoFctAberto(fct, numeroDoc).then(
+        fctAbertaService.criaNovoFctAberto(fct).then(
           (v) async {
-            if (v.objectId == null) {
+            //       trafegoModel.fctModel = fct;
+            if (v.erro != null) {
               value = FctAberturaSuccessState();
             } else {
               await trafegoService.deletaTrafego(trafegoModel);
@@ -94,6 +89,11 @@ class FctAberturaController extends ValueNotifier<FctAberturaState> {
             }
           },
         );
+
+        //2- CRIA TRAFEGO VAZIO
+        await trafegoService.criaNovoTrafegoVazio().then(
+              (trafego) => trafegoModel = trafego,
+            );
       } else {
         await trafegoService.deletaTrafego(trafegoModel);
         value = FctAberturaFailureState(error: 'Algo deu errado!');

@@ -3,7 +3,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:i9t/src/features/condutor/condutor.model.dart';
 import 'package:i9t/src/features/fct/fct_components/fcts_fechadas/fcts_fechada.service.dart';
 import 'package:i9t/src/features/fct/fct_components/fcts_fechadas/fcts_fechadas.states.dart';
-
 import '../../models/fct.model.dart';
 
 class FctsFechadasController extends ValueNotifier<FctsFechadasState> {
@@ -21,13 +20,9 @@ class FctsFechadasController extends ValueNotifier<FctsFechadasState> {
       try {
         List<FctModel> fcts = [];
         if (res.sucesso == true) {
-          res.data.forEach(
-            (fct) {
-              fcts.add(
-                FctModel.fromJson(fct),
-              );
-            },
-          );
+          res.data.forEach((fct) {
+            fcts.add(FctModel.fromJson(fct));
+          });
           value = FctsFechadasSuccess(fctsFechadas: fcts);
         } else {
           value = FctsFechadasFailure(error: res.erro.toString());
@@ -39,24 +34,3 @@ class FctsFechadasController extends ValueNotifier<FctsFechadasState> {
     });
   }
 }
-/*
-
-
-     (v) {
-          if (v.length > -1) {
-            value = FctsFechadasSuccess(fctsFechadas: v);
-          }
-
-          if (v.length == 0) {
-            value = FctsFechadasEmpty();
-          }
-        },
-
-
-        catch (e) {
-      value = FctsFechadasFailure(error: e.toString());
-    }
-
-
-
-        */
