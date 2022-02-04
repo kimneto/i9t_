@@ -14,8 +14,10 @@ class CondutorService extends ChangeNotifier {
   }
 
   Future<RespostaApiModel> cadastraCondutor(CondutorModel condutor) async {
+    condutor.nivel = 1;
     final function = ParseCloudFunction('cria-condutor');
     final resposta = await function.execute(parameters: condutor.toJson());
+    print(condutor.toJson());
     return RespostaApiModel.fromJson(resposta.result);
   }
 }

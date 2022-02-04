@@ -19,18 +19,16 @@ class CondutorModel {
     nome = json['nome'];
     cpf = json['cpf'];
     email = json['email'];
-
     codUnidade = json['codUnidade'];
     nivel = json['nivel'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final data = new Map<String, dynamic>();
     data['objectId'] = this.objectId;
     data['nome'] = this.nome;
     data['cpf'] = this.cpf;
     data['email'] = this.email;
-
     data['codUnidade'] = this.codUnidade;
     data['nivel'] = this.nivel;
     return data;

@@ -51,9 +51,11 @@ class LoginController extends ValueNotifier<LoginState> {
           condutorService
               .pegaCondutorPorCpf(CPFValidator.strip(controllerCPF.text))
               .then((c) {
+            print(c.data.first);
             if (c.sucesso == true) {
               value = LoginSuccessState(
-                  condutor: CondutorModel.fromJson(c.data![0]));
+                  condutor: CondutorModel.fromJson(c.data.first));
+
               estaLogado = true;
             } else {
               value = LoginFailureState(error: 'Condutor não encontrado!');

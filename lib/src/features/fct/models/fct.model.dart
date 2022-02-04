@@ -8,7 +8,7 @@ class FctModel {
   String? objectId;
   CondutorModel? condutorModel;
   VeiculoModel? veiculoModel;
-  TrafegoModel? trafegoModel;
+  List<TrafegoModel>? trafegoModel;
   String? documento;
   String? pontoInicial;
   bool? concluido;

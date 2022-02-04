@@ -12,7 +12,8 @@ class RespostaApiModel {
 
   RespostaApiModel.fromJson(Map<String, dynamic> json) {
     menssagem = json['menssagem'];
-    data = json['data'][0];
+    data = json['data'];
+
     sucesso = json['sucesso'];
     erro = json['erro'];
   }

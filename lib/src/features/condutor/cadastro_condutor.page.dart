@@ -38,7 +38,7 @@ class CadastroCondutor extends StatelessWidget {
 
         if (value is CadastroCondutorSuccess) {
           Future.delayed(Duration.zero, () async {
-            Modular.to.pop();
+            Modular.to.navigate("/login");
           });
         }
 

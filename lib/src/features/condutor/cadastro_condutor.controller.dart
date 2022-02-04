@@ -95,25 +95,16 @@ class CadastroCondutorController extends ValueNotifier<CadastroCondutorState> {
     try {
       if (validaFormCondutor()) {
         value = CadastroCondutorLoading();
-        await condutorService
-            .pegaCondutorPorCpf(condutorModel.cpf.toString())
-            .then((resposta) {
-          if (resposta.sucesso == false) {
-            value =
-                CadastroCondutorFailure(error: 'Esse CPF já está cadastrado');
+        await condutorService.cadastraCondutor(condutorModel).then((item) {
+          if (item.sucesso == true || item.erro == null) {
+            value = CadastroCondutorSuccess(
+              condutor: CondutorModel.fromJson(
+                item.data,
+              ),
+            );
           } else {
-            condutorService.cadastraCondutor(condutorModel).then((item) {
-              if (item.sucesso == true) {
-                value = CadastroCondutorSuccess(
-                  condutor: CondutorModel.fromJson(
-                    item.data,
-                  ),
-                );
-              } else {
-                value = CadastroCondutorFailure(
-                    error: 'Erro ao retornar item\n ${item.erro}');
-              }
-            });
+            value = CadastroCondutorFailure(
+                error: 'Erro ao retornar item\n ${item.erro}');
           }
         });
       }

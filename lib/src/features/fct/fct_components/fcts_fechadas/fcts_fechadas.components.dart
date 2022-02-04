@@ -50,7 +50,8 @@ class FctsFechadasComponents extends StatelessWidget {
               itemCount: fctsFechadasController.value.fctsFechadas.length,
               itemBuilder: (ctx, int) {
                 return CardCustom(
-                  primeiraParada: 'São Paulo',
+                  primeiraParada: fctsFechadasController
+                      .value.fctsFechadas[int].pontoInicial,
                   prefixo: 'I10005'.toString(),
                   veiculo: 'Fiat Uno',
                   distanciaDeUso: fctsFechadasController
@@ -59,13 +60,20 @@ class FctsFechadasComponents extends StatelessWidget {
                   tempoDeUso: fctsFechadasController
                       .value.fctsFechadas[int].tempoUtilizacao
                       .toString(),
-                  dataPartida: DateFormat('ddMMMyy hh:mm')
-                      .format(DateTime.parse(fctsFechadasController
-                          .value.fctsFechadas[int].dataInicio!.iso
-                          .toString()))
-                      .toUpperCase(),
-                  numeroDocumento:
-                      fctsFechadasController.value.fctsFechadas[int].documento,
+                  dataPartida: fctsFechadasController
+                              .value.fctsFechadas[int].dataInicio !=
+                          null
+                      ? DateFormat(
+                          'ddMMMyy hh:mm',
+                        )
+                          .format(DateTime.parse(fctsFechadasController
+                              .value.fctsFechadas[int].dataInicio!.iso
+                              .toString()))
+                          .toUpperCase()
+                      : " Nula",
+                  numeroDocumento: fctsFechadasController
+                      .value.fctsFechadas[int].documento
+                      .toString(),
                   aoApertar: () => Modular.to.push(
                     MaterialPageRoute(
                       builder: (context) => CompartilhaPage(),
@@ -105,9 +113,34 @@ class FctsFechadasComponents extends StatelessWidget {
 
     if (fctsFechadasController.value is FctsFechadasFailure) {
       return Container(
-        child: Text(
-          '${fctsFechadasController.value.error}',
-          style: TextStyle(color: amareloi9t),
+        margin: EdgeInsets.fromLTRB(20, 8, 20, 8),
+        height: 100,
+        decoration: BoxDecoration(
+            color: cinzaultralitei9t,
+            border: Border.all(
+              style: BorderStyle.none,
+              width: 1,
+            ),
+            borderRadius: BorderRadius.all(Radius.elliptical(16, 20))),
+        child: Center(
+          child: Column(
+            children: [
+              Icon(
+                MdiIcons.bug,
+                color: amareloi9t,
+                size: 40,
+              ),
+              Text(
+                ' Não conseguimos carregar os seus tráfegos.\nTente novamente mais tarde.',
+                textAlign: TextAlign.center,
+                style: TextStyle(color: amareloi9t, fontSize: 12),
+              ),
+              Text(
+                '${fctsFechadasController.value.error}',
+                style: TextStyle(color: cinzalitei9t, fontSize: 9),
+              ),
+            ],
+          ),
         ),
       );
     }
