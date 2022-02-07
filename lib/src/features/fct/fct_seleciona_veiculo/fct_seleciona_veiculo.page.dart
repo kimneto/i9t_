@@ -34,6 +34,7 @@ class FctSelecionaVeiculoPage extends StatelessWidget {
         toolbarHeight: 80,
         elevation: 0,
         backgroundColor: brancoi9t,
+        foregroundColor: pretoi9t,
         centerTitle: false,
       ),
       body: ValueListenableBuilder(
@@ -81,10 +82,10 @@ class FctSelecionaVeiculoPage extends StatelessWidget {
               ),
             );
           }
-
+//1 SE REFERE AO STATUS DO VEICULO
           if (value is FctSelecionaVeiculoInitial) {
             Future.delayed(Duration.zero, () async {
-              controller.pegaVeiculos();
+              controller.pegaVeiculos(1);
             });
           }
 

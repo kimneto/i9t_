@@ -35,7 +35,7 @@ class LoginController extends ValueNotifier<LoginState> {
       // 1 - Coloca a Pagina no modo Status
       value = LoginLoadingState();
       // 2 - Verifica se o CPF e a Senha estão preenchidos
-      if (CPFValidator.strip(controllerCPF.text).isEmpty ||
+      if (CPFValidator.strip(controllerCPF.text).isEmpty &&
           controllerSenha.text.isEmpty) {
         value = LoginFailureState(
             error: 'Preencha o CPF e a Senha para continuar!');
@@ -51,7 +51,7 @@ class LoginController extends ValueNotifier<LoginState> {
           condutorService
               .pegaCondutorPorCpf(CPFValidator.strip(controllerCPF.text))
               .then((c) {
-            print(c.data.first);
+            print("==>${c.data.first}");
             if (c.sucesso == true) {
               value = LoginSuccessState(
                   condutor: CondutorModel.fromJson(c.data.first));

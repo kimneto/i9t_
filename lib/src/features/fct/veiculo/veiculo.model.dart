@@ -1,39 +1,39 @@
 class VeiculoModel {
-  String? objectId;
+  String? id;
   String? patrimonio;
   String? placa;
   String? tipo;
   String? grupo;
-  int? statusVtr;
+  int? statusVeiculo;
   int? ultimoOdometro;
 
   VeiculoModel(
-      {this.objectId,
+      {this.id,
       this.patrimonio,
       this.placa,
       this.tipo,
       this.grupo,
-      this.statusVtr,
+      this.statusVeiculo,
       this.ultimoOdometro});
 
   VeiculoModel.fromJson(Map<String, dynamic> json) {
-    objectId = json['objectId'];
+    id = json['id'];
     patrimonio = json['patrimonio'];
     placa = json['placa'];
     tipo = json['tipo'];
     grupo = json['grupo'];
-    statusVtr = json['statusVtr'];
+    statusVeiculo = json['statusVeiculo'];
     ultimoOdometro = json['ultimoOdometro'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['objectId'] = this.objectId;
+    data['id'] = this.id;
     data['patrimonio'] = this.patrimonio;
     data['placa'] = this.placa;
     data['tipo'] = this.tipo;
     data['grupo'] = this.grupo;
-    data['statusVtr'] = this.statusVtr;
+    data['statusVeiculo'] = this.statusVeiculo;
     data['ultimoOdometro'] = this.ultimoOdometro;
     return data;
   }

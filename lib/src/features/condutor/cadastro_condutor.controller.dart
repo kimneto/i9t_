@@ -96,12 +96,16 @@ class CadastroCondutorController extends ValueNotifier<CadastroCondutorState> {
       if (validaFormCondutor()) {
         value = CadastroCondutorLoading();
         await condutorService.cadastraCondutor(condutorModel).then((item) {
-          if (item.sucesso == true || item.erro == null) {
+          if (item.sucesso == true && item.erro == null) {
             value = CadastroCondutorSuccess(
               condutor: CondutorModel.fromJson(
                 item.data,
               ),
             );
+          }
+
+          if (item.sucesso == false && item.erro == null) {
+            value = CadastroCondutorFailure(error: '${item.menssagem} ');
           } else {
             value = CadastroCondutorFailure(
                 error: 'Erro ao retornar item\n ${item.erro}');

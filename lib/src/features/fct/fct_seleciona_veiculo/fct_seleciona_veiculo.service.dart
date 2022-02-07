@@ -1,26 +1,18 @@
+import 'package:i9t/src/data/resposta_api.model.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
-import '../veiculo/veiculo.model.dart';
 
 class VeiculoService {
-  Future<List<VeiculoModel>> pegaVeiculosPorStatus(
+  Future<RespostaApiModel> pegaVeiculosPorStatus(
       {required int statusVeiculo}) async {
-    final funcao = ParseCloudFunction('pega-veiculos-por-status');
-
-    final resultado = await funcao
-        .executeObjectFunction(parameters: {'statusVeiculo': '$statusVeiculo'});
-
-    List<VeiculoModel> listaVeiculos = [];
-
-    return listaVeiculos;
+    final function = await ParseCloudFunction('pega-veiculos-por-status');
+    final resposta =
+        await function.execute(parameters: {'statusVeiculo': statusVeiculo});
+    return RespostaApiModel.fromJson(resposta.result);
   }
 
-  Future<List<VeiculoModel>> pegaVeiculos() async {
-    List<VeiculoModel> listaVeiculos = [];
-    await ParseCloudFunction('pega-veiculos').getAll().then((veiculos) {
-      if (veiculos.success) {
-        listaVeiculos.add(VeiculoModel.fromJson(veiculos.result));
-      }
-    });
-    return listaVeiculos;
+  Future<RespostaApiModel> pegaVeiculos() async {
+    final function = await ParseCloudFunction('pega-veiculos');
+    final resposta = await function.execute();
+    return RespostaApiModel.fromJson(resposta.result);
   }
 }

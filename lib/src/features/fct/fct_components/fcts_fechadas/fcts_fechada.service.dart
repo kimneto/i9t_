@@ -9,7 +9,6 @@ class FctsFechadasService extends ChangeNotifier {
     final function = ParseCloudFunction("pega-fcts-concluidas-por-condutor");
     final resposta =
         await function.execute(parameters: {"condutorId": "a0GyF8r4dt"});
-    print(condutor.toJson());
     return RespostaApiModel.fromJson(resposta.result);
   }
 }

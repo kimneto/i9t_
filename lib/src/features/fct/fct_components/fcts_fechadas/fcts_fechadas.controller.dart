@@ -19,9 +19,11 @@ class FctsFechadasController extends ValueNotifier<FctsFechadasState> {
     await service.pegaFtcsConcluidasPorCondutor(condutor).then((res) {
       try {
         List<FctModel> fcts = [];
-        if (res.sucesso == true) {
+        if (res.erro == null && res.sucesso == true) {
           res.data.forEach((fct) {
-            fcts.add(FctModel.fromJson(fct));
+            fcts.add(
+              FctModel.fromJson(fct),
+            );
           });
           value = FctsFechadasSuccess(fctsFechadas: fcts);
         } else {

@@ -73,14 +73,13 @@ class FctAberturaController extends ValueNotifier<FctAberturaState> {
         fct.veiculoModel = veiculoModel;
         fct.condutorModel = condutorController!.condutor;
         fct.concluido = false;
-        fct.pontoInicial = localizacaoEditingController.text;
-        fct.hodometroInicial = int.parse(odometroInicialEditingController.text);
-        fct.documento = await fct.geradorNumeroDocumentoFct(documento!);
+
+        fct.documento = await fct.geradorNumeroDocumentoFct(
+            documento!, DateTime.now().year.toString());
 
         //4- CRIA FCT
         fctAbertaService.criaNovoFctAberto(fct).then(
           (v) async {
-            //       trafegoModel.fctModel = fct;
             if (v.erro != null) {
               value = FctAberturaSuccessState();
             } else {

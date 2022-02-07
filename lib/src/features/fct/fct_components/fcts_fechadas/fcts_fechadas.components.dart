@@ -50,35 +50,30 @@ class FctsFechadasComponents extends StatelessWidget {
               itemCount: fctsFechadasController.value.fctsFechadas.length,
               itemBuilder: (ctx, int) {
                 return CardCustom(
-                  primeiraParada: fctsFechadasController
-                      .value.fctsFechadas[int].pontoInicial,
-                  prefixo: 'I10005'.toString(),
-                  veiculo: 'Fiat Uno',
-                  distanciaDeUso: fctsFechadasController
-                      .value.fctsFechadas[int].kmUtilizacao
+                  primeiraParada:
+                      "1º Parada: ${fctsFechadasController.value.fctsFechadas[int].trafegoModel![1].pontoParada}",
+                  prefixo:
+                      "${fctsFechadasController.value.fctsFechadas[int].veiculoModel?.grupo}",
+                  veiculo:
+                      "Veiculo ${fctsFechadasController.value.fctsFechadas[int].veiculoModel?.tipo}"
+                          .toString(),
+                  distanciaDeUso: fctsFechadasController.value.fctsFechadas[int]
+                      .geraKmUtilizacao()
+                      .then((value) => value)
                       .toString(),
-                  tempoDeUso: fctsFechadasController
-                      .value.fctsFechadas[int].tempoUtilizacao
+                  tempoDeUso: fctsFechadasController.value.fctsFechadas[int]
+                      .geraTempoDeUtilizacao("dataInicial", " dataFinal")
+                      .then((value) => value)
                       .toString(),
                   dataPartida: fctsFechadasController
-                              .value.fctsFechadas[int].dataInicio !=
-                          null
-                      ? DateFormat(
-                          'ddMMMyy hh:mm',
-                        )
-                          .format(DateTime.parse(fctsFechadasController
-                              .value.fctsFechadas[int].dataInicio!.iso
-                              .toString()))
-                          .toUpperCase()
-                      : " Nula",
+                      .value.fctsFechadas[int].trafegoModel![0].horaPartida
+                      .toString(),
                   numeroDocumento: fctsFechadasController
                       .value.fctsFechadas[int].documento
                       .toString(),
-                  aoApertar: () => Modular.to.push(
-                    MaterialPageRoute(
-                      builder: (context) => CompartilhaPage(),
-                    ),
-                  ),
+                  aoApertar: () => Modular.to.pushNamed('/compartilha',
+                      arguments:
+                          fctsFechadasController.value.fctsFechadas[int]),
                   /* level: (fctsFechadasController
                                     .value.fctsFechadas[int].kmUtilizacao !=
                                 null ||

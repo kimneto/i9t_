@@ -15,8 +15,9 @@ class FctAbertaService extends ChangeNotifier {
         ParseCloudFunction("pega-fcts-nao-concluidas-por-condutor");
     final resposta =
         await function.execute(parameters: {"condutorId": "a0GyF8r4dt"});
-
-    return RespostaApiModel.fromJson(resposta.result);
+    if (resposta.results != null) RespostaApiModel.fromJson(resposta.result);
+    return RespostaApiModel(
+        menssagem: "Algo deu errado", sucesso: false, erro: "Dados Nulos");
   }
 
   Future<RespostaApiModel> criaNovoFctAberto(FctModel fct) async {
@@ -24,14 +25,14 @@ class FctAbertaService extends ChangeNotifier {
     final resposta = await function.execute(
       parameters: fct.toJson(),
     );
-    return RespostaApiModel.fromJson(resposta.result);
+    return RespostaApiModel.fromJson(resposta.result ?? null);
   }
 
   Future<RespostaApiModel> pegaNumeroDocumentoFct(String anoVigente) async {
     final function = ParseCloudFunction("pega-numero-documento-por-ano");
     final resposta =
         await function.execute(parameters: {"anoVigente": anoVigente});
-    return RespostaApiModel.fromJson(resposta.result).data;
+    return RespostaApiModel.fromJson(resposta.result ?? null).data;
   }
 
   pegaFctsPorAno(int ano) async {}

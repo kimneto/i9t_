@@ -1,5 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:i9t/src/features/compartilha/controllers/compartilha.controller.dart';
+import 'package:i9t/src/features/compartilha/pages/compartilha.page.dart';
 import 'package:i9t/src/features/condutor/cadastro_condutor.controller.dart';
 import 'package:i9t/src/features/condutor/condutor.controller.dart';
 import 'package:i9t/src/features/condutor/condutor.model.dart';
@@ -84,6 +85,11 @@ class AppModule extends Module {
         ChildRoute(
           '/finalizar',
           child: (context, args) => FctFechamentoPage(),
+          guards: [AuthGuard()],
+        ),
+        ChildRoute(
+          '/compartilha',
+          child: (context, args) => CompartilhaPage(),
           guards: [AuthGuard()],
         ),
         WildcardRoute(

@@ -1,5 +1,5 @@
 class CondutorModel {
-  String? objectId;
+  String? id;
   String? nome;
   String? cpf;
   String? email;
@@ -7,15 +7,10 @@ class CondutorModel {
   int? nivel;
 
   CondutorModel(
-      {this.objectId,
-      this.nome,
-      this.cpf,
-      this.email,
-      this.codUnidade,
-      this.nivel});
+      {this.id, this.nome, this.cpf, this.email, this.codUnidade, this.nivel});
 
   CondutorModel.fromJson(Map<String, dynamic> json) {
-    objectId = json['objectId'];
+    id = json['id'];
     nome = json['nome'];
     cpf = json['cpf'];
     email = json['email'];
@@ -25,7 +20,7 @@ class CondutorModel {
 
   Map<String, dynamic> toJson() {
     final data = new Map<String, dynamic>();
-    data['objectId'] = this.objectId;
+    data['id'] = this.id;
     data['nome'] = this.nome;
     data['cpf'] = this.cpf;
     data['email'] = this.email;

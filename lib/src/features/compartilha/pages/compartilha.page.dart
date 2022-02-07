@@ -1,9 +1,12 @@
 import 'dart:typed_data';
 
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:i9t/src/features/fct/models/fct.model.dart';
+import 'package:i9t/src/shared/functions.dart';
 import 'package:i9t/src/shared/tema.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
@@ -14,6 +17,7 @@ class CompartilhaPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    FctModel fctModel = ModalRoute.of(context)?.settings.arguments as FctModel;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -53,14 +57,16 @@ class CompartilhaPage extends StatelessWidget {
           ),
           initialPageFormat: PdfPageFormat.a4.landscape,
           canChangePageFormat: false,
-          build: (format) => _generatePdf(format.landscape, 'FCT 001'),
+          build: (format) =>
+              _generatePdf(format.landscape, 'FCT 001', fctModel),
         ),
       ),
     );
   }
 
 //
-  Future<Uint8List> _generatePdf(PdfPageFormat format, String title) async {
+  Future<Uint8List> _generatePdf(
+      PdfPageFormat format, String title, FctModel fctModel) async {
     final pdf = pw.Document(
         version: PdfVersion.pdf_1_5,
         compress: true,
@@ -232,27 +238,52 @@ class CompartilhaPage extends StatelessWidget {
                       ),
                     ),
                     pw.Container(
-                        width: 365,
-                        height: 62.26,
-                        decoration: tabela(),
-                        padding: pw.EdgeInsets.only(left: 8, right: 0),
-                        child: pw.Column(
-                            mainAxisAlignment: pw.MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: pw.CrossAxisAlignment.start,
-                            children: [
-                              pw.Text(
-                                  'Condutor: ..........................................................................................................................',
-                                  style: pw.TextStyle(fontSize: 10)),
-                              pw.Text(
-                                  'Apresentar-se em ..............................................às....................horas e................minutos',
-                                  style: pw.TextStyle(fontSize: 10)),
-                              pw.Text(
-                                  'Ao Sr ................................................................................................................................',
-                                  style: pw.TextStyle(fontSize: 10)),
-                              pw.Text(
-                                  'Função ..................................................................Unidade..............................................',
-                                  style: pw.TextStyle(fontSize: 10)),
-                            ])),
+                      width: 365,
+                      height: 62.26,
+                      decoration: tabela(),
+                      padding: pw.EdgeInsets.only(left: 8, right: 0),
+                      child: pw.Column(
+                        mainAxisAlignment: pw.MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: pw.CrossAxisAlignment.start,
+                        children: [
+                          pw.Stack(children: [
+                            pw.Container(
+                                // color: PdfColor.fromHex('#111111'),
+                                padding: pw.EdgeInsets.symmetric(
+                                    vertical: -1.5, horizontal: 0),
+                                margin: pw.EdgeInsets.only(bottom: 1, left: 50),
+                                child: pw.Text(
+                                  '${fctModel.condutorModel!.nome}      CPF: ${formataCpf(fctModel.condutorModel!.cpf ?? 'Erro')}',
+                                  style: pw.TextStyle(fontSize: 9),
+                                )),
+                            pw.Text(
+                                'Condutor: ..........................................................................................................................',
+                                style: pw.TextStyle(fontSize: 10)),
+                          ]),
+                          pw.Text(
+                              'Apresentar-se em ..............................................às....................horas e................minutos',
+                              style: pw.TextStyle(fontSize: 10)),
+                          pw.Text(
+                              'Ao Sr ................................................................................................................................',
+                              style: pw.TextStyle(fontSize: 10)),
+                          pw.Stack(children: [
+                            pw.Container(
+                              // color: PdfColor.fromHex('#111111'),
+                              padding: pw.EdgeInsets.symmetric(
+                                  vertical: -1.5, horizontal: 230),
+                              margin: pw.EdgeInsets.only(bottom: 1, left: 20),
+                              child: pw.Text(
+                                '${fctModel.condutorModel!.codUnidade}',
+                                style: pw.TextStyle(fontSize: 9),
+                              ),
+                            ),
+                            pw.Text(
+                                'Função ..................................................................Unidade..............................................',
+                                style: pw.TextStyle(fontSize: 10))
+                          ]),
+                        ],
+                      ),
+                    ),
                     pw.SizedBox(height: 2.83),
                     pw.Container(
                       child: pw.Row(children: [

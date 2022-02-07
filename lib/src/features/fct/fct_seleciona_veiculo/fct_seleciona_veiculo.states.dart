@@ -1,8 +1,6 @@
 import 'package:i9t/src/features/fct/veiculo/veiculo.model.dart';
 
-abstract class FctSelecionaVeiculoState {
-  List<VeiculoModel>? veiculos;
-}
+abstract class FctSelecionaVeiculoState {}
 
 class FctSelecionaVeiculoInitial extends FctSelecionaVeiculoState {}
 

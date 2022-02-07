@@ -61,12 +61,12 @@ class CardVeiculoSelecioando extends StatelessWidget {
               ),
               Container(
                 child: Text("Último odômetro registrado:",
-                    style: TextStyle(fontSize: 10, color: pretoi9t)),
+                    style: TextStyle(fontSize: 12, color: pretoi9t)),
               ),
               Container(
                 width: double.maxFinite,
                 alignment: Alignment.centerLeft,
-                child: Text("${veiculoModel.ultimoOdometro}",
+                child: Text("${veiculoModel.ultimoOdometro ?? '125000'}",
                     style: TextStyle(
                         fontSize: 16,
                         color: Colors.green,

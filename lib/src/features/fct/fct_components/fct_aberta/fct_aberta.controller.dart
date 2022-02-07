@@ -18,8 +18,8 @@ class FctAbertaController extends ValueNotifier<FctAbertaState> {
       await fctAbertaservice
           .pegaFtcsNaoConcluidasPorCondutor(condutorController.condutor)
           .then(
-        (v) {
-          if (v != null) {
+        (res) {
+          if (res.sucesso != false) {
             //fctAberta = v;
             value = FctAbertaSuccessState(fctAberta: fctAberta);
           } else {
