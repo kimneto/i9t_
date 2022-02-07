@@ -12,6 +12,7 @@ class FctModel {
   bool? concluido;
   String? novidadesVerificadas;
   String? defeitosVerificados;
+  FctModel? fctModel;
 
   FctModel({
     this.id,
@@ -34,11 +35,13 @@ class FctModel {
     veiculoModel = json['veiculo'] != null
         ? new VeiculoModel.fromJson(json['veiculo'])
         : null;
+    fctModel = json['fct'] != null ? new FctModel.fromJson(json['fct']) : null;
+
     novidadesVerificadas = json['novidadesVerificadas'];
     defeitosVerificados = json['defeitosVerificados'];
     if (json['trafegos'] != null) {
-      json['trafegos'].forEach((v) {
-        trafegoModel!.add(TrafegoModel.fromJson(v));
+      json['trafegos'].forEach((res) {
+        trafegoModel!.add(TrafegoModel.fromJson(res));
       });
     }
   }
@@ -53,6 +56,10 @@ class FctModel {
     data['documento'] = this.documento;
     if (this.veiculoModel != null) {
       data['veiculo'] = this.veiculoModel!.toJson();
+    }
+
+    if (this.fctModel != null) {
+      data['fct'] = this.fctModel!.toJson();
     }
     data['novidadesVerificadas'] = this.novidadesVerificadas;
     data['defeitosVerificados'] = this.defeitosVerificados;

@@ -20,6 +20,7 @@ class FctAbertaComponents extends StatelessWidget {
     if (state is FctAbertaSuccessState) {
       homeController.value = false;
       return CardCustomFctAberto(
+        //pontoInicial: fctAbertaController.fctAberta.trafegoModel.pontoParada,
         aoApertar: () {
           Modular.to.navigate("/chegada");
         },

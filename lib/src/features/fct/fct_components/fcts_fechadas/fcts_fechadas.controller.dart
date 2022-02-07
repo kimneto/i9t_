@@ -16,7 +16,7 @@ class FctsFechadasController extends ValueNotifier<FctsFechadasState> {
       value = FctsFechadasLoading();
     });
 
-    await service.pegaFtcsConcluidasPorCondutor(condutor).then((res) {
+    await service.pegaFtcsConcluidasPorCondutor(condutor, true).then((res) {
       try {
         List<FctModel> fcts = [];
         if (res.erro == null && res.sucesso == true) {

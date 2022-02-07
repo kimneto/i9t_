@@ -15,7 +15,7 @@ import 'fcts_fechadas.controller.dart';
 import 'fcts_fechadas.states.dart';
 import 'package:intl/intl.dart';
 
-class FctsFechadasComponents extends StatelessWidget {
+class FctsFechadasComponents extends StatefulWidget {
   FctsFechadasComponents({
     this.dataPartida,
     this.primeiraParada,
@@ -35,11 +35,23 @@ class FctsFechadasComponents extends StatelessWidget {
   String? numeroDocumento;
 
   @override
+  State<FctsFechadasComponents> createState() => _FctsFechadasComponentsState();
+}
+
+class _FctsFechadasComponentsState extends State<FctsFechadasComponents> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    final condutorController = context.read<CondutorController>();
+    final fctsFechadasController = context.read<FctsFechadasController>();
+    fctsFechadasController.condutor = condutorController.condutor;
+  }
+
+  @override
   Widget build(BuildContext context) {
     final condutorController = context.watch<CondutorController>();
     final fctsFechadasController = context.watch<FctsFechadasController>();
-
-    fctsFechadasController.condutor = condutorController.condutor;
 
     if (fctsFechadasController.value is FctsFechadasSuccess) {
       return Column(

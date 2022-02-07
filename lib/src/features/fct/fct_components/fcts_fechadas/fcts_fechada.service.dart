@@ -5,10 +5,12 @@ import '../../../../data/resposta_api.model.dart';
 
 class FctsFechadasService extends ChangeNotifier {
   Future<RespostaApiModel> pegaFtcsConcluidasPorCondutor(
-      CondutorModel condutor) async {
-    final function = ParseCloudFunction("pega-fcts-concluidas-por-condutor");
-    final resposta =
-        await function.execute(parameters: {"condutorId": "a0GyF8r4dt"});
+      CondutorModel condutor, bool estaConcluido) async {
+    final function = ParseCloudFunction("pega-fcts-por-condutor");
+    final resposta = await function.execute(parameters: {
+      "condutorId": condutor.id,
+      "estaConcluido": estaConcluido
+    });
     return RespostaApiModel.fromJson(resposta.result);
   }
 }

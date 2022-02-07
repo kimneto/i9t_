@@ -65,7 +65,7 @@ class FctAberturaController extends ValueNotifier<FctAberturaState> {
         await fctAbertaService
             .pegaNumeroDocumentoFct(DateTime.now().year.toString())
             .then((value) {
-          documento = value.data;
+          documento = value.data.toString();
         });
 
         //2 - PREENCHE DADOS DO FCT INCIAL
@@ -73,29 +73,22 @@ class FctAberturaController extends ValueNotifier<FctAberturaState> {
         fct.veiculoModel = veiculoModel;
         fct.condutorModel = condutorController!.condutor;
         fct.concluido = false;
-
-        fct.documento = await fct.geradorNumeroDocumentoFct(
-            documento!, DateTime.now().year.toString());
+        fct.documento = documento;
 
         //4- CRIA FCT
         fctAbertaService.criaNovoFctAberto(fct).then(
-          (v) async {
-            if (v.erro != null) {
+          (result) async {
+            if (result.erro == null) {
               value = FctAberturaSuccessState();
+              await trafegoService.criaNovoTrafegoVazio().then(
+                    (trafego) => trafegoModel = trafego,
+                  );
             } else {
               await trafegoService.deletaTrafego(trafegoModel);
               value = FctAberturaFailureState(error: 'Algo deu errado!');
             }
           },
         );
-
-        //2- CRIA TRAFEGO VAZIO
-        await trafegoService.criaNovoTrafegoVazio().then(
-              (trafego) => trafegoModel = trafego,
-            );
-      } else {
-        await trafegoService.deletaTrafego(trafegoModel);
-        value = FctAberturaFailureState(error: 'Algo deu errado!');
       }
     } catch (e) {
       await trafegoService.deletaTrafego(trafegoModel);

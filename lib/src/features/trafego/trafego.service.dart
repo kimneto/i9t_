@@ -13,7 +13,7 @@ class TrafegoService extends ChangeNotifier {
   Future<TrafegoModel> deletaTrafego(TrafegoModel trafegoModel) async {
     final trafegoParse = ParseObject('Trafego')..objectId = trafegoModel.id;
     await trafegoParse.delete().then((value) {
-      trafegoModel = TrafegoModel.fromJson(value.result.toJson());
+      trafegoModel = TrafegoModel.fromJson(value.result);
     });
     return trafegoModel;
   }

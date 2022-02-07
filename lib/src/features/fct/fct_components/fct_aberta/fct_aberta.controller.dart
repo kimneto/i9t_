@@ -16,14 +16,14 @@ class FctAbertaController extends ValueNotifier<FctAbertaState> {
     try {
       value = FctAbertaLoadingState();
       await fctAbertaservice
-          .pegaFtcsNaoConcluidasPorCondutor(condutorController.condutor)
+          .pegaFtcsPorCondutor(condutorController.condutor, false)
           .then(
         (res) {
           if (res.sucesso != false) {
-            //fctAberta = v;
+            fctAberta = FctModel.fromJson(res.data);
             value = FctAbertaSuccessState(fctAberta: fctAberta);
           } else {
-            value = FctAbertaFailureState(error: '');
+            value = FctAbertaFailureState(error: "Erro ao carregar FCT");
           }
         },
       );

@@ -9,15 +9,14 @@ import '../../../../data/resposta_api.model.dart';
 class FctAbertaService extends ChangeNotifier {
   final queryFctsService = QueryBuilder(ParseObject('Fct'));
 
-  Future<RespostaApiModel> pegaFtcsNaoConcluidasPorCondutor(
-      CondutorModel condutor) async {
-    final function =
-        ParseCloudFunction("pega-fcts-nao-concluidas-por-condutor");
-    final resposta =
-        await function.execute(parameters: {"condutorId": "a0GyF8r4dt"});
-    if (resposta.results != null) RespostaApiModel.fromJson(resposta.result);
-    return RespostaApiModel(
-        menssagem: "Algo deu errado", sucesso: false, erro: "Dados Nulos");
+  Future<RespostaApiModel> pegaFtcsPorCondutor(
+      CondutorModel condutor, bool fctEstaConcluida) async {
+    final function = ParseCloudFunction("pega-fcts-por-condutor");
+    final resposta = await function.execute(parameters: {
+      "condutorId": condutor.id,
+      "estaConcluido": fctEstaConcluida
+    });
+    return RespostaApiModel.fromJson(resposta.result);
   }
 
   Future<RespostaApiModel> criaNovoFctAberto(FctModel fct) async {
@@ -25,14 +24,14 @@ class FctAbertaService extends ChangeNotifier {
     final resposta = await function.execute(
       parameters: fct.toJson(),
     );
-    return RespostaApiModel.fromJson(resposta.result ?? null);
+    return RespostaApiModel.fromJson(resposta.result);
   }
 
   Future<RespostaApiModel> pegaNumeroDocumentoFct(String anoVigente) async {
     final function = ParseCloudFunction("pega-numero-documento-por-ano");
     final resposta =
         await function.execute(parameters: {"anoVigente": anoVigente});
-    return RespostaApiModel.fromJson(resposta.result ?? null).data;
+    return RespostaApiModel.fromJson(resposta.result);
   }
 
   pegaFctsPorAno(int ano) async {}
