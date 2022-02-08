@@ -10,7 +10,7 @@ class CondutorService extends ChangeNotifier {
   Future<RespostaApiModel> pegaCondutorPorCpf(String cpf) async {
     final function = ParseCloudFunction('pega-condutor-por-cpf');
     final resposta = await function.execute(parameters: {'cpf': cpf});
-    return RespostaApiModel.fromJson(resposta.result ?? null);
+    return RespostaApiModel.fromJson(resposta.result);
   }
 
   Future<RespostaApiModel> cadastraCondutor(CondutorModel condutor) async {

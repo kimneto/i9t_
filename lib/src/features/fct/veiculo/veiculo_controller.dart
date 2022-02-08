@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:i9t/src/features/fct/fct_seleciona_veiculo/fct_seleciona_veiculo.service.dart';
+import 'package:i9t/src/services/veiculo.service.dart';
 import 'package:i9t/src/features/fct/veiculo/veiculo.model.dart';
 import 'package:i9t/src/features/fct/veiculo/veiculo.state.dart';
 

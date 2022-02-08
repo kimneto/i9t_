@@ -7,8 +7,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i9t/src/component/botao_grande.component.dart';
 import 'package:i9t/src/component/custom_input_field.dart';
 import 'package:i9t/src/shared/tema.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:timelines/timelines.dart';
+
+import '../fct_components/fct_aberta/fct_aberta.controller.dart';
+import 'fct_cadastro_chegada.controller.dart';
 
 class CadastroChegada extends StatefulWidget {
   const CadastroChegada({Key? key}) : super(key: key);
@@ -20,6 +22,10 @@ class CadastroChegada extends StatefulWidget {
 class _CadastroChegadaState extends State<CadastroChegada> {
   @override
   Widget build(BuildContext context) {
+    final fctCadastroChegadaController =
+        context.watch<FctCadastroChegadaController>();
+    final fctAbertaController = context.watch<FctAbertaController>();
+    fctCadastroChegadaController.fctAbertaController = fctAbertaController;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -53,105 +59,110 @@ class _CadastroChegadaState extends State<CadastroChegada> {
           Container(
             width: 300,
             padding: EdgeInsets.all(30),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Form(
-                  child: Column(
+            child: Form(
+              key: fctCadastroChegadaController.formChegadaKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Veículo: Renault Duster - Prefixo 15113',
+                        'Cadastre sua chegada ao PDI "Ponto de Interesse"',
                         style: TextStyle(
                             color: pretoi9t,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        'Odômetro Anterior: 120000 Km',
-                        style: TextStyle(
-                            color: cinzai9t,
-                            fontSize: 12,
+                            fontSize: 13,
                             fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                CustomInputField(
-                  controller: TextEditingController(),
-                  maxLength: 30,
-                  keyboardType: TextInputType.text,
-                  isPassword: false,
-                  label: '* Localização',
-                  hasIcon: true,
-                  hint: 'Digite o local da parada',
-                  inputFormatters: [],
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  children: [
-                    Flexible(
-                      child: CustomInputField(
-                        onTap: () {},
-                        controller: TextEditingController(),
-                        maxLength: 11,
-                        keyboardType: TextInputType.number,
-                        isPassword: false,
-                        label: '* Odômetro',
-                        hasIcon: true,
-                        inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly,
-                          LengthLimitingTextInputFormatter(11),
-                        ],
+                  SizedBox(
+                    height: 20,
+                  ),
+                  CustomInputField(
+                    controller: fctCadastroChegadaController
+                        .localizacaoEditingController,
+                    maxLength: 30,
+                    validator:
+                        fctCadastroChegadaController.validaCampoLocalizacao,
+                    keyboardType: TextInputType.text,
+                    isPassword: false,
+                    label: '* Localização',
+                    hasIcon: true,
+                    hint: 'Digite o local da parada',
+                    inputFormatters: [
+                      LengthLimitingTextInputFormatter(30),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
+                      Flexible(
+                        child: CustomInputField(
+                          validator:
+                              fctCadastroChegadaController.validaCampoHodometro,
+                          onTap: () {},
+                          controller: fctCadastroChegadaController
+                              .hodometroEditingController,
+                          maxLength: 11,
+                          keyboardType: TextInputType.number,
+                          isPassword: false,
+                          label: '* Hodômetro',
+                          hasIcon: true,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                            LengthLimitingTextInputFormatter(8),
+                          ],
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Container(
-                      width: 140,
-                      child: CustomInputField(
-                        controller: TextEditingController(),
-                        maxLength: 11,
-                        keyboardType: TextInputType.datetime,
-                        isPassword: false,
-                        label: 'Hora',
-                        hasIcon: true,
-                        hint: 'Hora da parada',
-                        onTap: () {},
-                        inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly,
-                          HoraInputFormatter(),
-                        ],
+                      SizedBox(
+                        width: 10,
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Flexible(
-                      flex: 1,
-                      child: BotaoGrandeI9t(
-                          texto: 'Inserir Chegada',
-                          aoApertar: () {
-                            print('CLICOU');
-                          },
-                          estaAtivo: true),
-                    ),
-                  ],
-                ),
-              ],
+                      Container(
+                        width: 165,
+                        child: CustomInputField(
+                          controller: fctCadastroChegadaController
+                              .horaEditingController,
+                          maxLength: 11,
+                          keyboardType: TextInputType.datetime,
+                          isPassword: false,
+                          validator:
+                              fctCadastroChegadaController.validaCampoHora,
+                          label: '* Hora',
+                          hasIcon: true,
+                          hint: 'Hora da chegada',
+                          onTap: () {},
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                            HoraInputFormatter(),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Flexible(
+                        flex: 1,
+                        child: BotaoGrandeI9t(
+                            texto: 'Inserir Chegada',
+                            aoApertar: () {
+                              fctCadastroChegadaController.validaFormFct();
+                            },
+                            estaAtivo: true),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
           Container(

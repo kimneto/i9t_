@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:i9t/src/features/condutor/condutor.model.dart';
-import 'package:i9t/src/features/fct/fct_components/fcts_fechadas/fcts_fechada.service.dart';
+
 import 'package:i9t/src/features/fct/fct_components/fcts_fechadas/fcts_fechadas.states.dart';
+import '../../../../services/fct.service.dart';
 import '../../models/fct.model.dart';
 
 class FctsFechadasController extends ValueNotifier<FctsFechadasState> {
-  FctsFechadasService service = FctsFechadasService();
+  FctService service = FctService();
   late CondutorModel condutor;
 
   FctsFechadasController() : super(FctsFechadasInitial());

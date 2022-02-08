@@ -20,11 +20,27 @@ class FctAbertaComponents extends StatelessWidget {
     if (state is FctAbertaSuccessState) {
       homeController.value = false;
       return CardCustomFctAberto(
-        //pontoInicial: fctAbertaController.fctAberta.trafegoModel.pontoParada,
+        documento: fctAbertaController.fctAberta.documento,
+        pontoInicial:
+            fctAbertaController.fctAberta.trafegoModel![1].pontoParada ??
+                fctAbertaController.fctAberta.trafegoModel![0].pontoParada,
+        veiculoPlaca: fctAbertaController.fctAberta.veiculoModel?.placa,
+        veiculoGrupo: fctAbertaController.fctAberta.veiculoModel?.grupo,
+        veiculoTipo: fctAbertaController.fctAberta.veiculoModel?.tipo,
+        veiculoPatrimonio:
+            fctAbertaController.fctAberta.veiculoModel?.patrimonio,
+        dataInicial: DateTime.parse(fctAbertaController
+                .fctAberta.trafegoModel?[0].horaPartida?.iso
+                .toString() as String)
+            .toLocal()
+            .toString(),
         aoApertar: () {
           Modular.to.navigate("/chegada");
         },
-        entradaSaida: 1,
+        entradaSaida:
+            (fctAbertaController.fctAberta.trafegoModel?.length ?? 0) % 2 == 1
+                ? 1
+                : 0,
       );
     }
 

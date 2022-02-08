@@ -11,12 +11,13 @@ class CardCustomFctAberto extends StatelessWidget {
       {required this.aoApertar,
       required this.entradaSaida,
       this.pontoInicial,
+      this.documento,
       this.veiculoGrupo,
       this.veiculoTipo,
       this.veiculoPatrimonio,
       this.veiculoPlaca,
       this.dataInicial});
-  int entradaSaida = 1;
+  int entradaSaida;
   String? pontoInicial;
   String? veiculoGrupo;
   String? veiculoTipo;
@@ -81,28 +82,62 @@ class CardCustomFctAberto extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
-                                  child: Row(
-                                    children: [
-                                      Icon(
-                                        FontAwesomeIcons.mapMarkerAlt,
-                                        size: 14,
-                                        color: cinzalitei9t,
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(
-                                        '$pontoInicial',
-                                        style: TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold,
-                                            color: cinzalitei9t),
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                    ],
-                                  ),
+                                  child: entradaSaida == 1
+                                      ? Row(
+                                          children: [
+                                            Icon(
+                                              FontAwesomeIcons.mapMarkerAlt,
+                                              size: 14,
+                                              color: cinzalitei9t,
+                                            ),
+                                            SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text(
+                                              'PDI: $pontoInicial',
+                                              style: TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: cinzalitei9t),
+                                            ),
+                                            SizedBox(
+                                              width: 5,
+                                            ),
+                                          ],
+                                        )
+                                      : Row(
+                                          children: [
+                                            Icon(
+                                              MdiIcons.carSports,
+                                              size: 22,
+                                              color: cinzalitei9t,
+                                            ),
+                                            Text(
+                                              ' ...',
+                                              style: TextStyle(
+                                                  fontSize: 15,
+                                                  color: cinzalitei9t),
+                                            ),
+                                            Icon(
+                                              FontAwesomeIcons.mapPin,
+                                              size: 10,
+                                              color: cinzalitei9t,
+                                            ),
+                                            SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text(
+                                              'IN ITINERE',
+                                              style: TextStyle(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: cinzalitei9t),
+                                            ),
+                                            SizedBox(
+                                              width: 5,
+                                            ),
+                                          ],
+                                        ),
                                 ),
                                 SizedBox(
                                   height: 5,
@@ -127,7 +162,7 @@ class CardCustomFctAberto extends StatelessWidget {
                                 ),
                                 Container(
                                   child: Text(
-                                    'Patrimonio: 123456789',
+                                    'Patrimonio: $veiculoPatrimonio',
                                     style: TextStyle(
                                         fontSize: 9, color: cinzalitei9t),
                                   ),
@@ -197,39 +232,46 @@ class CardCustomFctAberto extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(top: 60),
                       child: Text(
-                        'Controle de Tráfego $documento',
-                        style: TextStyle(fontSize: 10, color: amareloi9t),
+                        'CONTROLE DE TRÁFEGO $documento',
+                        style: TextStyle(
+                            fontFamily: "Dosis",
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: amareloi9t),
                       ),
                     )
                   ],
                 ),
               ),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(90)),
-                  color: amareloi9t,
-                ),
-                margin: EdgeInsets.only(left: 290),
-                width: 60,
-                height: 60,
-                child: IconButton(
-                  highlightColor: amareloi9t,
-                  color: amareloi9t,
-                  focusColor: amareloi9t,
-                  splashColor: amareloi9t,
-                  icon: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        MdiIcons.carOff,
-                        color: pretoi9t,
-                        size: 30,
-                      ),
-                    ],
+              Visibility(
+                visible: entradaSaida == 1,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(90)),
+                    color: amareloi9t,
                   ),
-                  onPressed: () {
-                    Modular.to.pushNamed('/finalizar');
-                  },
+                  margin: EdgeInsets.only(left: 290),
+                  width: 60,
+                  height: 60,
+                  child: IconButton(
+                    highlightColor: amareloi9t,
+                    color: amareloi9t,
+                    focusColor: amareloi9t,
+                    splashColor: amareloi9t,
+                    icon: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          MdiIcons.carOff,
+                          color: pretoi9t,
+                          size: 30,
+                        ),
+                      ],
+                    ),
+                    onPressed: () {
+                      Modular.to.pushNamed('/finalizar');
+                    },
+                  ),
                 ),
               ),
             ],
@@ -237,7 +279,8 @@ class CardCustomFctAberto extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          entradaSaida == 1
+          entradaSaida == 0
+              //IMPAR
               ? Container(
                   width: 350,
                   child: BotaoGrandeI9t(
@@ -247,10 +290,11 @@ class CardCustomFctAberto extends StatelessWidget {
                     aoApertar: () => Modular.to.pushNamed('/chegada'),
                   ),
                 )
+              //PAR
               : Container(
                   width: 350,
                   child: BotaoGrandeI9t(
-                    texto: 'Inserir Saída',
+                    texto: 'Partir',
                     estaAtivo: true,
                     aoApertar: () => Modular.to.pushNamed('/saida'),
                   ),

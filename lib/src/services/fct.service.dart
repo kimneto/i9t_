@@ -4,9 +4,9 @@ import 'package:i9t/src/features/fct/models/fct.model.dart';
 import 'package:i9t/src/features/condutor/condutor.model.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 
-import '../../../../data/resposta_api.model.dart';
+import '../data/resposta_api.model.dart';
 
-class FctAbertaService extends ChangeNotifier {
+class FctService extends ChangeNotifier {
   final queryFctsService = QueryBuilder(ParseObject('Fct'));
 
   Future<RespostaApiModel> pegaFtcsPorCondutor(
@@ -31,6 +31,16 @@ class FctAbertaService extends ChangeNotifier {
     final function = ParseCloudFunction("pega-numero-documento-por-ano");
     final resposta =
         await function.execute(parameters: {"anoVigente": anoVigente});
+    return RespostaApiModel.fromJson(resposta.result);
+  }
+
+  Future<RespostaApiModel> pegaFtcsConcluidasPorCondutor(
+      CondutorModel condutor, bool estaConcluido) async {
+    final function = ParseCloudFunction("pega-fcts-por-condutor");
+    final resposta = await function.execute(parameters: {
+      "condutorId": condutor.id,
+      "estaConcluido": estaConcluido
+    });
     return RespostaApiModel.fromJson(resposta.result);
   }
 

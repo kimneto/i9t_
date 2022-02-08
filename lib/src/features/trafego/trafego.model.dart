@@ -16,8 +16,12 @@ class TrafegoModel {
 
   TrafegoModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    horaChegada = DataModel.fromJson(json['horaChegada'] ?? {});
-    horaPartida = DataModel.fromJson(json['horaPartida'] ?? {});
+    horaChegada = json['horaChegada'] != null
+        ? new DataModel.fromJson(json['horaChegada'])
+        : null;
+    horaPartida = json['horaPartida'] != null
+        ? new DataModel.fromJson(json['horaPartida'])
+        : null;
     hodometro = json['hodometro'];
     pontoParada = json['pontoParada'];
   }
@@ -25,8 +29,8 @@ class TrafegoModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['horaChegada'] = this.horaChegada?.toJson();
-    data['horaPartida'] = this.horaPartida?.toJson();
+    data['horaChegada'] = this.horaChegada;
+    data['horaPartida'] = this.horaPartida;
     data['hodometro'] = this.hodometro;
     data['pontoParada'] = this.pontoParada;
     return data;
