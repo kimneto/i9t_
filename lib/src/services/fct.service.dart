@@ -1,12 +1,10 @@
-import 'package:flutter/cupertino.dart';
-import 'package:i9t/src/data/pointer.model.dart';
 import 'package:i9t/src/features/fct/models/fct.model.dart';
 import 'package:i9t/src/features/condutor/condutor.model.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 
 import '../data/resposta_api.model.dart';
 
-class FctService extends ChangeNotifier {
+class FctService {
   final queryFctsService = QueryBuilder(ParseObject('Fct'));
 
   Future<RespostaApiModel> pegaFtcsPorCondutor(

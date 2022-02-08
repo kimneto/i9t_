@@ -1,3 +1,5 @@
+import '../models/fct.model.dart';
+
 abstract class FctCadastroChegadaState {}
 
 class FctCadastroChegadaInitialState extends FctCadastroChegadaState {}
@@ -11,5 +13,6 @@ class FctCadastroChegadaFailureState extends FctCadastroChegadaState {
 }
 
 class FctCadastroChegadaSuccessState extends FctCadastroChegadaState {
-  FctCadastroChegadaSuccessState();
+  final FctModel fctAberta;
+  FctCadastroChegadaSuccessState({required this.fctAberta});
 }

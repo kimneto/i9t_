@@ -7,15 +7,27 @@ import 'package:i9t/src/features/home/home.controller.dart';
 import 'fct_aberta.controller.dart';
 import 'fct_aberta.states.dart';
 
-class FctAbertaComponents extends StatelessWidget {
+class FctAbertaComponents extends StatefulWidget {
+  @override
+  State<FctAbertaComponents> createState() => _FctAbertaComponentsState();
+}
+
+class _FctAbertaComponentsState extends State<FctAbertaComponents> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    final fctAbertaController = context.read<FctAbertaController>();
+    final condutorController = context.read<CondutorController>();
+    fctAbertaController.condutorController.condutor =
+        condutorController.condutor;
+  }
+
   @override
   Widget build(BuildContext context) {
-    final condutorController = context.watch<CondutorController>();
     final fctAbertaController = context.watch<FctAbertaController>();
     final homeController = context.watch<HomeController>();
 
-    fctAbertaController.condutorController.condutor =
-        condutorController.condutor;
     var state = fctAbertaController.value;
     if (state is FctAbertaSuccessState) {
       homeController.value = false;
@@ -30,7 +42,7 @@ class FctAbertaComponents extends StatelessWidget {
         veiculoPatrimonio:
             fctAbertaController.fctAberta.veiculoModel?.patrimonio,
         dataInicial: DateTime.parse(fctAbertaController
-                .fctAberta.trafegoModel?[0].horaPartida?.iso
+                .fctAberta.trafegoModel?[0].horaPartida?.dataTempo
                 .toString() as String)
             .toLocal()
             .toString(),

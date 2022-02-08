@@ -4,7 +4,7 @@ import 'package:i9t/src/data/resposta_api.model.dart';
 import 'package:i9t/src/features/condutor/condutor.model.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 
-class CondutorService extends ChangeNotifier {
+class CondutorService {
   final queryCondutorService = QueryBuilder(ParseObject('Condutor'));
 
   Future<RespostaApiModel> pegaCondutorPorCpf(String cpf) async {

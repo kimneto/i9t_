@@ -3,7 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:i9t/src/features/condutor/cadastro.states.dart';
 import 'package:i9t/src/features/condutor/condutor.model.dart';
-import 'package:i9t/src/services/condutor.service.dart';
+
+import '../../services/condutor.service.dart';
 
 class CadastroCondutorController extends ValueNotifier<CadastroCondutorState> {
   CadastroCondutorController(CadastroCondutorState value)

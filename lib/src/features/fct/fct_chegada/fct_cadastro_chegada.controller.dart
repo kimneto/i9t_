@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:i9t/src/data/data.model.dart';
 import 'package:i9t/src/features/condutor/condutor.controller.dart';
-import 'package:i9t/src/services/fct.service.dart';
 import 'package:i9t/src/features/fct/models/fct.model.dart';
-import 'package:i9t/src/features/fct/veiculo/veiculo.model.dart';
-
 import 'package:i9t/src/features/trafego/trafego.model.dart';
 import 'package:i9t/src/services/trafego.service.dart';
-
 import '../fct_components/fct_aberta/fct_aberta.controller.dart';
 import 'fct_cadastro_chegada.state.dart';
 
@@ -15,8 +12,8 @@ class FctCadastroChegadaController
   FctCadastroChegadaController(FctCadastroChegadaState value)
       : super(FctCadastroChegadaInitialState());
 
-  TextEditingController localizacaoEditingController =
-      TextEditingController(text: 'Marte');
+  TextEditingController pontoParadaEditingController =
+      TextEditingController(text: 'Dtic');
   TextEditingController hodometroEditingController =
       TextEditingController(text: '999999');
   TextEditingController horaEditingController =
@@ -27,9 +24,10 @@ class FctCadastroChegadaController
 
   CondutorController? condutorController;
   FctAbertaController? fctAbertaController;
+  final trafegoService = TrafegoService();
 
   String? validaCampoLocalizacao(String? localizacao) {
-    if (localizacaoEditingController.text.isEmpty) {
+    if (pontoParadaEditingController.text.isEmpty) {
       return 'Localização é um campo obrigatório.';
     }
   }
@@ -58,9 +56,24 @@ class FctCadastroChegadaController
 
   void inseriNovoTrafegoComPdi() async {
     value = FctCadastroChegadaLoadingState();
-    String? documento;
+    try {
+      if (true /*validaFormFct()*/) {
+        // 1 - CRIA UM MODELO PRO NOVO TRAFEGO,
+        TrafegoModel trafegoModel = TrafegoModel();
+        // INSERE DADOS NO NOVO TRAFEGO
+        trafegoModel.hodometro = hodometroEditingController.text;
+        trafegoModel.pontoParada = pontoParadaEditingController.text;
+        DateTime dateTime = DateTime.now();
+        trafegoModel.horaChegada = DataModel(
+            dataTempo: DateTime.parse(horaEditingController.text).toString());
+        trafegoModel.idFct = fctAbertaController?.fctAberta.fctModel!.id;
 
-    final fct = FctModel();
-    if (validaFormFct()) {}
+        trafegoService
+            .criaNovoTrafego(trafegoModel)
+            .then((value) => print(value));
+      }
+    } catch (e) {
+      value = FctCadastroChegadaFailureState(error: e.toString());
+    }
   }
 }

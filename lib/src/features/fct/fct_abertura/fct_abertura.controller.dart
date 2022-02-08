@@ -80,8 +80,8 @@ class FctAberturaController extends ValueNotifier<FctAberturaState> {
           (result) async {
             if (result.erro == null) {
               value = FctAberturaSuccessState();
-              await trafegoService.criaNovoTrafegoVazio().then(
-                    (trafego) => trafegoModel = trafego,
+              await trafegoService.criaNovoTrafego(trafegoModel).then(
+                    (res) => trafegoModel = TrafegoModel.fromJson(res.data),
                   );
             } else {
               await trafegoService.deletaTrafego(trafegoModel);
