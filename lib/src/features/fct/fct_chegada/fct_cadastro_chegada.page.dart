@@ -12,7 +12,8 @@ import 'package:timelines/timelines.dart';
 
 import '../fct_components/fct_aberta/fct_aberta.controller.dart';
 import 'fct_cadastro_chegada.controller.dart';
-import 'fct_cadastro_chegada.state.dart';
+import '../fct_saida/fct_cadastro_saida.state.dart';
+import 'fct_cadastro_saidastate.dart';
 
 class CadastroChegada extends StatefulWidget {
   const CadastroChegada({Key? key}) : super(key: key);
@@ -41,19 +42,16 @@ class _CadastroChegadaState extends State<CadastroChegada> {
 
     Widget? widget;
 
+    if (state is FctCadastroChegadaSuccessState) {
+      Modular.to.navigate("/");
+    }
+
     if (state is FctCadastroChegadaFailureState) {
-      widget = Container(
-        margin: EdgeInsets.fromLTRB(20, 8, 20, 8),
-        height: 100,
-        decoration: BoxDecoration(
-            color: cinzaultralitei9t,
-            border: Border.all(
-              style: BorderStyle.none,
-              width: 1,
-            ),
-            borderRadius: BorderRadius.all(Radius.elliptical(16, 20))),
-        child: Center(
+      widget = Scaffold(
+        body: Center(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
                 MdiIcons.bug,
@@ -61,7 +59,7 @@ class _CadastroChegadaState extends State<CadastroChegada> {
                 size: 40,
               ),
               Text(
-                ' Não conseguimos carregar os seus tráfegos.\nTente novamente mais tarde.',
+                ' Não conseguimos criar um novo tráfego.\nContate o administrador.',
                 textAlign: TextAlign.center,
                 style: TextStyle(color: amareloi9t, fontSize: 12),
               ),
