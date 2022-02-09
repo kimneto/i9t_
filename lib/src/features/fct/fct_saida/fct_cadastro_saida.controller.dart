@@ -5,40 +5,21 @@ import 'package:i9t/src/features/fct/models/fct.model.dart';
 import 'package:i9t/src/features/trafego/trafego.model.dart';
 import 'package:i9t/src/services/trafego.service.dart';
 import '../fct_components/fct_aberta/fct_aberta.controller.dart';
-import '../fct_saida/fct_cadastro_saida.state.dart';
-import 'fct_cadastro_saidastate.dart';
+import 'fct_cadastro_saida.state.dart';
 
-class FctCadastroChegadaController
-    extends ValueNotifier<FctCadastroChegadaState> {
-  FctCadastroChegadaController(FctCadastroChegadaState value)
-      : super(FctCadastroChegadaInitialState());
+class FctCadastroSaidaController extends ValueNotifier<FctCadastroSaidaState> {
+  FctCadastroSaidaController(FctCadastroSaidaState value)
+      : super(FctCadastroSaidaInitialState());
 
-  TextEditingController pontoParadaEditingController =
-      TextEditingController(text: 'Novas');
-  TextEditingController hodometroEditingController =
-      TextEditingController(text: '999999');
   TextEditingController horaEditingController =
       TextEditingController(text: '22:00');
 
-  final GlobalKey<FormState> formChegadaKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formSaidaKey = GlobalKey<FormState>();
   ValueNotifier<bool> checkBox = ValueNotifier(false);
 
   CondutorController? condutorController;
   FctAbertaController? fctAbertaController;
   final trafegoService = TrafegoService();
-
-  String? validaCampoLocalizacao(String? localizacao) {
-    if (pontoParadaEditingController.text.isEmpty) {
-      return 'Localização é um campo obrigatório.';
-    }
-  }
-
-  String? validaCampoHodometro(String? odometro) {
-    if (hodometroEditingController.text.isEmpty) {
-      return "Hodômetro é um campo obrigatório.";
-    }
-    return null;
-  }
 
   String? validaCampoHora(String? odometro) {
     if (horaEditingController.text.isEmpty) {
@@ -48,8 +29,8 @@ class FctCadastroChegadaController
   }
 
   bool validaFormFct() {
-    formChegadaKey.currentState!.validate();
-    if (formChegadaKey.currentState!.validate()) {
+    formSaidaKey.currentState!.validate();
+    if (formSaidaKey.currentState!.validate()) {
       return true;
     } else
       return false;
@@ -58,14 +39,13 @@ class FctCadastroChegadaController
   TimeOfDay now = TimeOfDay.now();
 
   void inseriNovoTrafegoComPdi() async {
-    value = FctCadastroChegadaLoadingState();
+    value = FctCadastroSaidaLoadingState();
     try {
       if (true /*validaFormFct()*/) {
         // 1 - CRIA UM MODELO PRO NOVO TRAFEGO,
         TrafegoModel trafegoModel = TrafegoModel();
         // INSERE DADOS NO NOVO TRAFEGO
-        trafegoModel.hodometro = int.parse(hodometroEditingController.text);
-        trafegoModel.pontoParada = pontoParadaEditingController.text;
+        trafegoModel.horaPartida = horaEditingController.text;
 
 //CALCULA NOVA DATA
         DateTime agora = DateTime.now();
@@ -76,7 +56,7 @@ class FctCadastroChegadaController
         String minuto = horaEditingController.text.substring(3, 5).toString();
         String novaData = "${ano}-${mes}-${dia} ${hora}:${minuto}";
 
-        trafegoModel.horaChegada = novaData.toString();
+        trafegoModel.horaPartida = novaData.toString();
         trafegoModel.fctId = fctAbertaController?.fctAberta.id;
         print(fctAbertaController?.fctAberta.toJson());
 
@@ -84,9 +64,9 @@ class FctCadastroChegadaController
             .criaNovoTrafego(trafegoModel)
             .then((value) => print(value));
       }
-      value = FctCadastroChegadaSuccessState();
+      value = FctCadastroSaidaSuccessState();
     } catch (e) {
-      value = FctCadastroChegadaFailureState(error: e.toString());
+      value = FctCadastroSaidaFailureState(error: e.toString());
     }
   }
 }

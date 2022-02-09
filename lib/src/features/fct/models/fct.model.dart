@@ -12,7 +12,6 @@ class FctModel {
   bool? concluido;
   String? novidadesVerificadas;
   String? defeitosVerificados;
-  FctModel? fctModel;
 
   FctModel({
     this.id,
@@ -35,7 +34,6 @@ class FctModel {
     veiculoModel = json['veiculo'] != null
         ? new VeiculoModel.fromJson(json['veiculo'])
         : null;
-    fctModel = json['fct'] != null ? new FctModel.fromJson(json['fct']) : null;
 
     novidadesVerificadas = json['novidadesVerificadas'];
     defeitosVerificados = json['defeitosVerificados'];
@@ -58,9 +56,6 @@ class FctModel {
       data['veiculo'] = this.veiculoModel!.toJson();
     }
 
-    if (this.fctModel != null) {
-      data['fct'] = this.fctModel!.toJson();
-    }
     data['novidadesVerificadas'] = this.novidadesVerificadas;
     data['defeitosVerificados'] = this.defeitosVerificados;
     if (this.trafegoModel != null) {

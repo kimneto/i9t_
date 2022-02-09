@@ -41,16 +41,13 @@ class _FctAbertaComponentsState extends State<FctAbertaComponents> {
         veiculoTipo: fctAbertaController.fctAberta.veiculoModel?.tipo,
         veiculoPatrimonio:
             fctAbertaController.fctAberta.veiculoModel?.patrimonio,
-        dataInicial: DateTime.parse(fctAbertaController
-                .fctAberta.trafegoModel?[0].horaPartida?.dataTempo
-                .toString() as String)
-            .toLocal()
-            .toString(),
+        dataInicial: fctAbertaController.fctAberta.trafegoModel?[0].horaPartida!
+            .substring(0, 10),
         aoApertar: () {
           Modular.to.navigate("/chegada");
         },
         entradaSaida:
-            (fctAbertaController.fctAberta.trafegoModel?.length ?? 0) % 2 == 1
+            (fctAbertaController.fctAberta.trafegoModel?.length ?? 0) % 2 == 0
                 ? 1
                 : 0,
       );

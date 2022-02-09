@@ -13,6 +13,5 @@ class FctCadastroChegadaFailureState extends FctCadastroChegadaState {
 }
 
 class FctCadastroChegadaSuccessState extends FctCadastroChegadaState {
-  final FctModel fctAberta;
-  FctCadastroChegadaSuccessState({required this.fctAberta});
+  FctCadastroChegadaSuccessState();
 }

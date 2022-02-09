@@ -2,11 +2,11 @@ import 'package:i9t/src/data/data.model.dart';
 
 class TrafegoModel {
   String? id;
-  DataModel? horaChegada;
-  DataModel? horaPartida;
-  String? hodometro;
+  String? horaChegada;
+  String? horaPartida;
+  int? hodometro;
   String? pontoParada;
-  String? idFct;
+  String? fctId;
 
   TrafegoModel(
       {this.id,
@@ -14,19 +14,15 @@ class TrafegoModel {
       this.horaPartida,
       this.hodometro,
       this.pontoParada,
-      this.idFct});
+      this.fctId});
 
   TrafegoModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    horaChegada = json['horaChegada'] != null
-        ? new DataModel.fromJson(json['horaChegada'])
-        : null;
-    horaPartida = json['horaPartida'] != null
-        ? new DataModel.fromJson(json['horaPartida'])
-        : null;
+    horaChegada = json['horaChegada']['iso'];
+    horaPartida = json['horaPartida']['iso'];
     hodometro = json['hodometro'];
     pontoParada = json['pontoParada'];
-    idFct = json['idFct'];
+    fctId = json['fct'];
   }
 
   Map<String, dynamic> toJson() {
@@ -36,7 +32,7 @@ class TrafegoModel {
     data['horaPartida'] = this.horaPartida;
     data['hodometro'] = this.hodometro;
     data['pontoParada'] = this.pontoParada;
-    data['fct'] = this.idFct;
+    data['fctId'] = this.fctId;
 
     return data;
   }

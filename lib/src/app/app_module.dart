@@ -10,7 +10,7 @@ import 'package:i9t/src/features/fct/fct_abertura/fct_abertura.controller.dart';
 import 'package:i9t/src/features/fct/fct_abertura/fct_abertura.page.dart';
 import 'package:i9t/src/features/fct/fct_abertura/fct_abertura.state.dart';
 import 'package:i9t/src/features/fct/fct_chegada/fct_cadastro_chegada.page.dart';
-import 'package:i9t/src/features/fct/fct_chegada/fct_cadastro_chegada.state.dart';
+import 'package:i9t/src/features/fct/fct_saida/fct_cadastro_saida.state.dart';
 import 'package:i9t/src/features/fct/fct_components/fct_aberta/fct_aberta.controller.dart';
 import 'package:i9t/src/features/fct/fct_components/fcts_fechadas/fcts_fechadas.controller.dart';
 import 'package:i9t/src/features/fct/fct_fechamento/fct_fechamento.page.dart';
@@ -27,6 +27,7 @@ import 'package:i9t/src/shared/404.dart';
 import 'package:i9t/src/shared/guarda_rota.dart';
 
 import '../features/fct/fct_chegada/fct_cadastro_chegada.controller.dart';
+import '../features/fct/fct_chegada/fct_cadastro_saidastate.dart';
 
 class AppModule extends Module {
   @override
@@ -58,6 +59,7 @@ class AppModule extends Module {
         ChildRoute(
           '/',
           child: (context, args) => Home(),
+          maintainState: false,
           guards: [AuthGuard()],
         ),
         ChildRoute(

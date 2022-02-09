@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -10,7 +12,12 @@ import 'package:i9t/src/features/login/login.controller.dart';
 import 'package:i9t/src/shared/functions.dart';
 import 'package:i9t/src/shared/tema.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     final loginController = context.read<LoginController>();
