@@ -60,7 +60,7 @@ class FctCadastroPartidaController
         print(fctAbertaController?.fctAberta.toJson());
 
         trafegoService
-            .atualizaTrafego(trafegoModel)
+            .criaNovoTrafego(trafegoModel)
             .then((value) => print(value));
       }
       value = FctCadastroPartidaSuccessState();
