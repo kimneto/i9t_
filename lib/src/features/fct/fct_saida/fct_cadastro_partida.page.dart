@@ -8,16 +8,25 @@ import 'package:i9t/src/component/custom_input_field.dart';
 import 'package:i9t/src/shared/tema.dart';
 import 'package:timelines/timelines.dart';
 
-class CadastroSaida extends StatefulWidget {
-  const CadastroSaida({Key? key}) : super(key: key);
+import 'fct_cadastro_partida.controller.dart';
+
+class CadastroPartida extends StatefulWidget {
+  const CadastroPartida({Key? key}) : super(key: key);
 
   @override
-  _CadastroSaidaState createState() => _CadastroSaidaState();
+  _CadastroPartidaState createState() => _CadastroPartidaState();
 }
 
-class _CadastroSaidaState extends State<CadastroSaida> {
+class _CadastroPartidaState extends State<CadastroPartida> {
   @override
   Widget build(BuildContext context) {
+    final fctCadastroPartidaController =
+        context.watch<FctCadastroPartidaController>();
+
+    var state = fctCadastroPartidaController.value;
+
+    Widget? widget;
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -51,12 +60,13 @@ class _CadastroSaidaState extends State<CadastroSaida> {
           Container(
             width: 300,
             padding: EdgeInsets.all(30),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Form(
-                  child: Column(
+            child: Form(
+              key: fctCadastroPartidaController.formPartidaKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -69,47 +79,47 @@ class _CadastroSaidaState extends State<CadastroSaida> {
                       ),
                     ],
                   ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Center(
-                  child: Container(
-                    width: 320,
-                    child: CustomInputField(
-                      controller: TextEditingController(),
-                      maxLength: 11,
-                      keyboardType: TextInputType.datetime,
-                      isPassword: false,
-                      label: 'Hora',
-                      hasIcon: true,
-                      hint: 'Hora da parada',
-                      onTap: () {},
-                      inputFormatters: [
-                        FilteringTextInputFormatter.digitsOnly,
-                        HoraInputFormatter(),
-                      ],
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Center(
+                    child: Container(
+                      width: 320,
+                      child: CustomInputField(
+                        controller: TextEditingController(),
+                        maxLength: 11,
+                        keyboardType: TextInputType.datetime,
+                        isPassword: false,
+                        label: 'Hora',
+                        hasIcon: true,
+                        hint: 'Hora da parada',
+                        onTap: () {},
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly,
+                          HoraInputFormatter(),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Flexible(
-                      flex: 1,
-                      child: BotaoGrandeI9t(
-                          texto: 'Sair',
-                          aoApertar: () {
-                            print('CLICOU');
-                          },
-                          estaAtivo: true),
-                    ),
-                  ],
-                ),
-              ],
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Flexible(
+                        flex: 1,
+                        child: BotaoGrandeI9t(
+                            texto: 'Sair',
+                            aoApertar: () {
+                              print('CLICOU');
+                            },
+                            estaAtivo: true),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
           Container(

@@ -18,4 +18,20 @@ class TrafegoService {
     });
     return trafegoModel;
   }
+
+  Future<RespostaApiModel> atualizaTrafego(TrafegoModel trafegoModel) async {
+    final function = ParseCloudFunction("atualiza-trafego");
+    final resposta = await function.execute(
+      parameters: trafegoModel.toJson(),
+    );
+    return RespostaApiModel.fromJson(resposta.result);
+  }
+
+  Future<RespostaApiModel> concluiTrafego(TrafegoModel trafegoModel) async {
+    final function = ParseCloudFunction("conclui-trafego");
+    final resposta = await function.execute(
+      parameters: trafegoModel.toJson(),
+    );
+    return RespostaApiModel.fromJson(resposta.result);
+  }
 }

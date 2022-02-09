@@ -1,17 +1,17 @@
 import '../models/fct.model.dart';
 
-abstract class FctCadastroSaidaState {}
+abstract class FctCadastroPartidaState {}
 
-class FctCadastroSaidaInitialState extends FctCadastroSaidaState {}
+class FctCadastroPartidaInitialState extends FctCadastroPartidaState {}
 
-class FctCadastroSaidaLoadingState extends FctCadastroSaidaState {}
+class FctCadastroPartidaLoadingState extends FctCadastroPartidaState {}
 
-class FctCadastroSaidaFailureState extends FctCadastroSaidaState {
+class FctCadastroPartidaFailureState extends FctCadastroPartidaState {
   final String error;
 
-  FctCadastroSaidaFailureState({required this.error});
+  FctCadastroPartidaFailureState({required this.error});
 }
 
-class FctCadastroSaidaSuccessState extends FctCadastroSaidaState {
-  FctCadastroSaidaSuccessState();
+class FctCadastroPartidaSuccessState extends FctCadastroPartidaState {
+  FctCadastroPartidaSuccessState();
 }
