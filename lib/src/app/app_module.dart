@@ -11,7 +11,7 @@ import 'package:i9t/src/features/fct/fct_abertura/fct_abertura.page.dart';
 import 'package:i9t/src/features/fct/fct_abertura/fct_abertura.state.dart';
 import 'package:i9t/src/features/fct/fct_chegada/fct_cadastro_chegada.page.dart';
 import 'package:i9t/src/features/fct/fct_saida/fct_cadastro_partida.controller.dart';
-import 'package:i9t/src/features/fct/fct_saida/fct_cadastro_saida.state.dart';
+import 'package:i9t/src/features/fct/fct_saida/fct_cadastro_partida.state.dart';
 import 'package:i9t/src/features/fct/fct_components/fct_aberta/fct_aberta.controller.dart';
 import 'package:i9t/src/features/fct/fct_components/fcts_fechadas/fcts_fechadas.controller.dart';
 import 'package:i9t/src/features/fct/fct_fechamento/fct_fechamento.page.dart';

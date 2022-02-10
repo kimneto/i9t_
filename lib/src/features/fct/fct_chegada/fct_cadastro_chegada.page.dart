@@ -12,7 +12,7 @@ import 'package:timelines/timelines.dart';
 
 import '../fct_components/fct_aberta/fct_aberta.controller.dart';
 import 'fct_cadastro_chegada.controller.dart';
-import '../fct_saida/fct_cadastro_saida.state.dart';
+import '../fct_saida/fct_cadastro_partida.state.dart';
 import 'fct_cadastro_saidastate.dart';
 
 class CadastroChegada extends StatefulWidget {
@@ -37,7 +37,7 @@ class _CadastroChegadaState extends State<CadastroChegada> {
   Widget build(BuildContext context) {
     final fctCadastroChegadaController =
         context.watch<FctCadastroChegadaController>();
-
+    final fctAbertaController = context.watch<FctAbertaController>();
     var state = fctCadastroChegadaController.value;
 
     Widget? widget;
@@ -94,7 +94,7 @@ class _CadastroChegadaState extends State<CadastroChegada> {
                 color: pretoi9t,
               ),
               onPressed: () {
-                Modular.to.pop();
+                Modular.to.navigate("/");
               }),
           toolbarHeight: 80,
           elevation: 0,
@@ -181,23 +181,39 @@ class _CadastroChegadaState extends State<CadastroChegada> {
                           width: 10,
                         ),
                         Container(
-                          width: 165,
+                          width: 175,
                           child: CustomInputField(
                             controller: fctCadastroChegadaController
                                 .horaEditingController,
-                            maxLength: 11,
+                            maxLength: 18,
                             keyboardType: TextInputType.datetime,
                             isPassword: false,
                             validator:
                                 fctCadastroChegadaController.validaCampoHora,
-                            label: '* Hora',
+                            label: '* Hora da chegada',
                             hasIcon: true,
-                            hint: 'Hora da chegada',
                             onTap: () {},
                             inputFormatters: [
                               FilteringTextInputFormatter.digitsOnly,
                               HoraInputFormatter(),
                             ],
+                            botaoCampoForm: IconButton(
+                              onPressed: () {
+                                print(
+                                    "${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second.toStringAsFixed(00)}");
+                                setState(() {
+                                  fctCadastroChegadaController
+                                          .horaEditingController.text =
+                                      "${DateTime.now().hour}:${DateTime.now().minute}";
+                                });
+                              },
+                              color: cinzai9t,
+                              enableFeedback: false,
+                              iconSize: 20,
+                              icon: Icon(
+                                MdiIcons.clockPlusOutline,
+                              ),
+                            ),
                           ),
                         ),
                       ],
@@ -243,23 +259,32 @@ class _CadastroChegadaState extends State<CadastroChegada> {
                     width: 450,
                     height: 450,
                     child: Timeline.tileBuilder(
-                      theme: TimelineThemeData(
-                          color: amareloi9t,
-                          direction: Axis.vertical,
-                          connectorTheme:
-                              ConnectorThemeData(color: cinzalitei9t)),
-                      builder: TimelineTileBuilder.fromStyle(
-                        indicatorStyle: IndicatorStyle.dot,
+                      theme: temaTimeLine,
+                      builder: TimelineTileBuilder.connectedFromStyle(
+                        firstConnectorStyle: ConnectorStyle.transparent,
+                        lastConnectorStyle: ConnectorStyle.transparent,
+                        connectorStyleBuilder: (ctx, i) =>
+                            ConnectorStyle.solidLine,
+                        indicatorStyleBuilder: (ctx, i) => IndicatorStyle.dot,
+                        itemExtent: 50,
                         contentsAlign: ContentsAlign.alternating,
                         oppositeContentsBuilder: (context, index) => Container(
-                          padding: EdgeInsets.all(20),
-                          child: Text('São Paulo - 12:35',
-                              style: TextStyle(
-                                  color: pretoi9t,
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.bold)),
+                          child: Column(
+                            children: [
+                              Text(
+                                fctAbertaController
+                                    .fctAberta.trafegoModel![index].pontoParada
+                                    .toString(),
+                                style: TextStyle(
+                                    color: pretoi9t,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12),
+                              )
+                            ],
+                          ),
                         ),
-                        itemCount: 10,
+                        itemCount:
+                            fctAbertaController.fctAberta.trafegoModel!.length,
                       ),
                     ),
                   ),

@@ -5,7 +5,7 @@ import 'package:i9t/src/features/fct/models/fct.model.dart';
 import 'package:i9t/src/features/trafego/trafego.model.dart';
 import 'package:i9t/src/services/trafego.service.dart';
 import '../fct_components/fct_aberta/fct_aberta.controller.dart';
-import '../fct_saida/fct_cadastro_saida.state.dart';
+import '../fct_saida/fct_cadastro_partida.state.dart';
 import 'fct_cadastro_saidastate.dart';
 
 class FctCadastroChegadaController

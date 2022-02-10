@@ -3,15 +3,14 @@ import 'package:i9t/src/features/condutor/condutor.controller.dart';
 import 'package:i9t/src/features/trafego/trafego.model.dart';
 import 'package:i9t/src/services/trafego.service.dart';
 import '../fct_components/fct_aberta/fct_aberta.controller.dart';
-import 'fct_cadastro_saida.state.dart';
+import 'fct_cadastro_partida.state.dart';
 
 class FctCadastroPartidaController
     extends ValueNotifier<FctCadastroPartidaState> {
   FctCadastroPartidaController(FctCadastroPartidaState value)
       : super(FctCadastroPartidaInitialState());
 
-  TextEditingController horaEditingController =
-      TextEditingController(text: '22:00');
+  TextEditingController horaEditingController = TextEditingController();
 
   final GlobalKey<FormState> formPartidaKey = GlobalKey<FormState>();
   ValueNotifier<bool> checkBox = ValueNotifier(false);
@@ -68,12 +67,4 @@ class FctCadastroPartidaController
       value = FctCadastroPartidaFailureState(error: e.toString());
     }
   }
-}
-
-pegaHoraAtualComData() {
-  DateTime agora = DateTime.now();
-
-  String dia = agora.day.toString();
-  String mes = agora.month.toString();
-  String ano = agora.year.toString();
 }

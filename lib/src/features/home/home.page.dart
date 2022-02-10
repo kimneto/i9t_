@@ -34,7 +34,7 @@ class _HomeState extends State<Home> {
                   Modular.to.navigate('/seleciona-veiculo');
                 });
               },
-              estaAtivo: homeController.value,
+              estaAtivo: (homeController.value == 1) ? true : false,
             ),
           )),
       appBar: AppBar(

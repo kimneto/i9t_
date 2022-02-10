@@ -22,15 +22,17 @@ class FctsFechadasController extends ValueNotifier<FctsFechadasState> {
         List<FctModel> fcts = [];
         if (res.erro == null && res.sucesso == true) {
           res.data.forEach((fct) {
-            fcts.add(
-              FctModel.fromJson(fct),
-            );
+            if (fct != null) {
+              fcts.add(
+                FctModel.fromJson(fct),
+              );
+            } else if (fcts.isEmpty) {
+              value = FctsFechadasEmpty();
+            } else {
+              value = FctsFechadasSuccess(fctsFechadas: fcts);
+            }
           });
-          value = FctsFechadasSuccess(fctsFechadas: fcts);
-        } else {
-          value = FctsFechadasFailure(error: res.erro.toString());
         }
-        print(fcts);
       } catch (e) {
         value = FctsFechadasFailure(error: e.toString());
       }

@@ -17,10 +17,6 @@ class _FctAbertaComponentsState extends State<FctAbertaComponents> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    final fctAbertaController = context.read<FctAbertaController>();
-    final condutorController = context.read<CondutorController>();
-    fctAbertaController.condutorController.condutor =
-        condutorController.condutor;
   }
 
   @override
@@ -30,8 +26,10 @@ class _FctAbertaComponentsState extends State<FctAbertaComponents> {
 
     var state = fctAbertaController.value;
     if (state is FctAbertaSuccessState) {
-      homeController.value = false;
+      homeController.value = 0;
       return CardCustomFctAberto(
+        botaoImparDestino: () => Modular.to.navigate('/chegada'),
+        botaoParDestino: () => Modular.to.navigate('/saida'),
         documento: fctAbertaController.fctAberta.documento,
         pontoInicial:
             fctAbertaController.fctAberta.trafegoModel![1].pontoParada ??
@@ -46,10 +44,7 @@ class _FctAbertaComponentsState extends State<FctAbertaComponents> {
         aoApertar: () {
           Modular.to.navigate("/chegada");
         },
-        entradaSaida:
-            (fctAbertaController.fctAberta.trafegoModel?.length ?? 0) % 2 == 0
-                ? 1
-                : 0,
+        entradaSaida: fctAbertaController.giraCartao,
       );
     }
 

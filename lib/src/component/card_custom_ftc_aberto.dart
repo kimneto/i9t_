@@ -7,6 +7,10 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 
 class CardCustomFctAberto extends StatelessWidget {
   Function aoApertar;
+  Function botaoImparDestino;
+
+  Function botaoParDestino;
+
   CardCustomFctAberto(
       {required this.aoApertar,
       required this.entradaSaida,
@@ -16,6 +20,8 @@ class CardCustomFctAberto extends StatelessWidget {
       this.veiculoTipo,
       this.veiculoPatrimonio,
       this.veiculoPlaca,
+      required this.botaoImparDestino,
+      required this.botaoParDestino,
       this.dataInicial});
   int entradaSaida;
   String? pontoInicial;
@@ -287,16 +293,16 @@ class CardCustomFctAberto extends StatelessWidget {
                     texto: 'Inserir Chegada',
                     estaAtivo: true,
                     cor: amareloi9t,
-                    aoApertar: () => Modular.to.pushNamed('/chegada'),
+                    aoApertar: botaoImparDestino,
                   ),
                 )
               //PAR
               : Container(
                   width: 350,
                   child: BotaoGrandeI9t(
-                    texto: 'Partir',
+                    texto: 'Inserir Partida',
                     estaAtivo: true,
-                    aoApertar: () => Modular.to.pushNamed('/saida'),
+                    aoApertar: botaoParDestino,
                   ),
                 )
         ],

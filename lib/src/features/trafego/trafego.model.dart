@@ -20,8 +20,8 @@ class TrafegoModel {
 
   TrafegoModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    horaChegada = json['horaChegada']['iso'];
-    horaPartida = json['horaPartida']['iso'];
+    horaChegada = json['horaChegada'] != null ? json['horaChegada']['iso'] : '';
+    horaPartida = json['horaPartida'] != null ? json['horaPartida']['iso'] : '';
     hodometro = json['hodometro'];
     concluido = json['concluido'];
     pontoParada = json['pontoParada'];

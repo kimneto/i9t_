@@ -6,8 +6,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i9t/src/component/botao_grande.component.dart';
 import 'package:i9t/src/component/custom_input_field.dart';
 import 'package:i9t/src/shared/tema.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:timelines/timelines.dart';
 
+import '../fct_components/fct_aberta/fct_aberta.controller.dart';
 import 'fct_cadastro_partida.controller.dart';
 
 class CadastroPartida extends StatefulWidget {
@@ -22,7 +24,7 @@ class _CadastroPartidaState extends State<CadastroPartida> {
   Widget build(BuildContext context) {
     final fctCadastroPartidaController =
         context.watch<FctCadastroPartidaController>();
-
+    final fctAbertaController = context.watch<FctAbertaController>();
     var state = fctCadastroPartidaController.value;
 
     Widget? widget;
@@ -37,7 +39,7 @@ class _CadastroPartidaState extends State<CadastroPartida> {
               color: pretoi9t,
             ),
             onPressed: () {
-              Modular.to.pop();
+              Modular.to.navigate("/");
             }),
         toolbarHeight: 80,
         elevation: 0,
@@ -46,7 +48,7 @@ class _CadastroPartidaState extends State<CadastroPartida> {
         centerTitle: false,
         title: Container(
           child: Text(
-            'Saída',
+            'Cadastrar Partida',
             textAlign: TextAlign.start,
             style: TextStyle(
                 color: pretoi9t, fontSize: 22, fontWeight: FontWeight.bold),
@@ -71,7 +73,7 @@ class _CadastroPartidaState extends State<CadastroPartida> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Veículo: Renault Duster - Prefixo 15113',
+                        'Você está partindo de: ${fctAbertaController.fctAberta.trafegoModel!.last.pontoParada.toString()}',
                         style: TextStyle(
                             color: pretoi9t,
                             fontSize: 14,
@@ -83,22 +85,44 @@ class _CadastroPartidaState extends State<CadastroPartida> {
                     height: 20,
                   ),
                   Center(
-                    child: Container(
-                      width: 320,
-                      child: CustomInputField(
-                        controller: TextEditingController(),
-                        maxLength: 11,
-                        keyboardType: TextInputType.datetime,
-                        isPassword: false,
-                        label: 'Hora',
-                        hasIcon: true,
-                        hint: 'Hora da parada',
-                        onTap: () {},
-                        inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly,
-                          HoraInputFormatter(),
-                        ],
-                      ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          child: CustomInputField(
+                            controller: fctCadastroPartidaController
+                                .horaEditingController,
+                            maxLength: 11,
+                            keyboardType: TextInputType.datetime,
+                            isPassword: false,
+                            label: 'Hora da Partida',
+                            hasIcon: true,
+                            botaoCampoForm: IconButton(
+                              onPressed: () {
+                                print(
+                                    "${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}");
+                                setState(() {
+                                  fctCadastroPartidaController
+                                          .horaEditingController.text =
+                                      "${DateTime.now().hour}:${DateTime.now().minute}";
+                                });
+                              },
+                              color: cinzai9t,
+                              enableFeedback: false,
+                              iconSize: 20,
+                              icon: Icon(
+                                MdiIcons.clockPlusOutline,
+                              ),
+                            ),
+                            onTap: () {},
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly,
+                              HoraInputFormatter(),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   SizedBox(
@@ -110,7 +134,7 @@ class _CadastroPartidaState extends State<CadastroPartida> {
                       Flexible(
                         flex: 1,
                         child: BotaoGrandeI9t(
-                            texto: 'Sair',
+                            texto: 'Inserir Partida',
                             aoApertar: () {
                               print('CLICOU');
                             },
@@ -141,23 +165,31 @@ class _CadastroPartidaState extends State<CadastroPartida> {
                   width: 450,
                   height: 450,
                   child: Timeline.tileBuilder(
-                    theme: TimelineThemeData(
-                        color: amareloi9t,
-                        direction: Axis.vertical,
-                        connectorTheme:
-                            ConnectorThemeData(color: cinzalitei9t)),
-                    builder: TimelineTileBuilder.fromStyle(
-                      indicatorStyle: IndicatorStyle.dot,
+                    theme: temaTimeLine,
+                    builder: TimelineTileBuilder.connectedFromStyle(
+                      lastConnectorStyle: ConnectorStyle.transparent,
+                      firstConnectorStyle: ConnectorStyle.transparent,
+                      connectorStyleBuilder: (ctx, i) =>
+                          ConnectorStyle.solidLine,
+                      indicatorStyleBuilder: (ctx, i) => IndicatorStyle.dot,
+                      itemExtent: 50,
                       contentsAlign: ContentsAlign.alternating,
                       oppositeContentsBuilder: (context, index) => Container(
-                        padding: EdgeInsets.all(20),
-                        child: Text('São Paulo - 12:35',
-                            style: TextStyle(
-                                color: pretoi9t,
-                                fontSize: 10,
-                                fontWeight: FontWeight.bold)),
+                        child: Column(
+                          children: [
+                            Text(
+                                fctAbertaController
+                                    .fctAberta.trafegoModel![index].pontoParada
+                                    .toString(),
+                                style: TextStyle(
+                                    color: pretoi9t,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12))
+                          ],
+                        ),
                       ),
-                      itemCount: 10,
+                      itemCount:
+                          fctAbertaController.fctAberta.trafegoModel!.length,
                     ),
                   ),
                 ),

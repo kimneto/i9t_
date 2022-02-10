@@ -103,7 +103,7 @@ class _FctsFechadasComponentsState extends State<FctsFechadasComponents> {
 
     if (fctsFechadasController.value is FctsFechadasEmpty) {
       return Container(
-        height: 300,
+        height: 200,
         child: Center(
           child: Icon(
             MdiIcons.fileHidden,
