@@ -17,7 +17,7 @@ class FctsFechadasController extends ValueNotifier<FctsFechadasState> {
       value = FctsFechadasLoading();
     });
 
-    await service.pegaFtcsConcluidasPorCondutor(condutor, true).then((res) {
+    await service.pegaFtcsFchadasPorCondutor(condutor).then((res) {
       try {
         List<FctModel> fcts = [];
         if (res.erro == null && res.sucesso == true) {
@@ -26,12 +26,13 @@ class FctsFechadasController extends ValueNotifier<FctsFechadasState> {
               fcts.add(
                 FctModel.fromJson(fct),
               );
-            } else if (fcts.isEmpty) {
+            }
+
+            if (fcts.isEmpty) {
               value = FctsFechadasEmpty();
-            } else {
-              value = FctsFechadasSuccess(fctsFechadas: fcts);
             }
           });
+          value = FctsFechadasSuccess(fctsFechadas: fcts);
         }
       } catch (e) {
         value = FctsFechadasFailure(error: e.toString());

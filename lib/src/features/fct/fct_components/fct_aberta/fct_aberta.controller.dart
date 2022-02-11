@@ -16,16 +16,15 @@ class FctAbertaController extends ValueNotifier<FctAbertaState> {
   int giraCartao = 2;
 
   carregaFctAberta() async {
+    value = FctAbertaLoadingState();
     try {
-      value = FctAbertaLoadingState();
-
       await fctService
-          .pegaFtcsPorCondutor(condutorController.condutor, false)
+          .pegaFtcAbertaPorCondutor(condutorController.condutor)
           .then(
         (res) {
           homeController.value = 1;
-          if (res.sucesso != false) {
-            fctAberta = FctModel.fromJson(res.data[0]);
+          if (res.sucesso != false && res.data != null) {
+            fctAberta = FctModel.fromJson(res.data);
             homeController.value = 0;
             value = FctAbertaSuccessState(fctAberta: fctAberta);
           } else {

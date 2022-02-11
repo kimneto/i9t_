@@ -200,11 +200,12 @@ class _CadastroChegadaState extends State<CadastroChegada> {
                             botaoCampoForm: IconButton(
                               onPressed: () {
                                 print(
-                                    "${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second.toStringAsFixed(00)}");
+                                    "${DateTime.now().hour.toString().padLeft(2, "0")}:${DateTime.now().minute.toString().padLeft(2, "0")}");
                                 setState(() {
                                   fctCadastroChegadaController
                                           .horaEditingController.text =
-                                      "${DateTime.now().hour}:${DateTime.now().minute}";
+                                      "${DateTime.now().hour.toString().padLeft(2, "0")}:${DateTime.now().minute.toString().padLeft(2, "0")}";
+                                  ;
                                 });
                               },
                               color: cinzai9t,

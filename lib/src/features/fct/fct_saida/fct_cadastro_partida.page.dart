@@ -101,11 +101,11 @@ class _CadastroPartidaState extends State<CadastroPartida> {
                             botaoCampoForm: IconButton(
                               onPressed: () {
                                 print(
-                                    "${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}");
+                                    "${DateTime.now().hour.toString().padLeft(2, "0")}:${DateTime.now().minute.toString().padLeft(2, "0")}:${DateTime.now().second.toString().padLeft(2, "0")}");
                                 setState(() {
                                   fctCadastroPartidaController
                                           .horaEditingController.text =
-                                      "${DateTime.now().hour}:${DateTime.now().minute}";
+                                      "${DateTime.now().hour.toString().padLeft(2, "0")}:${DateTime.now().minute.toString().padLeft(2, "0")}";
                                 });
                               },
                               color: cinzai9t,

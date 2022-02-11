@@ -32,7 +32,7 @@ class _FctAbertaComponentsState extends State<FctAbertaComponents> {
         botaoParDestino: () => Modular.to.navigate('/saida'),
         documento: fctAbertaController.fctAberta.documento,
         pontoInicial:
-            fctAbertaController.fctAberta.trafegoModel![1].pontoParada ??
+            fctAbertaController.fctAberta.trafegoModel!.last.pontoParada ??
                 fctAbertaController.fctAberta.trafegoModel![0].pontoParada,
         veiculoPlaca: fctAbertaController.fctAberta.veiculoModel?.placa,
         veiculoGrupo: fctAbertaController.fctAberta.veiculoModel?.grupo,
@@ -44,7 +44,7 @@ class _FctAbertaComponentsState extends State<FctAbertaComponents> {
         aoApertar: () {
           Modular.to.navigate("/chegada");
         },
-        entradaSaida: fctAbertaController.giraCartao,
+        entradaSaida: 1,
       );
     }
 
