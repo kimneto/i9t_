@@ -1,3 +1,4 @@
+import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:i9t/src/shared/tema.dart';
@@ -7,6 +8,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DesktopWindow.setWindowSize(Size(400, 700));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'I9 Controle de Tráfego',
