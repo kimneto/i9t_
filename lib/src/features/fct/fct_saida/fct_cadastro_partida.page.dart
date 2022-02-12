@@ -8,8 +8,7 @@ import 'package:i9t/src/component/custom_input_field.dart';
 import 'package:i9t/src/shared/tema.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:timelines/timelines.dart';
-
-import '../fct_components/fct_aberta/fct_aberta.controller.dart';
+import '../../home/home.controller.dart';
 import 'fct_cadastro_partida.controller.dart';
 
 class CadastroPartida extends StatefulWidget {
@@ -24,7 +23,7 @@ class _CadastroPartidaState extends State<CadastroPartida> {
   Widget build(BuildContext context) {
     final fctCadastroPartidaController =
         context.watch<FctCadastroPartidaController>();
-    final fctAbertaController = context.watch<FctAbertaController>();
+    final fctAbertaController = context.watch<HomeController>();
     var state = fctCadastroPartidaController.value;
 
     Widget? widget;

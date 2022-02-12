@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:i9t/src/features/condutor/condutor.controller.dart';
 import 'package:i9t/src/features/trafego/trafego.model.dart';
 import 'package:i9t/src/services/trafego.service.dart';
-import '../fct_components/fct_aberta/fct_aberta.controller.dart';
 import 'fct_cadastro_partida.state.dart';
 
 class FctCadastroPartidaController
@@ -16,7 +15,6 @@ class FctCadastroPartidaController
   ValueNotifier<bool> checkBox = ValueNotifier(false);
 
   CondutorController? condutorController;
-  FctAbertaController? fctAbertaController;
   final trafegoService = TrafegoService();
 
   String? validaCampoHora(String? odometro) {
@@ -55,8 +53,6 @@ class FctCadastroPartidaController
         String novaData = "${ano}-${mes}-${dia} ${hora}:${minuto}";
 
         trafegoModel.horaPartida = novaData.toString();
-        trafegoModel.fctId = fctAbertaController?.fctAberta.id;
-        print(fctAbertaController?.fctAberta.toJson());
 
         trafegoService
             .criaNovoTrafego(trafegoModel)

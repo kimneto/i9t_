@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:i9t/src/data/data.model.dart';
 import 'package:i9t/src/features/condutor/condutor.controller.dart';
 import 'package:i9t/src/features/fct/models/fct.model.dart';
+import 'package:i9t/src/features/home/home.controller.dart';
 import 'package:i9t/src/features/trafego/trafego.model.dart';
 import 'package:i9t/src/services/trafego.service.dart';
-import '../fct_components/fct_aberta/fct_aberta.controller.dart';
 import '../fct_saida/fct_cadastro_partida.state.dart';
 import 'fct_cadastro_saidastate.dart';
 
@@ -24,7 +24,7 @@ class FctCadastroChegadaController
   ValueNotifier<bool> checkBox = ValueNotifier(false);
 
   CondutorController? condutorController;
-  FctAbertaController? fctAbertaController;
+  HomeController? homeController;
   final trafegoService = TrafegoService();
 
   String? validaCampoLocalizacao(String? localizacao) {
@@ -77,8 +77,8 @@ class FctCadastroChegadaController
         String novaData = "${ano}-${mes}-${dia} ${hora}:${minuto}";
 
         trafegoModel.horaChegada = novaData.toString();
-        trafegoModel.fctId = fctAbertaController?.fctAberta.id;
-        print(fctAbertaController?.fctAberta.toJson());
+        trafegoModel.fctId = homeController?.fctAberta.id;
+        print(homeController?.fctAberta.toJson());
 
         trafegoService
             .criaNovoTrafego(trafegoModel)

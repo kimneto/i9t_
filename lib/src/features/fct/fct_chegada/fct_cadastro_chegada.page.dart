@@ -2,17 +2,14 @@ import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i9t/src/component/botao_grande.component.dart';
 import 'package:i9t/src/component/custom_input_field.dart';
 import 'package:i9t/src/shared/tema.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:timelines/timelines.dart';
-
-import '../fct_components/fct_aberta/fct_aberta.controller.dart';
+import '../../home/home.controller.dart';
 import 'fct_cadastro_chegada.controller.dart';
-import '../fct_saida/fct_cadastro_partida.state.dart';
 import 'fct_cadastro_saidastate.dart';
 
 class CadastroChegada extends StatefulWidget {
@@ -29,15 +26,16 @@ class _CadastroChegadaState extends State<CadastroChegada> {
     super.initState();
     final fctCadastroChegadaController =
         context.read<FctCadastroChegadaController>();
-    final fctAbertaController = context.read<FctAbertaController>();
-    fctCadastroChegadaController.fctAbertaController = fctAbertaController;
+    final homeController = context.read<HomeController>();
+    fctCadastroChegadaController.homeController =
+        HomeController as HomeController?;
   }
 
   @override
   Widget build(BuildContext context) {
     final fctCadastroChegadaController =
         context.watch<FctCadastroChegadaController>();
-    final fctAbertaController = context.watch<FctAbertaController>();
+    final homeController = context.watch<HomeController>();
     var state = fctCadastroChegadaController.value;
 
     Widget? widget;
@@ -272,7 +270,7 @@ class _CadastroChegadaState extends State<CadastroChegada> {
                           child: Column(
                             children: [
                               Text(
-                                fctAbertaController
+                                homeController
                                     .fctAberta.trafegoModel![index].pontoParada
                                     .toString(),
                                 style: TextStyle(
@@ -284,7 +282,7 @@ class _CadastroChegadaState extends State<CadastroChegada> {
                           ),
                         ),
                         itemCount:
-                            fctAbertaController.fctAberta.trafegoModel!.length,
+                            homeController.fctAberta.trafegoModel!.length,
                       ),
                     ),
                   ),

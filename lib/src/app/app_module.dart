@@ -12,12 +12,9 @@ import 'package:i9t/src/features/fct/fct_abertura/fct_abertura.state.dart';
 import 'package:i9t/src/features/fct/fct_chegada/fct_cadastro_chegada.page.dart';
 import 'package:i9t/src/features/fct/fct_saida/fct_cadastro_partida.controller.dart';
 import 'package:i9t/src/features/fct/fct_saida/fct_cadastro_partida.state.dart';
-import 'package:i9t/src/features/fct/fct_components/fct_aberta/fct_aberta.controller.dart';
-import 'package:i9t/src/features/fct/fct_components/fcts_fechadas/fcts_fechadas.controller.dart';
 import 'package:i9t/src/features/fct/fct_fechamento/fct_fechamento.page.dart';
 import 'package:i9t/src/features/fct/fct_seleciona_veiculo/fct_seleciona_veiculo.controller.dart';
 import 'package:i9t/src/features/fct/fct_seleciona_veiculo/fct_seleciona_veiculo.page.dart';
-import 'package:i9t/src/features/fct/models/fct.model.dart';
 import 'package:i9t/src/features/home/home.controller.dart';
 import 'package:i9t/src/features/home/home.page.dart';
 import 'package:i9t/src/features/login/login.controller.dart';
@@ -25,7 +22,6 @@ import 'package:i9t/src/features/login/login.page.dart';
 import 'package:i9t/src/features/login/login.state.dart';
 import 'package:i9t/src/shared/404.dart';
 import 'package:i9t/src/shared/guarda_rota.dart';
-
 import '../features/fct/fct_chegada/fct_cadastro_chegada.controller.dart';
 import '../features/fct/fct_chegada/fct_cadastro_saidastate.dart';
 import '../features/fct/fct_saida/fct_cadastro_partida.page.dart';
@@ -33,12 +29,9 @@ import '../features/fct/fct_saida/fct_cadastro_partida.page.dart';
 class AppModule extends Module {
   @override
   List<Bind> get binds => [
-        Bind.lazySingleton((i) => FctAbertaController(FctModel())),
-
-        Bind.lazySingleton((i) => FctsFechadasController()),
-        Bind.lazySingleton(
-          (i) => FctSelecionaVeiculoController(),
-        ),
+        Bind.singleton((i) => LoginController(LoginInitialState())),
+        Bind.singleton((i) => HomeController(null)),
+        Bind.lazySingleton((i) => FctSelecionaVeiculoController()),
         Bind.lazySingleton(
             (i) => FctAberturaController(FctAberturaInitialState())),
         //Controllers
@@ -46,12 +39,10 @@ class AppModule extends Module {
         Bind.singleton((i) =>
             FctCadastroPartidaController(FctCadastroPartidaInitialState())),
 
-        Bind.singleton((i) => HomeController()),
         Bind.singleton((i) => CompartilhaController()),
         Bind.singleton((i) =>
             FctCadastroChegadaController(FctCadastroChegadaInitialState())),
 
-        Bind.singleton((i) => LoginController(LoginInitialState())),
         Bind.singleton((i) => CondutorController(CondutorModel())),
         Bind.singleton((i) => CompartilhaController()),
         Bind.singleton(

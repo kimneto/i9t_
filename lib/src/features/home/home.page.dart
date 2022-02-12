@@ -1,16 +1,15 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:i9t/src/component/botao_nova_fct.component.dart';
 import 'package:i9t/src/features/condutor/condutor.controller.dart';
-import 'package:i9t/src/features/fct/fct_components/fct_aberta/fct_aberta.components.dart';
-import 'package:i9t/src/features/fct/fct_components/fcts_fechadas/fcts_fechadas.components.dart';
 import 'package:i9t/src/features/home/home.controller.dart';
 import 'package:i9t/src/features/login/login.controller.dart';
 import 'package:i9t/src/shared/functions.dart';
 import 'package:i9t/src/shared/tema.dart';
+import '../../component/card_custom.dart';
+import '../../component/card_custom_ftc_aberto.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -23,6 +22,7 @@ class _HomeState extends State<Home> {
     final loginController = context.read<LoginController>();
     final condutorController = context.watch<CondutorController>();
     final homeController = context.watch<HomeController>();
+
     return Scaffold(
       floatingActionButton: Padding(
           padding: const EdgeInsets.only(bottom: 10),
@@ -34,7 +34,7 @@ class _HomeState extends State<Home> {
                   Modular.to.navigate('/seleciona-veiculo');
                 });
               },
-              estaAtivo: (homeController.value == 1) ? true : false,
+              estaAtivo: (homeController == 1) ? true : false,
             ),
           )),
       appBar: AppBar(
@@ -83,8 +83,61 @@ class _HomeState extends State<Home> {
       ),
       body: ListView(
         children: [
-          FctAbertaComponents(),
-          FctsFechadasComponents(),
+          CardCustomFctAberto(
+            botaoImparDestino: () => Modular.to.navigate('/chegada'),
+            botaoParDestino: () => Modular.to.navigate('/saida'),
+            documento: homeController.fctAberta.documento,
+            pontoInicial:
+                homeController.fctAberta.trafegoModel![1].pontoParada ??
+                    homeController.fctAberta.trafegoModel![0].pontoParada,
+            veiculoPlaca: homeController.fctAberta.veiculoModel?.placa,
+            veiculoGrupo: homeController.fctAberta.veiculoModel?.grupo,
+            veiculoTipo: homeController.fctAberta.veiculoModel?.tipo,
+            veiculoPatrimonio:
+                homeController.fctAberta.veiculoModel?.patrimonio,
+            dataInicial: homeController.fctAberta.trafegoModel?[0].horaPartida!
+                .substring(0, 10),
+            aoApertar: () {
+              Modular.to.navigate("/chegada");
+            },
+            entradaSaida: homeController.giraCartao,
+          ),
+          ListView.builder(
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              itemCount: homeController.fctsFechadas.length,
+              itemBuilder: (ctx, int) {
+                return CardCustom(
+                  primeiraParada:
+                      "1º Parada: ${homeController.fctsFechadas[int].trafegoModel![1].pontoParada}",
+                  prefixo:
+                      "${homeController.fctsFechadas[int].veiculoModel?.grupo}",
+                  veiculo:
+                      "Veiculo ${homeController.fctsFechadas[int].veiculoModel?.tipo}"
+                          .toString(),
+                  distanciaDeUso: homeController.fctsFechadas[int]
+                      .geraKmUtilizacao()
+                      .then((value) => value)
+                      .toString(),
+                  tempoDeUso: homeController.fctsFechadas[int]
+                      .geraTempoDeUtilizacao("dataInicial", " dataFinal")
+                      .then((value) => value)
+                      .toString(),
+                  dataPartida: homeController
+                      .fctsFechadas[int].trafegoModel![0].horaPartida
+                      .toString(),
+                  numeroDocumento:
+                      homeController.fctsFechadas[int].documento.toString(),
+                  aoApertar: () => Modular.to.pushNamed('/compartilha',
+                      arguments: homeController.fctsFechadas[int]),
+                  /* level: (homeController
+                                    .fctsFechadas[int].kmUtilizacao !=
+                                null ||
+                            homeController.fctsFechadas[int].kmUtilizacao! > 20)
+                        ? Icon(MdiIcons.trophy, color: Colors.amber)
+                        : Icon(MdiIcons.medal, color: Colors.grey)*/
+                );
+              }),
         ],
       ),
     );
