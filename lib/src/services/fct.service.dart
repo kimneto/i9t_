@@ -18,7 +18,11 @@ class FctService {
 
   Future<RespostaApiModel> finalizaFct(FctModel fct) async {
     final function = ParseCloudFunction("finaliza-fct");
-    final resposta = await function.execute(parameters: {});
+    final resposta = await function.execute(parameters: {
+      "fctId": fct.id,
+      "defeitos": fct.defeitosVerificados,
+      "novidades": fct.novidadesVerificadas
+    });
     return RespostaApiModel.fromJson(await resposta.result);
   }
 

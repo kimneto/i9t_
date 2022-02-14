@@ -41,8 +41,13 @@ class _CadastroPartidaState extends State<CadastroPartida> {
     }
 
     if (state is FctCadastroPartidaLoadingState) {
-      widget = Center(
-        child: CircularProgressIndicator(),
+      widget = Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(
+            color: amareloi9t,
+            strokeWidth: 10,
+          ),
+        ),
       );
     }
 

@@ -28,6 +28,8 @@ class AutenticaPM extends Module {
           autenticaPMModel.mensagem = 'Dados errados enviados para o Servidor';
           return autenticaPMModel;
         }
+      }).timeout(Duration(seconds: 6), onTimeout: () {
+        Modular.to.navigate("/sem-sinal");
       });
     } catch (e) {
       autenticaPMModel.tipo = 'erro';

@@ -137,7 +137,7 @@ class FctFechamentoPage extends StatelessWidget {
                       child: CustomInputField(
                         onTap: () {},
                         maxLines: 5,
-                        controller: fctFechamentoController.observacoes,
+                        controller: fctFechamentoController.defeitos,
                         maxLength: 300,
                         keyboardType: TextInputType.multiline,
                         isPassword: false,
@@ -152,7 +152,7 @@ class FctFechamentoPage extends StatelessWidget {
                       child: CustomInputField(
                         onTap: () {},
                         maxLines: 5,
-                        controller: fctFechamentoController.observacoes,
+                        controller: fctFechamentoController.novidades,
                         maxLength: 300,
                         keyboardType: TextInputType.multiline,
                         isPassword: false,
@@ -173,7 +173,7 @@ class FctFechamentoPage extends StatelessWidget {
                       child: BotaoGrandeI9t(
                           texto: 'Finalizar',
                           aoApertar: () {
-                            Modular.to.navigate('/fechamento');
+                            fctFechamentoController.finalizaFct();
                           },
                           estaAtivo: true),
                     ),

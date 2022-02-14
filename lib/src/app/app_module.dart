@@ -24,6 +24,7 @@ import 'package:i9t/src/features/login/login.page.dart';
 import 'package:i9t/src/features/login/login.state.dart';
 import 'package:i9t/src/shared/404.dart';
 import 'package:i9t/src/shared/guarda_rota.dart';
+import 'package:i9t/src/shared/sem-sinal.dart';
 import '../features/fct/fct_chegada/fct_cadastro_chegada.controller.dart';
 import '../features/fct/fct_chegada/fct_cadastro_chegada.state.dart';
 import '../features/fct/fct_fechamento/fct_fechamento.controller.dart';
@@ -93,6 +94,12 @@ class AppModule extends Module {
         ChildRoute(
           '/finalizar',
           child: (context, args) => FctFechamentoPage(),
+          guards: [AuthGuard()],
+          maintainState: false,
+        ),
+        ChildRoute(
+          '/sem-sinal',
+          child: (context, args) => SemSinal(),
           guards: [AuthGuard()],
           maintainState: false,
         ),

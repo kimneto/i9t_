@@ -12,11 +12,11 @@ class FctFechamentoController extends ValueNotifier<FctFechamentoState> {
   FctFechamentoController(FctFechamentoState value)
       : super(FctFechamentoInitialState());
 
-  TextEditingController observacoes =
+  TextEditingController defeitos =
       TextEditingController(text: 'Viatura abastecida, óleo e filtro ok ');
   TextEditingController novidades = TextEditingController(text: 'Nill ');
 
-  final GlobalKey<FormState> formChegadaKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formFinalizaKey = GlobalKey<FormState>();
   ValueNotifier<bool> checkBox = ValueNotifier(false);
 
   CondutorController? condutorController;
@@ -24,39 +24,27 @@ class FctFechamentoController extends ValueNotifier<FctFechamentoState> {
   final fctService = FctService();
 
   String? validaCampoObservacoes(String? localizacao) {
-    if (observacoes.text.isEmpty) {
+    if (defeitos.text.isEmpty) {
       return 'Localização é um campo obrigatório.';
     }
   }
 
   bool validaFormFct() {
-    formChegadaKey.currentState!.validate();
-    if (formChegadaKey.currentState!.validate()) {
+    formFinalizaKey.currentState!.validate();
+    if (formFinalizaKey.currentState!.validate()) {
       return true;
     } else
       return false;
   }
 
-  TimeOfDay now = TimeOfDay.now();
-
-  void inseriNovoTrafegoComPdi() async {
+  void finalizaFct() async {
     value = FctFechamentoLoadingState();
     try {
       if (true /*validaFormFct()*/) {
-        // 1 - CRIA UM MODELO PRO NOVO TRAFEGO,
-        FctModel fctModel = FctModel();
-        // INSERE DADOS NO NOVO TRAFEGO
-
-//CALCULA NOVA DATA
-        DateTime agora = DateTime.now();
-        String dia = agora.day.toString();
-        String mes = agora.month.toString();
-        String ano = agora.year.toString();
-        String hora = agora.hour.toString().substring(0, 2).toString();
-        String minuto = agora.minute.toString().substring(3, 5).toString();
-        String novaData = "${ano}-${mes}-${dia} ${hora}:${minuto}";
-
-        fctService.finalizaFct(fctModel).then((v) {
+        FctModel fct = FctModel();
+        fct.id = fct.novidadesVerificadas = novidades.text;
+        fct.defeitosVerificados = defeitos.text;
+        fctService.finalizaFct(fct).then((v) {
           if (v.sucesso == true) {
             value = FctFechamentoInitialState();
             Modular.to.navigate("/");
