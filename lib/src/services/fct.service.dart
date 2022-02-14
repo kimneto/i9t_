@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:i9t/src/features/fct/models/fct.model.dart';
 import 'package:i9t/src/features/condutor/condutor.model.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
@@ -14,16 +13,29 @@ class FctService {
     final resposta = await function.execute(
         parameters: {"condutorId": condutor.id, "estaConcluido": false});
 
-    return RespostaApiModel.fromJson(await resposta.result[0] ?? {});
+    return RespostaApiModel.fromJson(await resposta.result ?? {});
   }
 
-  Future<RespostaApiModel> pegaFtcsFchadasPorCondutor(
+  Future<RespostaApiModel> finalizaFct(FctModel fct) async {
+    final function = ParseCloudFunction("finaliza-fct");
+    final resposta = await function.execute(parameters: {});
+    return RespostaApiModel.fromJson(await resposta.result);
+  }
+
+  Future<RespostaApiModel> pegaFtcsFechadasPorCondutor(
       CondutorModel condutor) async {
     final function = ParseCloudFunction("pega-fcts-por-condutor");
     final resposta = await function.execute(
         parameters: {"condutorId": condutor.id, "estaConcluido": true});
-
-    return RespostaApiModel.fromJson(resposta.result);
+    if (resposta.success == false) {
+      return RespostaApiModel(
+        erro: "",
+        mensagem: "Nenhum FCT encontrado",
+        sucesso: false,
+        data: [],
+      );
+    } else
+      return RespostaApiModel.fromJson(resposta.result);
   }
 
   Future<RespostaApiModel> criaNovoFctAberto(FctModel fct) async {

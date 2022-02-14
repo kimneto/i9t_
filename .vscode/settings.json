@@ -3,5 +3,8 @@
     "editor.formatOnSave": true,
     "html.format.preserveNewLines": false,
     "dart.flutterHotReloadOnSave": "always",
-    "dart.previewHotReloadOnSaveWatcher": true
+    "dart.previewHotReloadOnSaveWatcher": true,
+    "[dart]": {
+        "editor.defaultFormatter": "Dart-Code.dart-code"
+    }
 }

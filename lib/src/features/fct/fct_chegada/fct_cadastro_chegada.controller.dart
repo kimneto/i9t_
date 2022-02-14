@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:i9t/src/data/data.model.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:i9t/src/features/condutor/condutor.controller.dart';
-import 'package:i9t/src/features/fct/models/fct.model.dart';
 import 'package:i9t/src/features/home/home.controller.dart';
 import 'package:i9t/src/features/trafego/trafego.model.dart';
 import 'package:i9t/src/services/trafego.service.dart';
-import '../fct_saida/fct_cadastro_partida.state.dart';
-import 'fct_cadastro_saidastate.dart';
+import 'fct_cadastro_chegada.state.dart';
 
 class FctCadastroChegadaController
     extends ValueNotifier<FctCadastroChegadaState> {
@@ -37,14 +35,14 @@ class FctCadastroChegadaController
     if (hodometroEditingController.text.isEmpty) {
       return "Hodômetro é um campo obrigatório.";
     }
-    return null;
+    return throw "";
   }
 
   String? validaCampoHora(String? odometro) {
     if (horaEditingController.text.isEmpty) {
       return "Hora é um campo obrigatório.";
     }
-    return null;
+    return throw "";
   }
 
   bool validaFormFct() {
@@ -64,6 +62,7 @@ class FctCadastroChegadaController
         // 1 - CRIA UM MODELO PRO NOVO TRAFEGO,
         TrafegoModel trafegoModel = TrafegoModel();
         // INSERE DADOS NO NOVO TRAFEGO
+
         trafegoModel.hodometro = int.parse(hodometroEditingController.text);
         trafegoModel.pontoParada = pontoParadaEditingController.text;
 
@@ -77,24 +76,18 @@ class FctCadastroChegadaController
         String novaData = "${ano}-${mes}-${dia} ${hora}:${minuto}";
 
         trafegoModel.horaChegada = novaData.toString();
-        trafegoModel.fctId = homeController?.fctAberta.id;
-        print(homeController?.fctAberta.toJson());
+        trafegoModel.fct = homeController?.fctAberta.value.id;
+        print(trafegoModel.toJson());
 
-        trafegoService
-            .criaNovoTrafego(trafegoModel)
-            .then((value) => print(value));
+        trafegoService.criaNovoTrafego(trafegoModel).then((v) {
+          if (v.sucesso == true) {
+            value = FctCadastroChegadaInitialState();
+            Modular.to.navigate("/");
+          }
+        });
       }
-      value = FctCadastroChegadaSuccessState();
     } catch (e) {
       value = FctCadastroChegadaFailureState(error: e.toString());
     }
   }
-}
-
-pegaHoraAtualComData() {
-  DateTime agora = DateTime.now();
-
-  String dia = agora.day.toString();
-  String mes = agora.month.toString();
-  String ano = agora.year.toString();
 }

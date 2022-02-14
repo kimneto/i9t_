@@ -1,19 +1,22 @@
-import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i9t/src/component/botao_grande.component.dart';
 import 'package:i9t/src/component/custom_input_field.dart';
 import 'package:i9t/src/shared/tema.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:timelines/timelines.dart';
+import '../../home/home.controller.dart';
+import 'fct_fechamento.controller.dart';
 
 class FctFechamentoPage extends StatelessWidget {
   const FctFechamentoPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final fctFechamentoController = context.watch<FctFechamentoController>();
+    final homeController = context.watch<HomeController>();
+    var state = fctFechamentoController.value;
+
     return Scaffold(
       appBar: AppBar(
         actions: [],
@@ -128,18 +131,32 @@ class FctFechamentoPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                Row(
+                Column(
                   children: [
-                    Flexible(
+                    Container(
                       child: CustomInputField(
                         onTap: () {},
-                        maxLines: 8,
-                        controller: TextEditingController(
-                            text: 'Viatura abastecida, óleo e filtro ok '),
-                        maxLength: 500,
+                        maxLines: 5,
+                        controller: fctFechamentoController.observacoes,
+                        maxLength: 300,
                         keyboardType: TextInputType.multiline,
                         isPassword: false,
-                        label: 'Observações',
+                        label: 'Defeitos verificados',
+                        hasIcon: true,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      child: CustomInputField(
+                        onTap: () {},
+                        maxLines: 5,
+                        controller: fctFechamentoController.observacoes,
+                        maxLength: 300,
+                        keyboardType: TextInputType.multiline,
+                        isPassword: false,
+                        label: 'Novidades verificadas',
                         hasIcon: true,
                       ),
                     ),
@@ -156,53 +173,11 @@ class FctFechamentoPage extends StatelessWidget {
                       child: BotaoGrandeI9t(
                           texto: 'Finalizar',
                           aoApertar: () {
-                            Modular.to.popAndPushNamed('/');
+                            Modular.to.navigate('/fechamento');
                           },
                           estaAtivo: true),
                     ),
                   ],
-                ),
-              ],
-            ),
-          ),
-          Container(
-            child: Column(
-              children: [
-                Center(
-                  child: Text(
-                    'Percurso',
-                    style: TextStyle(
-                        color: pretoi9t,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  width: 450,
-                  height: 450,
-                  child: Timeline.tileBuilder(
-                    theme: TimelineThemeData(
-                        color: amareloi9t,
-                        direction: Axis.vertical,
-                        connectorTheme:
-                            ConnectorThemeData(color: cinzalitei9t)),
-                    builder: TimelineTileBuilder.fromStyle(
-                      indicatorStyle: IndicatorStyle.dot,
-                      contentsAlign: ContentsAlign.alternating,
-                      oppositeContentsBuilder: (context, index) => Container(
-                        padding: EdgeInsets.all(20),
-                        child: Text('São Paulo - 12:35',
-                            style: TextStyle(
-                                color: pretoi9t,
-                                fontSize: 10,
-                                fontWeight: FontWeight.bold)),
-                      ),
-                      itemCount: 10,
-                    ),
-                  ),
                 ),
               ],
             ),

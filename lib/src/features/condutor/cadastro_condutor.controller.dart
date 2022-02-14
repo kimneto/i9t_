@@ -106,7 +106,7 @@ class CadastroCondutorController extends ValueNotifier<CadastroCondutorState> {
           }
 
           if (item.sucesso == false && item.erro == null) {
-            value = CadastroCondutorFailure(error: '${item.menssagem} ');
+            value = CadastroCondutorFailure(error: '${item.mensagem} ');
           } else {
             value = CadastroCondutorFailure(
                 error: 'Erro ao retornar item\n ${item.erro}');

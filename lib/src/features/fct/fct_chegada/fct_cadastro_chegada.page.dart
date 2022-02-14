@@ -10,7 +10,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:timelines/timelines.dart';
 import '../../home/home.controller.dart';
 import 'fct_cadastro_chegada.controller.dart';
-import 'fct_cadastro_saidastate.dart';
+import 'fct_cadastro_chegada.state.dart';
 
 class CadastroChegada extends StatefulWidget {
   const CadastroChegada({Key? key}) : super(key: key);
@@ -27,8 +27,13 @@ class _CadastroChegadaState extends State<CadastroChegada> {
     final fctCadastroChegadaController =
         context.read<FctCadastroChegadaController>();
     final homeController = context.read<HomeController>();
-    fctCadastroChegadaController.homeController =
-        HomeController as HomeController?;
+    fctCadastroChegadaController.homeController = homeController;
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
   }
 
   @override
@@ -271,8 +276,8 @@ class _CadastroChegadaState extends State<CadastroChegada> {
                           child: Column(
                             children: [
                               Text(
-                                homeController
-                                    .fctAberta.trafegoModel![index].pontoParada
+                                homeController.fctAberta.value
+                                    .trafegoModel![index].pontoParada
                                     .toString(),
                                 style: TextStyle(
                                     color: pretoi9t,
@@ -283,7 +288,7 @@ class _CadastroChegadaState extends State<CadastroChegada> {
                           ),
                         ),
                         itemCount:
-                            homeController.fctAberta.trafegoModel!.length,
+                            homeController.fctAberta.value.trafegoModel!.length,
                       ),
                     ),
                   ),

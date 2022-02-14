@@ -1,5 +1,7 @@
 import 'package:i9t/src/data/data.model.dart';
 
+import '../fct/models/fct.model.dart';
+
 class TrafegoModel {
   String? id;
   String? horaChegada;
@@ -7,7 +9,7 @@ class TrafegoModel {
   int? hodometro;
   bool? concluido;
   String? pontoParada;
-  String? fctId;
+  String? fct;
 
   TrafegoModel(
       {this.id,
@@ -16,7 +18,7 @@ class TrafegoModel {
       this.hodometro,
       this.concluido,
       this.pontoParada,
-      this.fctId});
+      this.fct});
 
   TrafegoModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -25,7 +27,7 @@ class TrafegoModel {
     hodometro = json['hodometro'];
     concluido = json['concluido'];
     pontoParada = json['pontoParada'];
-    fctId = json['fct'];
+    fct = json['fct'];
   }
 
   Map<String, dynamic> toJson() {
@@ -36,7 +38,7 @@ class TrafegoModel {
     data['horaPartida'] = this.horaPartida;
     data['hodometro'] = this.hodometro;
     data['pontoParada'] = this.pontoParada;
-    data['fctId'] = this.fctId;
+    data['fct'] = this.fct;
 
     return data;
   }

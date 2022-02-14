@@ -9,6 +9,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DesktopWindow.setWindowSize(Size(400, 700));
+    print("tranquilo");
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'I9 Controle de Tráfego',

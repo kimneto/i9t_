@@ -6,7 +6,12 @@ class TrafegoService {
   Future<RespostaApiModel> criaNovoTrafego(TrafegoModel trafego) async {
     final function = ParseCloudFunction("cria-trafego");
     final resposta = await function.execute(
-      parameters: trafego.toJson(),
+      parameters: {
+        "horaChegada": trafego.horaChegada,
+        "hodometro": trafego.hodometro,
+        "pontoParada": trafego.pontoParada,
+        "fctId": trafego.fct,
+      },
     );
     return RespostaApiModel.fromJson(resposta.result);
   }
@@ -19,12 +24,16 @@ class TrafegoService {
     return trafegoModel;
   }
 
-  Future<RespostaApiModel> atualizaTrafego(TrafegoModel trafegoModel) async {
-    final function = ParseCloudFunction("atualiza-trafego");
+  Future<String> atualizaTrafegoPartida(TrafegoModel trafegoModel) async {
+    final function = ParseCloudFunction("atualiza-trafego-partida");
     final resposta = await function.execute(
-      parameters: trafegoModel.toJson(),
+      parameters: {
+        "fctId": trafegoModel.fct!,
+        "trafegoId": trafegoModel.id,
+        "horaPartida": trafegoModel.horaPartida
+      },
     );
-    return RespostaApiModel.fromJson(resposta.result);
+    return resposta.result['data'];
   }
 
   Future<RespostaApiModel> concluiTrafego(TrafegoModel trafegoModel) async {

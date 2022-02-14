@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:i9t/src/features/condutor/condutor.controller.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:i9t/src/features/trafego/trafego.model.dart';
 import 'package:i9t/src/services/trafego.service.dart';
 import 'fct_cadastro_partida.state.dart';
@@ -10,11 +10,8 @@ class FctCadastroPartidaController
       : super(FctCadastroPartidaInitialState());
 
   TextEditingController horaEditingController = TextEditingController();
-
   final GlobalKey<FormState> formPartidaKey = GlobalKey<FormState>();
-  ValueNotifier<bool> checkBox = ValueNotifier(false);
 
-  CondutorController? condutorController;
   final trafegoService = TrafegoService();
 
   String? validaCampoHora(String? odometro) {
@@ -34,16 +31,24 @@ class FctCadastroPartidaController
 
   TimeOfDay now = TimeOfDay.now();
 
-  void inseriNovoTrafegoComPdi() async {
+  void cadastraPartida(List<TrafegoModel> trafegos) async {
+    value = FctCadastroPartidaSuccessState();
+    TrafegoModel trafegoModel = TrafegoModel();
     value = FctCadastroPartidaLoadingState();
     try {
       if (true /*validaFormFct()*/) {
-        // 1 - CRIA UM MODELO PRO NOVO TRAFEGO,
-        TrafegoModel trafegoModel = TrafegoModel();
-        // INSERE DADOS NO NOVO TRAFEGO
-        trafegoModel.horaPartida = horaEditingController.text;
+        // PEGA O ID DO TRAFEGO QUE NÃO ESTA CONCLUIDO  E SETADA FALSE
+        trafegos.forEach((element) {
+          if (element.concluido == false) {
+            trafegoModel.id = element.id;
+            trafegoModel.fct = element.fct;
 
-//CALCULA NOVA DATA
+            print(trafegoModel.toJson());
+          }
+        });
+
+        // CRIA A NOVA DATA
+
         DateTime agora = DateTime.now();
         String dia = agora.day.toString();
         String mes = agora.month.toString();
@@ -54,11 +59,20 @@ class FctCadastroPartidaController
 
         trafegoModel.horaPartida = novaData.toString();
 
-        trafegoService
-            .criaNovoTrafego(trafegoModel)
-            .then((value) => print(value));
+        // ATUALIZA O TRAFEGO COM A NOVA DATA E SETA CONCLUIDO COMO TRUE
+
+        print({
+          "fctId": trafegoModel.fct!,
+          "trafegoId": trafegoModel.id,
+          "horaPartida": trafegoModel.horaPartida
+        });
+
+        trafegoService.atualizaTrafegoPartida(trafegoModel).then((v) {
+          print(v);
+          value = FctCadastroPartidaInitialState();
+          Modular.to.navigate("/");
+        });
       }
-      value = FctCadastroPartidaSuccessState();
     } catch (e) {
       value = FctCadastroPartidaFailureState(error: e.toString());
     }
